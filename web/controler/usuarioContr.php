@@ -13,7 +13,7 @@ class UsuarioContr extends Usuario{
 
     private $token;
     private $cuentaActiva;
-    private $cuentaActiva;
+    
 
     public function __construct($username='', $password='', $repeatPwd='', $email='', 
                                 $token='', $cuentaActiva='',
@@ -72,7 +72,7 @@ class UsuarioContr extends Usuario{
         return $result;
     }
     private function invalidEmail(){
-        $result = FILTER_FLAG_ALLOW_SCIENTIFIC;
+        $result = false;
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){ $result = true;}
         return $result;
     }
@@ -91,9 +91,19 @@ class UsuarioContr extends Usuario{
     }
     public function signupUser(){
         //validationes
+        echo  $this->emptyInput($this->username);
+        echo  $this->emptyInput($this->email);
+        echo  $this->emptyInput($this->password);
+        echo  $this->emptyInput($this->repeatPwd);
+        echo  $this->invalidUsername();
+        echo  $this->invalidEmail();
+        echo  $this->noPwdMatch();
+        echo  $this->usernameTakenChec();
+
         if( $this->emptyInput($this->username)  || 
             $this->emptyInput($this->password)  || 
-            $this->emptyInput($this->repeatPwd)  || 
+            $this->emptyInput($this->repeatPwd)  ||
+            $this->emptyInput($this->municipio)  || 
             $this->emptyInput($this->email) ){
             header("Location: ../view/signup.php?error=emptyInput");
             exit();
@@ -115,9 +125,9 @@ class UsuarioContr extends Usuario{
             exit();
         }
         //setUser to DB
-        if(!$this->setUser($this->username, $this->password, $this->email,
-                         $this->apellido, $this->nombre, $this->dni,
-                         $this->direccion, $this->municipio )){
+        if(!$this->setUser( $this->username, $this->password, $this->email,
+                            $this->apellido, $this->nombre, $this->dni,
+                            $this->direccion, $this->municipio )){
             header("Location: ../view/signup.php?error=FailedStmt");
             exit();
         }
@@ -245,10 +255,10 @@ Public function forgotPassword(){
         exit();} 
                         
     // si todo esta bien, envia email
-    $err= $this->enviaEmail('forgotPassword'); 
+    $err= $this->enviaEmail('activacion'); 
         
     //check for errors  
-    if (!$err) {header("Location: ../index.php?error=emailForgotPassword");
+    if (!$err) {header("Location: ../index.php?error=emailBienvenida");
                 exit();
     } else {    header("Location: ../index.php?error=FailedSendEmail");
                 exit();}                            
@@ -260,13 +270,13 @@ Private function generateToken(){
         } 
 
 Private function enviaEmail($issue){
-            /*use PHPMailer\PHPMailer\PHPMailer;
-              use PHPMailer\PHPMailer\Exception;
-              use PHPMailer\PHPMailer\SMTP;*/
+//            use PHPMailer\PHPMailer\PHPMailer;
+//            use PHPMailer\PHPMailer\Exception;
+//            use PHPMailer\PHPMailer\SMTP;
 
-            require '../../PHPMailer/src/Exception.php';
-            require '../../PHPMailer/src/PHPMailer.php';
-            require '../../PHPMailer/src/SMTP.php';
+            require '../../lib/PHPMailer/src/Exception.php';
+            require '../../lib/PHPMailer/src/PHPMailer.php';
+            require '../../lib/PHPMailer/src/SMTP.php';
             
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
             $mail->isSMTP();
@@ -297,7 +307,7 @@ Private function enviaEmail($issue){
                     correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
                 };
-
+           
 
             $err = 0;
             if (!$mail->send()) {

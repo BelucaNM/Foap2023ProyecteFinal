@@ -9,9 +9,9 @@ class Usuario extends Connection{
                                 $direccion="", $municipio="" ){
         $error = 0;
         $stmt = $this->connect()->prepare("INSERT INTO $this->tablaNombre (
-                                        usu_username, usu_passwrod, usu_email,
+                                        usu_username, usu_password, usu_email,
                                         usu_apellido, usu_nombre, usu_dni,
-                                        usu_direccion, usu_municipio
+                                        usu_direccion, municipios_mun_id
                                         ) 
                                         VALUES (?,?,?,?,?,?,?,?)");
 
@@ -33,7 +33,7 @@ class Usuario extends Connection{
         if(!$stmt->execute(array($username, $email))){
             $error = 0;
         }else{
-            if($stmt->rowCount() = 0){
+            if($stmt->rowCount() == 0){
                 $error = 0;
             }
         }
