@@ -6,8 +6,8 @@ class Usuario extends Connection{
 
     protected function setUser( $username, $password, $email,
                                 $apellido="", $nombre="", $dni="",
-                                $direccion="", $municipio="" ){
-        $error = 0;
+                                $direccion="", $municipio=""){
+        $exito = false;
         $stmt = $this->connect()->prepare("INSERT INTO $this->tablaNombre (
                                         usu_username, usu_password, usu_email,
                                         usu_apellido, usu_nombre, usu_dni,
@@ -17,28 +17,24 @@ class Usuario extends Connection{
 
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-        if(!$stmt->execute(array(   $username, $hashedPwd, $email,
+        $exito= $stmt->execute(array(   $username, $hashedPwd, $email,
                                     $apellido, $nombre, $dni,
-                                    $direccion, $municipio))){
-            $error = 1; // devuelve 1 si ha habido error
-            }
+                                    $direccion, $municipio));
         $stmt = null;
-        return $error;
+        return $exito;
 
     }
 
     protected function checkUser($username, $email){
-        $error = 1; // devuelve 1 si el username o el email existen ; 0 en otro caso
+        $existe = false; // devolvera true si el username o el email existen ; false en otro caso
         $stmt = $this->connect()->prepare("SELECT usu_id FROM $this->tablaNombre WHERE usu_id = ? OR usu_email = ?;");
-        if(!$stmt->execute(array($username, $email))){
-            $error = 0;
-        }else{
-            if($stmt->rowCount() == 0){
-                $error = 0;
+        if($stmt->execute(array($username, $email))){
+            if($stmt->rowCount() > 0){
+                $existe = true;
             }
         }
         $stmt = null;
-        return $error;
+        return $existe;
     }
 
     protected function verifyLoginUser($username, $password){
@@ -118,4 +114,18 @@ class Usuario extends Connection{
         $stmt = null;
         return $result;
         }
+    
+    protected function updatePassword($token, $password) {        
+        $result = true;
+        $stmt = $this->connect()->prepare("UPDATE usuarios SET usu_password = ?, usu_token=null, usu_deadLine=now() WHERE usu_token = ?");
+        $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+        
+        if(!$stmt->execute(array($hashedPwd, $token))){
+                $result = false;
+            }
+                   
+        $stmt = null;
+        return $result;
+        }
+
 }

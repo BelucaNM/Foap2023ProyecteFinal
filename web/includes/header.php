@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav  me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="signup.php">Registro</a>
+                    <a class="nav-link" href="usuarios_signup.php">Registro</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="tiendas.php">Tiendas</a>
@@ -28,9 +28,9 @@
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
-<!--                   <li class="nav-item">
+                   <li class="nav-item">
                         <a href="../index.php">Login</a>
-                    </li> -->
+                    </li> 
                     <li class="nav-item">
                         <a href="../includes/logout.php">Logout</a>
                     </li>

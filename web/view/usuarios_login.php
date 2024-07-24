@@ -33,7 +33,7 @@
 
 <div class="container mt-3">
   <h2>Login</h2>
-  <form action="includes/login-inc.php" method="post">
+  <form action="../includes/login-inc.php" method="post">
     <div class="mb-3">
       <label for="uid">Username:</label>
       <input type="text" class="form-control" id="uid" placeholder="Enter your username" name="uid">
@@ -43,8 +43,8 @@
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
     </div>
     <div class="mb-3">
-      <a href="view/forgotpassword.php">Forgot Password?</a> /
-        <a href="view/signup.php">Don't have an account yet? Sign up here!</a>
+      <a href="forgotpassword.php">Forgot Password?</a> /
+      <a href="usuarios_signup.php">Don't have an account yet? Sign up here!</a>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

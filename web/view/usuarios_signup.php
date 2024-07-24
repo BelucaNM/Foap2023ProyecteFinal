@@ -13,8 +13,9 @@
 
 <?php 
 $title="Registro";
-include "../includes/header.php"; ?>
-
+include "../includes/header.php"; 
+require "../includes/municipios-inc.php";
+?>
 <div class="container mt-3">
     <h2>Sign Up</h2>
     <form action="../includes/signup-inc.php" method="post">
@@ -36,12 +37,14 @@ include "../includes/header.php"; ?>
         </div>
         <div class="mb-1 mt-1">      
             <label for ="codigoPostal">Codigo Postal</label>
-            <select class="form-select  mb-1" id="codigoPostal" name="codigoPostal">
+            <select class="form-select  mb-1" id="codigoPostal" name="mun_id">
 			<option value="">---------</option>
-            <?php  $codigoPostalError = creaSelCPostal();?>
+            <?php
+                foreach ($todos as $municipio) {
+                    echo"<option value=$municipio[mun_id]>$municipio[mun_codpos] $municipio[mun_nombre]</option>";
+                };
+            ?>
             </select>
-<!--        </datalist>  -->
-		    <span class="error" style="color:red;"><?="*".$codigoPostalErr;?></span>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

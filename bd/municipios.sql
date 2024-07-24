@@ -1658,7 +1658,7 @@ INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (1633, '09212', 'Miranda de Ebro'),
 (1634, '09212', 'Valle de Tobalina'),
 (1635, '09213', 'Cillaperlata');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (1636, '09213', 'Trespaderne'),
 (1637, '09213', 'Valle de Tobalina'),
 (1638, '09214', 'Bozoó'),
@@ -3250,7 +3250,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (3224, '15701', 'Santiago de Compostela'),
 (3225, '15702', 'Santiago de Compostela'),
 (3226, '15703', 'Santiago de Compostela');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (3227, '15704', 'Santiago de Compostela'),
 (3228, '15705', 'Santiago de Compostela'),
 (3229, '15706', 'Santiago de Compostela'),
@@ -4909,7 +4909,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (4882, '22001', 'Huesca'),
 (4883, '22002', 'Huesca'),
 (4884, '22003', 'Huesca');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (4885, '22004', 'Huesca'),
 (4886, '22005', 'Huesca'),
 (4887, '22006', 'Huesca'),
@@ -6534,7 +6534,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (6506, '26132', 'Leza de Río Leza'),
 (6507, '26132', 'Santa Engracia del Jubera'),
 (6508, '26132', 'Soto en Cameros');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (6509, '26132', 'Terroba'),
 (6510, '26133', 'Ajamil de Cameros'),
 (6511, '26133', 'Hornillos de Cameros'),
@@ -8242,7 +8242,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (8213, '31638', 'Esteribar'),
 (8214, '31639', 'Erro'),
 (8215, '31639', 'Esteribar');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (8216, '31640', 'Auritz/Burguete'),
 (8217, '31650', 'Orreaga/Roncesvalles'),
 (8218, '31660', 'Luzaide/Valcarlos'),
@@ -9935,7 +9935,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (9905, '36658', 'Estrada, A'),
 (9906, '36658', 'Portas'),
 (9907, '36659', 'Caldas de Reis');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (9908, '36660', 'Moraña'),
 (9909, '36668', 'Moraña'),
 (9910, '36669', 'Moraña'),
@@ -11450,7 +11450,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (11419, '41310', 'Brenes'),
 (11420, '41318', 'Villaverde del Río'),
 (11421, '41319', 'Alcalá del Río');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (11422, '41320', 'Cantillana'),
 (11423, '41330', 'Tocina'),
 (11424, '41330', 'Villanueva del Río y Minas'),
@@ -13030,7 +13030,7 @@ INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
 (12998, '47110', 'Casasola de Arión'),
 (12999, '47111', 'Villalar de los Comuneros'),
 (13000, '47112', 'Pedrosa del Rey');
-INSERT INTO `localidades` (`id`, `codigoPostal`, `municipio`) VALUES
+INSERT INTO `municipios` (`mun_id`, `mun_codpos`, `mun_nombre`) VALUES
 (13001, '47113', 'Tordesillas'),
 (13002, '47113', 'Villalbarba'),
 (13003, '47114', 'Matilla de los Caños'),

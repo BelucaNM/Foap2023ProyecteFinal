@@ -12,17 +12,19 @@ class UsuarioContr extends Usuario{
     private $municipio;
 
     private $token;
+    private $deadLine;
     private $cuentaActiva;
     
 
     public function __construct($username='', $password='', $repeatPwd='', $email='', 
-                                $token='', $cuentaActiva='',
+                                $token='', $deadLine='', $cuentaActiva='',
                                 $apellido='', $nombre='', $dni='', $direccion='', $municipio='' )
     {   $this->username = $username;
         $this->password = $password;
         $this->repeatPwd = $repeatPwd;
         $this->email = $email;
         $this->token = $token;
+        $this->deadLine = $deadLine;
         $this->cuentaActiva = $cuentaActiva;
         $this->apellido = $apellido;
         $this->nombre = $nombre;
@@ -85,73 +87,73 @@ class UsuarioContr extends Usuario{
     private function usernameTakenChec(){
         $result = false;
         if($this->checkUser($this->username, $this->email)){
-            $result = false;
+            $result = true;
         }
         return $result;
     }
     public function signupUser(){
         //validationes
-        echo  $this->emptyInput($this->username);
-        echo  $this->emptyInput($this->email);
-        echo  $this->emptyInput($this->password);
-        echo  $this->emptyInput($this->repeatPwd);
-        echo  $this->invalidUsername();
-        echo  $this->invalidEmail();
-        echo  $this->noPwdMatch();
-        echo  $this->usernameTakenChec();
+        echo "user vacio ". $this->username ; echo "<br>";
+        echo "email vacio ". $this->email;echo "<br>";
+        echo "pass vacio ". $this->password;echo "<br>";
+        echo "reppass vacio ".$this->repeatPwd;echo "<br>";
+        echo "municipio vacio ". $this->municipio;echo "<br>";
+
 
         if( $this->emptyInput($this->username)  || 
             $this->emptyInput($this->password)  || 
             $this->emptyInput($this->repeatPwd)  ||
             $this->emptyInput($this->municipio)  || 
             $this->emptyInput($this->email) ){
-            header("Location: ../view/signup.php?error=emptyInput");
+            header("Location: ../view/usuarios_signup.php?error=emptyInput");
             exit();
         }
         if($this->invalidUsername() ){
-        header("Location: ../view/signup.php?error=invalidUsername");
+        header("Location: ../view/usuarios_signup.php?error=invalidUsername");
         exit();
         }
         if($this->invalidEmail()){
-            header("Location: ../view/signup.php?error=invalidEmail");
+            header("Location: ../view/usuarios_signup.php?error=invalidEmail");
             exit();
         }
         if($this->noPwdMatch()){
-            header("Location: ../view/signup.php?error=noPwdMatch");
+            header("Location: ../view/usuarios_signup.php?error=noPwdMatch");
             exit();
         }
         if($this->usernameTakenChec()){
-            header("Location: ../view/signup.php?error=userMailTaken");
+            header("Location: ../view/usuarios_signup.php?error=userMailTaken");
             exit();
         }
         //setUser to DB
         if(!$this->setUser( $this->username, $this->password, $this->email,
                             $this->apellido, $this->nombre, $this->dni,
                             $this->direccion, $this->municipio )){
-            header("Location: ../view/signup.php?error=FailedStmt");
+            header("Location: ../view/usuarios_signup.php?error=FailedStmt");
             exit();
         }
+     
+        header("Location: ../view/usuarios_signup.php?error=done"); //Volver a la pagina inicial
     }
 
     public function loginUser(){
         //validationes
         if( $this->emptyInput($this->username)|| 
             $this->emptyInput($this->password)){
-            header("Location: ../index.php?error=emptyInput");
+            header("Location: ../view/usuarios_login.php?error=emptyInput");
             exit();
         }
         //verifyUser in DB
         $res = $this->verifyLoginUser($this->username, $this->password);
         if($res==1){
-            header("Location: ../index.php?error=FailedStmt");
+            header("Location: ../view/usuarios_login.php?error=FailedStmt");
             exit();
         }
         if($res==2){
-            header("Location: ../index.php?error=invalidUsername");
+            header("Location: ../view/usuarios_login.php?error=invalidUsername");
             exit();
         }
         if($res==3){
-            header("Location: ../index.php?error=invalidPassUser");
+            header("Location: ../view/usuarios_login.php?error=invalidPassUser");
             exit();
         }
     }
@@ -214,19 +216,7 @@ class UsuarioContr extends Usuario{
     }
 
 
-    protected function updatePassword($token, $password) {        
-            $result = true;
-            $stmt = $this->connect()->prepare("UPDATE users SET users_pwd = ?, token=null, deadLine=now() WHERE token = ?");
-            $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-        
-            if(!$stmt->execute(array($hashedPwd, $token))){
-                $result = false;
-                }
-                   
-            $stmt = null;
-            return $result;
-            }
-
+    
 Public function forgotPassword(){
                 // validaciones
         
@@ -264,10 +254,10 @@ Public function forgotPassword(){
                 exit();}                            
     }
         
-   
 Private function generateToken(){
         $this->token = bin2hex(random_bytes(16));
-        } 
+        }   
+ 
 
 Private function enviaEmail($issue){
 //            use PHPMailer\PHPMailer\PHPMailer;
