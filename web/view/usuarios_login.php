@@ -25,6 +25,9 @@
         if ( $_GET['error'] == 'NewPassSaved') {
                 echo '<div class="alert alert-success" role="alert">Su password se ha actualizado correctamente.</div>';
                 };
+        if ( $_GET['error'] == 'inactiveAccount') {
+                echo '<div class="alert alert-success" role="alert">Cuenta inactiva. Contacte con la tienda.</div>';
+                };
             
     };
 ?>

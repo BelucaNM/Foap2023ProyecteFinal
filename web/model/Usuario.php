@@ -39,22 +39,28 @@ class Usuario extends Connection{
 
     protected function verifyLoginUser($username, $password){
         $error = 0;
-        $stmt = $this->connect()->prepare("SELECT usu_password from $this->tablaNombre WHERE usu_username = ?");
+        $stmt = $this->connect()->prepare("SELECT usu_password, usu_cuentaActiva from $this->tablaNombre WHERE usu_username = ?");
         $status = 1;
         if(!$stmt->execute(array($username))){
             $error = 1; // devuelve 1 si hay fallo en ejecución statement
-        }
-        if($stmt->rowCount()>0){
-            $res = $stmt->fetchAll();
-            $hashedPwd = $res[0]['usu_password'];
-            if(password_verify($password, $hashedPwd)==false){
-                $error = 3; // devuelve 3 si la password no coincide
+        } else {
+            if($stmt->rowCount()>0){
+                $res = $stmt->fetchAll();
+                $hashedPwd = $res[0]['usu_password'];
+                $activa =    $res[0]['usu_cuentaActiva'];
+                if(password_verify($password, $hashedPwd)==false){
+                    $error = 3; // devuelve 3 si el password no coincide
+                }else{
+                    if($activa==false){
+                        $error = 4; // devuelve 4 si la cuenta no esta activa
+                    }else{
+                        $_SESSION["username"] = $username;
+                    }
+                }
             }else{
-                $_SESSION["username"] = $username;
+                $error = 2; // devuelve 2 si no existe registro de username
             }
-        }else{
-            $error = 2; // devuelve 2 si no existe registro de username
-        }
+        };
         $stmt = null;
         return $error;
     }
@@ -102,13 +108,13 @@ class Usuario extends Connection{
             if( $stmt->rowCount() >0) {
                 $result = $stmt->fetch();
                 print_r($result);
-                $array [1] =$result['usu_username']; 
+                $array[1] =$result['usu_username']; 
             }else{
                  $error = 2; // devuelve 2 si no existe registro de email
             }
         };
         $stmt = null;
-        $array [0] =$error;
+        $array[0] =$error;
         return $array; // devuelve un array con el codigo de error y el username si existe
         }
 

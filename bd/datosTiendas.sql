@@ -1,0 +1,2 @@
+INSERT INTO `tiendas`(`tie_id`, `tie_nombre`, `tie_direccion`, `tie_fotoURL`, `tie_fotoALT`, `tie_telefono`, `municipios_mun_id`, `vendedores_ven_id`) VALUES ('1','Principal','Serra del Cadi','','fotoPuertaPrincipal','938968056','1468','1');
+INSERT INTO `tiendas`(`tie_id`, `tie_nombre`, `tie_direccion`, `tie_fotoURL`, `tie_fotoALT`, `tie_telefono`, `municipios_mun_id`, `vendedores_ven_id`) VALUES ('2','Almacen','Serra del Cadi','','fotoGarage','938968056','1468','2');

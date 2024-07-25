@@ -68,6 +68,12 @@
         font-size: 1em;
         margin: 0 0 15px;
         }
+    .caja {
+        border: 1px solid #ccc;
+        overflow: hidden;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
     footer {
         background-color: #333;
         color: white;
@@ -77,6 +83,18 @@
         bottom: 0;
         width: 100%;
         }
+    #gruposProducto {
+        background-color: whitesmoke;
+
+    }
+    #FAQS {
+        background-color: white;
+        
+    }
+    #contacto {
+        background-color: white;
+        
+    }
     </style>
 </head>
 
@@ -98,65 +116,148 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     if ( $_GET['error'] == 'Printed') {
         echo '<div class="alert alert-success" role="alert">Se ha generado el listado en DIR Prints.pdf.</div>';
     };
+    if ( $_GET['error'] == 'FailedStmt') {
+        echo '<div class="alert alert-success" role="alert">No se ha podido hacer la actualizacion.</div>';
+    };
     
 };
 
 $title="Bienvenid@ a nuestra tienda Outlet";
-include "../includes/header.php"; ?>
+include "../includes/header.php"; 
 
 ?>
 <main>
 <section id="inicio" class="section">
         <h2>Inicio</h2>
-        <p>Aquí puedes navegar por las diferentes secciones.</p>
+        <p>Poner aqui la navegación.</p>
 </section>
 
-<section id="cards" class="section">
+<section id="gruposProducto" class="section">
         <h2>Productos</h2> // carrusel
         <div class="cards-container">
                 <div class="card">
-                    <img src="../img/chica.jpeg" alt="ImagenCamaras" class="card-img">
+                    <img src="../img/chica.jpeg" alt="ImagenCamarasANA" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Camaras</h3>
+                        <h3 class="card-title">Cámaras Analógicas</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de  productos camaras. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../img/chica2.jpeg" alt="ImagenObjetivo" class="card-img">
+                    <img src="../img/chica2.jpeg" alt="ImagenCamarasDIG" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Objetivos</h3>
-                        <p class="card-text">Contenido de ejemplo para el grupo de productos de objetivos. Esto es una vista previa.</p>
+                        <h3 class="card-title">Cámaras Digitales</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de productos de Cámaras Digitales. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../img/chico.jpeg" alt="ImagenBaterias" class="card-img">
+                    <img src="../img/chico.jpeg" alt="ImagenObjetivosMAN" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Objetivos Manuales</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de objetivos manuales. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chica.jpeg" alt="ImagenObjetivosAUT" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Objetivos automáticos</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de objetivos automáticos. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chica2.jpeg" alt="ImagenFiltros" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Filtros</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de Filtros. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chico.jpeg" alt="ImagenSoportes" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Tripodes y Soportes</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de Soportes. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chica.jpeg" alt="ImagenAdaptadores" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Adaptadores</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de Adaptadores. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chica2.jpeg" alt="ImagenBaterias" class="card-img">
                     <div class="card-body">
                         <h3 class="card-title">Baterias</h3>
-                        <p class="card-text">Contenido de ejemplo para el grupo de prooductos baterias. Esto es una vista previa.</p>
+                        <p class="card-text">Contenido de ejemplo para el grupo de productos de Baterias. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="../img/chico.jpeg" alt="ImagenAccesorios" class="card-img">
+                    <img src="../img/chico.jpeg" alt="ImagenCables" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">ImagenAccesorios</h3>
-                        <p class="card-text">Contenido de ejemplo para el grupo de prooductos accesorios. Esto es una vista previa.</p>
+                        <h3 class="card-title">Cables</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de Cables. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
+                <div class="card">
+                    <img src="../img/chica.jpeg" alt="ImagenBolsas" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Bolsas y Fundas</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de bolsas y fundas. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chica2.jpeg" alt="ImagenAccesorios" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">Accesorios</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de Accesorios. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
         </div>
     </section>
 
     <section id="FAQS" class="section">
             <h2>FAQS</h2>
-            <p>Aquí van tres divs, para explicar cuando tarda en llegar un pedido, la politica de devoluciones, o el medio de pago.</p>
+            <p>Aquí van tres divs, para explicar cuanto tarda en llegar un pedido, la politica de devoluciones, o el medio de pago.</p>
+            <div class="cards-container">
+                <div class="caja">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Cuanto tarda en llegar un pedido</h3>
+                        <p class="card-text">Aqui se explicará como se hacen los envios. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="caja">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Política de devoluciones</h3>
+                        <p class="card-text">Aqui se explicará la política de devoluciones. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="caja">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Medios de Pago</h3>
+                        <p class="card-text">Aqui se explicará cómo hacer el pago. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
     </section>
 
-    <section id="texto" class="section">
-            <h2>Texto</h2>
-            <p>Este es un ejemplo de texto en una sección de la página. Puedes agregar todo el contenido que necesites aquí.</p>
+    <section id="contacto" class="section">
+            <h2>Contacto</h2>
+            <p>Aqui se  agregará un enlace de email y un enlace para chat.</p>
     </section>
     </main>
 </body>

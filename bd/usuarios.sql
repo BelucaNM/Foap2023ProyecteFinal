@@ -47,9 +47,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usu_id`, `usu_username`, `usu_password`, `usu_email`, `usu_apellido`, `usu_nombre`, `usu_dni`, `usu_direccion`, `municipios_mun_id`, `usu_token`, `usu_deadLine`, `usu_cuentaActiva`) VALUES
-(1, 'admin', '$2y$10$iGS71Kdrsjg/nBS1sIvfp.1RyfRKybqb7yyK0Qacmj.4.xR3swFaK', 'beluca.navarrina@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 00:26:19', 0),
-(4, 'profe', '$2y$10$kifvgDT73mKHUENO3dGZCuvYHHd.7L/L3OqzH.z6S.c2RPDuH3Cvm', 'pepe@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 01:37:38', 0),
-(5, 'isabel', '$2y$10$9n.TrqhLGKI5Ro7/OmHSh.c54WIK0BnCAUunb.2glhXwDuM/FFwB6', 'isabel.navarrina@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 01:46:11', 0);
+(1, 'admin', '$2y$10$iGS71Kdrsjg/nBS1sIvfp.1RyfRKybqb7yyK0Qacmj.4.xR3swFaK', 'beluca.navarrina@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 00:26:19', 1),
+(4, 'profe', '$2y$10$kifvgDT73mKHUENO3dGZCuvYHHd.7L/L3OqzH.z6S.c2RPDuH3Cvm', 'pepe@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 01:37:38', 1),
+(5, 'isabel', '$2y$10$9n.TrqhLGKI5Ro7/OmHSh.c54WIK0BnCAUunb.2glhXwDuM/FFwB6', 'isabel.navarrina@gmail.com', '', '', '', '', 1468, NULL, '2024-07-24 01:46:11', 1);
 
 --
 -- Índices para tablas volcadas

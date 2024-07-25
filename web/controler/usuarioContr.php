@@ -156,6 +156,10 @@ class UsuarioContr extends Usuario{
             header("Location: ../view/usuarios_login.php?error=invalidPassUser");
             exit();
         }
+        if($res==4){
+            header("Location: ../view/usuarios_login.php?error=inactiveAccount");
+            exit();
+        }
     }
 
 
@@ -204,11 +208,11 @@ class UsuarioContr extends Usuario{
 //        echo $this->password;
         if (!$result) {
                 echo " no se ha podido hacer la actualización";
-                header ("location: ../index.php?error=FailedStmt");
+                header ("location: ../bienvenida.php?error=FailedStmt");
                 exit();
         } else {
                 echo " actualización realizada con éxito";
-                header ("location: ../index.php?error=NewPassSaved");
+                header ("location: ../view/usuarios_login.php?error=NewPassSaved");
                 exit();
             }
 
@@ -255,10 +259,12 @@ Public function forgotPassword(){
         
     $result = $this->checkUserByEmail($this->email);
     print_r($result);
-    if ($result[0] == 1) { header("Location: ../view/forgotpassword.php?error=FailedStmt");
-                        exit();}
-    if ($result[0] == 2) { header("Location: ../view/forgotpassword.php?error=EmailDoesNotExist");
-                        exit();}
+    if ($result[0] == 1) { 
+        header("Location: ../view/forgotpassword.php?error=FailedStmt");
+        exit();}
+    if ($result[0] == 2) { 
+        header("Location: ../view/forgotpassword.php?error=EmailDoesNotExist");
+        exit();}
                     
     // $result[1]  es el username           
                  
@@ -271,12 +277,12 @@ Public function forgotPassword(){
         exit();} 
                         
     // si todo esta bien, envia email
-    $err= $this->enviaEmail('activacion'); 
+    $err= $this->enviaEmail('forgotPassword'); 
         
     //check for errors  
-    if (!$err) {header("Location: ../view/usuario_login.php?error=emailBienvenida");
+    if (!$err) {header("Location: ../view/usuarios_login.php?error=emailForgotPassword");
                 exit();
-    } else {    header("Location: ../view/usuario_login.php?error=FailedSendEmail");
+    } else {    header("Location: ../view/usuarios_login.php?error=FailedSendEmail");
                 exit();}                            
     }
         

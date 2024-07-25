@@ -1,0 +1,2 @@
+INSERT INTO `vendedores`(`ven_id`, `ven_username`, `ven_password`, `ven_email`, `ven_telefono`) VALUES ('1','jesus','1234','jesus.consuegra@gmail.com','610020097');
+INSERT INTO `vendedores`(`ven_id`, `ven_username`, `ven_password`, `ven_email`, `ven_telefono`) VALUES ('2','beluca','1234','beluca.navarrina@gmail.com','600857253');
