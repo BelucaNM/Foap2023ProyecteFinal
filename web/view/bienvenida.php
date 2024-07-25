@@ -18,8 +18,8 @@
         box-sizing: border-box;
         }
     header {
-        background-color: #333;
-        color: white;
+        background-color: gainsboro;
+        color: black;
         padding: 10px 0;
         text-align: center;
         }
@@ -83,14 +83,16 @@
 <body>
 
 <?php
-session_start();
+/*session_start();
 
 if(!isset($_SESSION['user'])){
     echo " la session no ha sido iniciada";
     header("Location: ../index.php");
     exit();
 }
-$user = $_SESSION['user'];
+
+$user = $_SESSION['user'];*/
+
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validaciones
 
     if ( $_GET['error'] == 'Printed') {
@@ -99,54 +101,62 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     
 };
 
-$title="Bienvenida";
+$title="Bienvenid@ a nuestra tienda Outlet";
 include "../includes/header.php"; ?>
 
 ?>
 <main>
 <section id="inicio" class="section">
         <h2>Inicio</h2>
-        <p>Bienvenido/a a nuestra página. Aquí puedes navegar por las diferentes secciones.</p>
+        <p>Aquí puedes navegar por las diferentes secciones.</p>
 </section>
 
 <section id="cards" class="section">
-        <h2>Cards</h2>
+        <h2>Productos</h2> // carrusel
         <div class="cards-container">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen de Ejemplo 1" class="card-img">
+                    <img src="../img/chica.jpeg" alt="ImagenCamaras" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Título de Ejemplo 1</h3>
-                        <p class="card-text">Contenido de ejemplo para la entrada del blog. Esto es una vista previa.</p>
+                        <h3 class="card-title">Camaras</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de  productos camaras. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen de Ejemplo 2" class="card-img">
+                    <img src="../img/chica2.jpeg" alt="ImagenObjetivo" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Título de Ejemplo 2</h3>
-                        <p class="card-text">Contenido de ejemplo para la entrada del blog. Esto es una vista previa.</p>
+                        <h3 class="card-title">Objetivos</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de productos de objetivos. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="Imagen de Ejemplo 3" class="card-img">
+                    <img src="../img/chico.jpeg" alt="ImagenBaterias" class="card-img">
                     <div class="card-body">
-                        <h3 class="card-title">Título de Ejemplo 3</h3>
-                        <p class="card-text">Contenido de ejemplo para la entrada del blog. Esto es una vista previa.</p>
+                        <h3 class="card-title">Baterias</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de prooductos baterias. Esto es una vista previa.</p>
+                        <a href="#">Leer más</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="../img/chico.jpeg" alt="ImagenAccesorios" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title">ImagenAccesorios</h3>
+                        <p class="card-text">Contenido de ejemplo para el grupo de prooductos accesorios. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
                     </div>
                 </div>
         </div>
     </section>
 
+    <section id="FAQS" class="section">
+            <h2>FAQS</h2>
+            <p>Aquí van tres divs, para explicar cuando tarda en llegar un pedido, la politica de devoluciones, o el medio de pago.</p>
+    </section>
+
     <section id="texto" class="section">
             <h2>Texto</h2>
             <p>Este es un ejemplo de texto en una sección de la página. Puedes agregar todo el contenido que necesites aquí.</p>
-    </section>
-
-    <section id="contacto" class="section">
-            <h2>Contacto</h2>
-            <p>Aquí puedes incluir un formulario de contacto, información de contacto o cualquier otra cosa que desees.</p>
     </section>
     </main>
 </body>

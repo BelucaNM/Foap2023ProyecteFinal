@@ -36,15 +36,8 @@ require "../includes/municipios-inc.php";
             <input type="email" class="form-control" id="email" placeholder="Introduzca email" name="email">
         </div>
         <div class="mb-1 mt-1">      
-            <label for ="codigoPostal">Codigo Postal</label>
-            <select class="form-select  mb-1" id="codigoPostal" name="mun_id">
-			<option value="">---------</option>
-            <?php
-                foreach ($todos as $municipio) {
-                    echo"<option value=$municipio[mun_id]>$municipio[mun_codpos] $municipio[mun_nombre]</option>";
-                };
-            ?>
-            </select>
+            <label for ="codpos">Codigo Postal</label>
+            <input type="text" class="form-control" id="codpos" placeholder="Introduzca codigo postal"   name="codpos">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

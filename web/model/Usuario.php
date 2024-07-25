@@ -58,11 +58,21 @@ class Usuario extends Connection{
         $stmt = null;
         return $error;
     }
+    protected function activaCuenta($token) {        
+        $result = true;
+        $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET usu_cuentaActiva = 1, usu_token=null, usu_deadLine=now() WHERE usu_token = ?");
+        if(!$stmt->execute(array($token))){
+            $result = false;
+            }
+             
+        $stmt = null;
+        return $result;
+        }
 
     protected function checkToken($token){
         
         $error = 0;
-        $stmt = $this->connect()->prepare("SELECT TIMESTAMPDIFF(minute,deadLine,now()) as diff FROM $this->tablaNombre WHERE usu_token = ?");
+        $stmt = $this->connect()->prepare("SELECT TIMESTAMPDIFF(minute,usu_deadLine,now()) as diff FROM $this->tablaNombre WHERE usu_token = ?");
     
         if (!$stmt->execute(array($token))){
             $error = 1; // devuelve 1 si hay fallo en ejecución statement
@@ -105,7 +115,7 @@ class Usuario extends Connection{
     protected function updateConToken($email,$token) {
             
         $result = 1;
-        $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET token = ?, deadLine=now() WHERE usu_email = ?");
+        $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET usu_token = ?, usu_deadLine=now() WHERE usu_email = ?");
                        
         if(!$stmt->execute(array($token,$email))){
             $result = 0; // no se ha podido hacer la actualización
@@ -117,7 +127,7 @@ class Usuario extends Connection{
     
     protected function updatePassword($token, $password) {        
         $result = true;
-        $stmt = $this->connect()->prepare("UPDATE usuarios SET usu_password = ?, usu_token=null, usu_deadLine=now() WHERE usu_token = ?");
+        $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET usu_password = ?, usu_token=null, usu_deadLine=now() WHERE usu_token = ?");
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
         
         if(!$stmt->execute(array($hashedPwd, $token))){

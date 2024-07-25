@@ -9,7 +9,7 @@ class UsuarioContr extends Usuario{
     private $nombre;
     private $dni;
     private $direccion;
-    private $municipio;
+    private $municipio; // mun_id
 
     private $token;
     private $deadLine;
@@ -74,8 +74,7 @@ class UsuarioContr extends Usuario{
         return $result;
     }
     private function invalidEmail(){
-        $result = false;
-        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)){ $result = true;}
+        $result = filter_var($this->email, FILTER_VALIDATE_EMAIL);
         return $result;
     }
 
@@ -93,11 +92,7 @@ class UsuarioContr extends Usuario{
     }
     public function signupUser(){
         //validationes
-        echo "user vacio ". $this->username ; echo "<br>";
-        echo "email vacio ". $this->email;echo "<br>";
-        echo "pass vacio ". $this->password;echo "<br>";
-        echo "reppass vacio ".$this->repeatPwd;echo "<br>";
-        echo "municipio vacio ". $this->municipio;echo "<br>";
+        
 
 
         if( $this->emptyInput($this->username)  || 
@@ -105,7 +100,12 @@ class UsuarioContr extends Usuario{
             $this->emptyInput($this->repeatPwd)  ||
             $this->emptyInput($this->municipio)  || 
             $this->emptyInput($this->email) ){
-            header("Location: ../view/usuarios_signup.php?error=emptyInput");
+ //           header("Location: ../view/usuarios_signup.php?error=emptyInput");
+        echo "user vacio ". $this->username ; echo "<br>";
+        echo "email vacio ". $this->email;echo "<br>";
+        echo "pass vacio ". $this->password;echo "<br>";
+        echo "reppass vacio ".$this->repeatPwd;echo "<br>";
+        echo "municipio vacio ". $this->municipio;echo "<br>";
             exit();
         }
         if($this->invalidUsername() ){
@@ -132,7 +132,7 @@ class UsuarioContr extends Usuario{
             exit();
         }
      
-        header("Location: ../view/usuarios_signup.php?error=done"); //Volver a la pagina inicial
+        header("Location: ../view/usuarios_login.php?error=RegisterDone"); //Volver a la pagina inicial
     }
 
     public function loginUser(){
@@ -214,7 +214,33 @@ class UsuarioContr extends Usuario{
 
 
     }
+    public function activateAccount(){
 
+        $result = $this->checkToken($this->token);
+
+        if ($result == 1) {
+                echo " el stmt es incorrecto";
+                header ("location: ../includes/activacion_inc.php?error=FailedStmt");
+                exit();
+            }
+        if ($result == 2) { 
+                echo " el token  no existe";
+                header ("location: ../includes/activacion_inc.php?error=tokenNotExist"); 
+                exit();
+            }
+        if ($result == 3) {
+                echo " el token está caducado";
+                header ("location: ../includes/activacion_inc.php?error=tokenExpired"); 
+                exit();
+            }
+    
+        if(!$this->activaCuenta($this->token)){
+                header("Location: ../includes/activacion_inc.php?error=failedStmt&token=$this->token");
+                exit();
+            }
+        header("Location: ../views/usuarios_login.php?error=activAccount");
+
+        } 
 
     
 Public function forgotPassword(){
@@ -248,9 +274,9 @@ Public function forgotPassword(){
     $err= $this->enviaEmail('activacion'); 
         
     //check for errors  
-    if (!$err) {header("Location: ../index.php?error=emailBienvenida");
+    if (!$err) {header("Location: ../view/usuario_login.php?error=emailBienvenida");
                 exit();
-    } else {    header("Location: ../index.php?error=FailedSendEmail");
+    } else {    header("Location: ../view/usuario_login.php?error=FailedSendEmail");
                 exit();}                            
     }
         
@@ -286,13 +312,13 @@ Private function enviaEmail($issue){
         //Para enviar texto plano     
             
             if ($issue == 'forgotPassword'){
-                $link= 'http://localhost/Foap2023-OOP/miweb/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
+                $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara recuperar tu contraseña, haz click en el enlace siguiente. Si no has solicitado este
                     correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
                 $mail->msgHTML("<a href='".$link."'> Link para crear nueva contraseña</a>"); 
                 };
             if ($issue == 'activacion'){
-                $link= 'http://localhost/Foap2023-OOP/miweb/includes/activacion_inc.php?token='.$this->token; // aqui hay que enviar el token
+                $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara activar tu cuenta, haz click en el enlace siguiente. Si no has solicitado este
                     correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 

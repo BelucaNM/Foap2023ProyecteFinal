@@ -13,6 +13,18 @@ class Municipio extends Connection{
         return $stmt->fetchAll();
         
     }
+    protected function getMunicipioId($codpos, $nombre){
+        $existe = false; // devolvera false si el codpos no existe 
+        $stmt = $this->connect()->prepare("SELECT mun_id FROM $this->tablaNombre WHERE mun_codpos = ? OR mun_nombre = ?");
+        if($stmt->execute(array($codpos, $nombre))){
+            if($stmt->rowCount() > 0){
+                $res = $stmt->fetch();
+                $existe=$res[0];
+            }
+        }
+        $stmt = null;
+        return $existe;
+    }
         
 }
 

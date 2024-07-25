@@ -67,6 +67,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `tienda`.`vendedores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tienda`.`vendedores` (
+  `ven_id` INT(5) NOT NULL AUTO_INCREMENT,
+  `ven_username` VARCHAR(45) NOT NULL,
+  `ven_password` LONGTEXT NOT NULL,
+  `ven_email` VARCHAR(45) NOT NULL,
+  `ven_telefono` VARCHAR(11) NOT NULL,
+  PRIMARY KEY (`ven_id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `tienda`.`tiendas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tienda`.`tiendas` (
@@ -75,14 +88,20 @@ CREATE TABLE IF NOT EXISTS `tienda`.`tiendas` (
   `tie_direccion` VARCHAR(45) NULL,
   `tie_fotoURL` VARCHAR(45) NULL,
   `tie_fotoALT` VARCHAR(45) NULL,
-  `tie_contacto` VARCHAR(45) NULL,
   `tie_telefono` VARCHAR(11) NULL,
   `municipios_mun_id` INT NOT NULL,
+  `vendedores_ven_id` INT(5) NOT NULL,
   PRIMARY KEY (`tie_id`),
   INDEX `fk_tiendas_municipios_idx` (`municipios_mun_id` ASC) ,
+  INDEX `fk_tiendas_vendedores1_idx` (`vendedores_ven_id` ASC) ,
   CONSTRAINT `fk_tiendas_municipios`
     FOREIGN KEY (`municipios_mun_id`)
     REFERENCES `tienda`.`municipios` (`mun_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tiendas_vendedores1`
+    FOREIGN KEY (`vendedores_ven_id`)
+    REFERENCES `tienda`.`vendedores` (`ven_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -121,6 +140,7 @@ CREATE TABLE IF NOT EXISTS `tienda`.`pedidos` (
   `productos_pro_id` INT UNSIGNED NOT NULL,
   `usu_cantidad` VARCHAR(45) NULL,
   `usu_precioUnitario` DECIMAL(7,2) NULL,
+  `pedidoscol` VARCHAR(45) NULL,
   PRIMARY KEY (`ped_id`),
   INDEX `fk_pedidos_usuarios1_idx` (`usuarios_usu_id` ASC) ,
   INDEX `fk_pedidos_productos1_idx` (`productos_pro_id` ASC) ,
