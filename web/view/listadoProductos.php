@@ -47,7 +47,8 @@ print_r($todos);
         echo "<td>".$todo['pro_ALTFoto']."</td>";
         echo "<td>".$todo['pro_precioUnitario']."</td>";
         echo "<td>  <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
-                    <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>  
+                    <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
+                    <a href='../includes/productoVer.php?id=".$todo['pro_id']."'>Ver</a>
                     </td>";
         echo "</tr>";
         }
