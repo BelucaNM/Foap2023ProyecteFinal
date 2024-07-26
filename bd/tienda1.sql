@@ -56,10 +56,10 @@ ENGINE = InnoDB;
 -- Table `tienda`.`productos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tienda`.`productos` (
-  `pro_id` INT UNSIGNED NOT NULL,
+  `pro_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `pro_nombre` VARCHAR(45) NOT NULL,
   `pro_descripcion` VARCHAR(300) NOT NULL,
-  `pro_URLFoto` VARCHAR(45) NOT NULL,
+  `pro_URLFoto` VARCHAR(300) NOT NULL,
   `pro_ALTFoto` VARCHAR(45) NOT NULL,
   `pro_precioUnitario` DECIMAL(7,2) NOT NULL,
   `pro_categoria` VARCHAR(15) NOT NULL COMMENT '\'camaras\', \'objetivos\',\'accesorios\',\'baterias\',\'flaxes\'',
