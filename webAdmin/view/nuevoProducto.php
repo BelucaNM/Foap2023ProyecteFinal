@@ -22,7 +22,7 @@ $categorias = $producto->categorias();
 <?php include "../includes/header.php"; ?>
 <div class="container mt-3">
     
-    <form action="../includes/productoInsertar.php" method="post">
+    <form action="../includes/productoInsertar.php" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nombre">Nombre Producto:</label>
             <input type="text" class="form-control" id="nombre" placeholder="Introduzca nombre producto" name="nombre">
@@ -37,7 +37,7 @@ $categorias = $producto->categorias();
         </div>
         <div class="mb-3">
             <label for="URLFoto">URLFoto:</label>
-            <input type="text" class="form-control" id="URLFoto" placeholder="Introduzca URLFoto" name="URLFoto" required>
+            <input type="file" class="form-control" id="URLFoto" placeholder="Seleccione Imagen" name="URLFoto" required>
         </div>
         <div class="mb-3">      
             <label for ="ALTFoto">ALTFoto</label>

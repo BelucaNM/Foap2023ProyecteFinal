@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS `tienda`.`productos` (
   `pro_ALTFoto` VARCHAR(45) NOT NULL,
   `pro_precioUnitario` DECIMAL(7,2) NOT NULL,
   `pro_categoria` VARCHAR(15) NOT NULL COMMENT '\'camaras\', \'objetivos\',\'accesorios\',\'baterias\',\'flaxes\'',
+  `pro_fecha` DATETIME NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`pro_id`))
 ENGINE = InnoDB;
 
