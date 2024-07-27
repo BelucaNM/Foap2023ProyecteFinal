@@ -1,45 +1,47 @@
 <?php 
 
-class Producto extends Connection{
+class Pedido extends Connection{
     
-    private $id;
-    private $nombre;
-    private $descripcion;
-    private $precioUnitario;
-    private $URLFoto;
-    private $ALTFoto;
-    private $categoria;
+    private $pedidoid;
     private $fecha;
-    private $tablaNombre = "productos";
+    private $usuarioid;
+    private $total;
+    private $linea;
+    private $productoid;
+    private $cantidad;
+    private $precioUnitario;
+
+    private $tablaNombre = "pedidos";
     private $tablaNumReg = 0;
 
-    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='')
-    {   $this->id = $id;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->URLFoto = $URLFoto;
-        $this->ALTFoto = $ALTFoto;
+
+    public function __construct($pedidoid='',$fecha ='',$usuarioid='',$total='',$linea='',$productoid, $cantidad, $precioUnitario='')
+    {   $this->pedidoid = $pedidoid;
+        $this->fecha = $fecha;
+        $this->usuarioid = $usuarioid;
+        $this->total = $total;
+        $this->linea = $linea;
+        $this->productoid = $productoid;
+        $this->cantidad = $cantidad;
         $this->precioUnitario = $precioUnitario;
-        $this->categoria = $categoria;    
+            
     }
 
     /**Setters and getters */
-    public function getId(){return $this->id;}
-    public function getNombre() {return $this->nombre;}
-    public function getDescripcion() {return $this->descripcion;}
-    public function getURLFoto() {return $this->URLFoto;}
-    public function getALTFoto() {return $this->ALTFoto;}
-    public function getCategoria() {return $this->categoria;}
-    public function getPrecioUnitario() {return $this->precioUnitario;}
+    public function getId(){return $this->pedidoid;}
     public function getFecha() {return $this->fecha;}
-    public function setId($id){$this->id = $id;}
-    public function setNombre($nombre){$this->nombre = $nombre;}
-    public function setDescripcion($descripcion){$this->descripcion = $descripcion;}
-    public function setURLFoto($URLFoto){$this->URLFoto = $URLFoto;}
-    public function setALTFoto($ALTFoto){$this->ALTFoto = $ALTFoto;}
+    public function getusuarioid() {return $this->usuarioid;}
+    public function getproductoid() {return $this->productoid;}
+    public function getCantidad() {return $this->cantidad;}
+    public function getPrecioUnitario() {return $this->precioUnitario;}
+
+    public function setId($id){$this->pedidoid = $id;}
+    public function setFecha($fecha){$this->fecha = $fecha;}
+    public function setusuarioid($usuarioid){$this->usuarioid = $usuarioid;}
+    public function setproductoid($productoid){$this->productoid = $productoid;}
+    public function setCantidad($cantidad){$this->cantidad = $cantidad;}
     public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
-    public function setCategoria($categoria){$this->categoria = $categoria;}
-    public function setFecha($fecha){$this->fecha = $fecha;}        
+       
 
     /***  */
 

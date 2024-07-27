@@ -9,7 +9,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     $categoria = $_GET['cat'];
     $datos->setCategoria($categoria);
     $todos = $datos->traerUnaCategoria();
-    $nombreCat = $datos->getNombreCategoria()['nombre'];
+    $nombreCat = $datos->getNombreCategoria();
     print_r( $nombreCat);
     $title = "Lista de productos de Categoría '".$nombreCat."'";
 }else{

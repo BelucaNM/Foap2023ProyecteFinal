@@ -9,11 +9,21 @@ $categorias = $producto->categorias();
 if (isset ($_GET['id'])){
     $id = $_GET['id'];
     $producto->setId($id);
-    $record = $producto->traerUno();
-    $val = $record[0];
-    print_r ($val);
-}
+    $result = $producto->leer();
+    $nombre = $descripcion= $URLFoto = $AlTFoto = $categoria = "";
+    $precioUnitario = $fecha = $nombreCat = "";
 
+    if ($result) {
+        $nombre = $producto->getNombre();
+        $descripcion = $producto->getDescripcion();
+        $URLFoto = $producto->getURLFoto();
+        $ALTFoto = $producto->getAlTFoto();
+        $categoria = $producto->getCategoria();
+        $precioUnitario = $producto->getPrecioUnitario();
+        $fecha = $producto->getFecha();
+        $nombreCat = $producto->getNombreCategoria();
+        }
+    };
 if (isset($_POST['actualizar'])){
     print_r ($_POST);
     $producto->setNombre($_POST['nombre']);
@@ -54,34 +64,34 @@ if (isset($_POST['actualizar'])){
     <form action="" method="post">
         <div class="mb-3">
             <label for="nombre">Nombre Producto:</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Introduzca nombre producto" name="nombre" value="<?=$val['pro_nombre'];?>" >
+            <input type="text" class="form-control" id="nombre" placeholder="Introduzca nombre producto" name="nombre" value="<?=$nombre;?>" >
         </div>
         <div class="mb-3">
             <label for="descripcion">Descripcion:</label>
-            <input type="text" class="form-control" id="descripcion" placeholder="Introduzca descripcion" name="descripcion" required value="<?=$val['pro_descripcion'];?>">
+            <input type="text" class="form-control" id="descripcion" placeholder="Introduzca descripcion" name="descripcion" required value="<?=$descripcion;?>">
         </div>
         <div class="mb-3">
             <label for="precio">Precio Unitario:</label>
-            <input type="numeric" class="form-control" id="precio" placeholder="Introduzca Precio" name="precioUnitario" required value="<?=$val['pro_precioUnitario'];?>">
+            <input type="numeric" class="form-control" id="precio" placeholder="Introduzca Precio" name="precioUnitario" required value="<?=$precioUnitario;?>">
         </div>
         <div class="mb-3">
             <label for="URLFoto">URLFoto:</label>
-            <input type="text" class="form-control" id="URLFoto" placeholder="Introduzca URLFoto" name="URLFoto" required value="<?=$val['pro_URLFoto'];?>">
+            <input type="text" class="form-control" id="URLFoto" placeholder="Introduzca URLFoto" name="URLFoto" required value="<?=$URLFoto;?>">
         </div>
         <div class="mb-3">      
             <label for ="ALTFoto">ALTFoto</label>
-            <input type="text" class="form-control" id="ALTFoto" placeholder="Introduzca texto para Foto" name="ALTFoto" required value="<?=$val['pro_ALTFoto'];?>">
+            <input type="text" class="form-control" id="ALTFoto" placeholder="Introduzca texto para Foto" name="ALTFoto" required value="<?=$ALTFoto;?>">
         </div>
         <div>
             <label for ="categoria">Categoria</label>    
             <select id= "categoria" name="categoria" >
 <?php
-                foreach ($categorias as $categoria)
+                foreach ($categorias as $cat)
                 {
-                    if ($categoria['id'] == $val['pro_categoria']) {
-                        echo "<option value='$categoria[id]' selected>$categoria[nombre]</option>";
+                    if ($cat['id'] == $categoria) {
+                        echo "<option value='$cat[id]' selected='selected'>$cat[nombre]</option>";
                     } else {
-                         echo "<option value='$categoria[id]'>$categoria[nombre]</option>";
+                         echo "<option value='$cat[id]'>$cat[nombre]</option>";
                     }
 
                 }

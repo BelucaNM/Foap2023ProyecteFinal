@@ -1,0 +1,2 @@
+INSERT INTO `existencias`(`exi_id`, `productos_pro_id`, `tiendas_tie_id`, `exi_cantidad`) VALUES ('','1','1','2');
+INSERT INTO `existencias`(`exi_id`, `productos_pro_id`, `tiendas_tie_id`, `exi_cantidad`) VALUES ('','1','2','3');

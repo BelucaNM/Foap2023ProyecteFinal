@@ -8,98 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-    *{
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-        }
-    body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        }
-    header {
-        background-color: gainsboro;
-        color: black;
-        padding: 10px 0;
-        text-align: center;
-        }
-    nav {
-        margin-top: 10px;
-        }
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 15px;
-        }
-    main {
-        padding: 20px;
-        }
-    .section {
-        margin-bottom: 30px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 20px;
-        }
-    .cards-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-        }
-    .card {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        overflow: hidden;
-        width: 300px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    .card-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        }
-    .card-body {
-        padding: 15px;
-        }
-    .card-title {
-        font-size: 1.5em;
-        margin: 0 0 10px;
-        }
-    .card-text {
-        font-size: 1em;
-        margin: 0 0 15px;
-        }
-    .caja {
-        border: 1px solid #ccc;
-        overflow: hidden;
-        width: 300px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    footer {
-        background-color: #333;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        }
-    #gruposProducto {
-        background-color: whitesmoke;
-
-    }
-    #FAQS {
-        background-color: white;
-        
-    }
-    #contacto {
-        background-color: white;
-        
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-
 <?php
 /*session_start();
 

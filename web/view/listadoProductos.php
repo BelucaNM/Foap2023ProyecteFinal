@@ -9,7 +9,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     $categoria = $_GET['cat'];
     $datos->setCategoria($categoria);
     $todos = $datos->traerUnaCategoria();
-    $nombreCat = $datos->getNombreCategoria()['nombre'];
+    $nombreCat = $datos->getNombreCategoria();
     print_r( $nombreCat);
     $title = "Lista de productos de Categoría '".$nombreCat."'";
 }else{
@@ -30,7 +30,7 @@ print_r($todos);
   <h2><?=$title;?></h2>  
   <table>
     <tr>
-        <th>Categoria</th>
+        <th>ProductoId</th>
         <th>Nombre</th>
         <th>Descripcion</th>
         <th>URLFoto</th>
@@ -40,20 +40,20 @@ print_r($todos);
     </tr>
     <?php foreach ($todos as $key => $todo){
         echo "<tr>";
-        echo "<td>".$todo['pro_categoria']."</td>";
+        echo "<td>".$todo['pro_id']."</td>";
         echo "<td>".$todo['pro_nombre']."</td>";
         echo "<td>".$todo['pro_descripcion']."</td>";
         echo "<td>".$todo['pro_URLFoto']."</td>";
         echo "<td>".$todo['pro_ALTFoto']."</td>";
         echo "<td>".$todo['pro_precioUnitario']."</td>";
-        echo "<td>  <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
-                    <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
-                    <a href='../includes/productoVer.php?id=".$todo['pro_id']."'>Ver</a>
-                    </td>";
+        echo "<td>  <a href='../view/productoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
         echo "</tr>";
         }
         ?>
     </table>
-    <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>|
+    <!-- Las opciones siguientes solo estan en la version de la APP para los vendedores
+    <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
+    <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
+    <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
 </body>
 </html>
