@@ -119,8 +119,7 @@ class Producto extends Connection{
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
                                                 FROM ". $this->tablaNombre."  WHERE pro_id = ?");
             $stmt->execute([$this->id]);
-            $this->tablaNumReg = $stmt->rowCount();
-            
+           
             $record = $stmt->fetchAll()[0];
             $this->id = $record['pro_id'];
             $this->nombre = $record['pro_nombre'];
@@ -174,6 +173,8 @@ class Producto extends Connection{
         catch (Exception $e){
                 return $e->getMessage();
             }
+    }
+    public function actualizarExistencias(){
     }
 
 }
