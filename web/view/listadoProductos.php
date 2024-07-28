@@ -5,7 +5,7 @@ require_once ("../model/Producto.php");
 $datos = new Producto();
 
 if ( isset($_GET['info']) && $_GET['info'] == 'carro') {
-    echo '<div class="alert alert-success" role="alert">El artículo se ha incorporado en el carro.</div>';
+    echo '<div class="alert alert-success" role="alert">Su artículo ha sido incorpoado al carro. Por favor, RECUERDE, que la reserva solo se hace cuando confirme el pedido.</div>';
     };
 
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) { 

@@ -42,11 +42,9 @@ if (isset ($_GET['id'])){
     $carrito->setProductoId($id);
     $carrito->añadirAlCarrito();
     
-    $producto->actualizarExistencias();
-
-    
+    // vuelve a comprar
     echo "<script>  alert('Datos guardados correctamente');
-                document.location='../view/listadoProductos.php?info='carro'; // vuelve a comprar
+                document.location='../view/listadoProductos.php?info=carro'; 
     </script>";
         
     exit();

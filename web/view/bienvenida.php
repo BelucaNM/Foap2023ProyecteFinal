@@ -35,14 +35,12 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
 };
 
 $title="Bienvenid@ a nuestra tienda Outlet";
+$soy = "bienvenida";
 include "../includes/header.php"; 
 
 ?>
 <main>
-<section id="inicio" class="section">
-        <h2>Inicio</h2>
-        <p>Poner aqui la navegación.</p>
-</section>
+
 
 <section id="gruposProducto" class="section">
         <h2>Productos</h2> <!-- carrusel -->

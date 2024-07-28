@@ -1,40 +1,69 @@
 <header>
+<section id="header" class="section">
    <div id="header" class = "container mt-3 clearfix">
-        <span class="h1 float-start">obJEtivos</span>     
+        <span class="h1 float-start">obJEtivos</span>
+        <span class="h3 float-start"><?=$title;?></span>
         <span class="float-start"><img id="logo" src="..\img\logo.jpg" class = "rounded-circle"></span>
-        <span class="h1 float-end"><?=$title;?></span>
     </div>
+</section>
+
+<section id="navegacion" class="section">
+<?php
+    include '..includes/tablaNav.php';
+?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
 
            <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav  me-auto">
-                
+<?php
+    if  ($tablaNav[$soy]['a_tiendas']) {
+        echo '    
                 <li class="nav-item">
-                    <a class="nav-link" href="tiendas.php">Tiendas</a>
-                </li>
+                    <a class="nav-link" href="verTiendas.php">Tiendas</a>
+                </li>'; }
+    
+    if  ($tablaNav[$soy]['a_productos']) {
+        echo '
                 <li class="nav-item">
-                    <a class="nav-link" href="productos.php">Productos</a>
-                </li>
+                    <a class="nav-link" href="verProductos.php">Productos</a>
+                </li>'; }
+
+    if  ($tablaNav[$soy]['a_pedidos']) {
+        echo '
+
                 <li class="nav-item">
-                    <a class="nav-link" href="pedidos.php">Pedidos</a>
-                </li>
+                    <a class="nav-link" href="verPedidos.php">Ver Pedidos</a>
+                </li>'; }
+
+    if  ($tablaNav[$soy]['a_carrito']) {
+        echo '
+                <li class="nav-item">
+                    <a class="nav-link" href="verCarrito.php">Ver Carrito</a>
+                </li>'; }
+?>
             </ul>
+
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
-                
+<?php
+    if  ($tablaNav[$soy]['a_login']) {
+        echo '                
                    <li class="nav-item">
                         <a class="nav-link" href="usuarios_login.php">Iniciar Session</a>
-                    </li> 
+                    </li>';}
+    if  ($tablaNav[$soy]['logout']) {
+        echo '      
                     <li class="nav-item">
                         <a class="nav-link" href="../includes/logout.php">Logout</a>
-                    </li>
+                    </li>';}
+?>                
                 </ul>
 
 
             </div>
         </div>
     </div>
-</nav>
-
+    </nav>
+</section>
 </header>
