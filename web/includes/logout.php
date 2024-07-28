@@ -6,8 +6,8 @@ session_start();
 if (isset($_SESSION["user"])) { // Identificación Correcta 
 
     $user =$_SESSION["user"]; 
-//        echo  "Adios ". $user;
-//        echo " voy a destruir todas las variables de sesión.";
+        echo  "Adios ". $user;
+        echo " voy a destruir todas las variables de sesión.";
 
 // print_r ($_SESSION);
 
@@ -43,7 +43,10 @@ if (isset($_SESSION["user"])) { // Identificación Correcta
     $resultado = session_destroy();
     if ($resultado ) {echo "La sesión ha sido cerrada "  ;}
 
-    } else {  echo "La sesión no estaba abierta "  ;};
+    } else {  
+        echo "La sesión no estaba abierta "  ;
+    };
 
-header("Location: ../index.php")
+    header("Location: ../index.php")
+
 ?> 

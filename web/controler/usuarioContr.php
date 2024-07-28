@@ -144,22 +144,25 @@ class UsuarioContr extends Usuario{
         }
         //verifyUser in DB
         $res = $this->verifyLoginUser($this->username, $this->password);
-        if($res==1){
+        if($res['error']==1){
             header("Location: ../view/usuarios_login.php?error=FailedStmt");
             exit();
         }
-        if($res==2){
+        if($res['error']==2){
             header("Location: ../view/usuarios_login.php?error=invalidUsername");
             exit();
         }
-        if($res==3){
+        if($res['error']==3){
             header("Location: ../view/usuarios_login.php?error=invalidPassUser");
             exit();
         }
-        if($res==4){
+        if($res['error']==4){
             header("Location: ../view/usuarios_login.php?error=inactiveAccount");
             exit();
         }
+        
+        return $res['usu_id'];
+
     }
 
 

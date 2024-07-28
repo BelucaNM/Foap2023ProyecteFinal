@@ -16,7 +16,7 @@ class Carrito extends Connection{
     private $tablaNumReg = 0;
 
 
-    public function __construct($carritoid='',$fecha ='',$usuarioid='',$total='',$lineaid='',$productoid, $cantidad, $precioUnitario='')
+    public function __construct($carritoid='',$fecha ='',$usuarioid='',$total='',$lineaid='',$productoid='', $cantidad='', $precioUnitario='')
     {   $this->carritoid = $carritoid;
         $this->fecha = $fecha;
         $this->usuarioid = $usuarioid;
@@ -51,17 +51,23 @@ class Carrito extends Connection{
     /***  */
 
     public function crearCarrito() {
-   
+        
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (usuarios_usu_id) VALUES (?)");
-            return $stmt->execute([$this->usuarioid]);
+            
+            $stmt->execute([$this->usuarioid]);
+            $this->carritoid = $this->connect()->lastInsertId();
+            return $this->carritoid;
+            
             }
         catch (Exception $e){
+            echo $e->getMessage();
             return $e->getMessage();
             }
     
     }
     public function añadirAlCarrito() {
+            
    
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombreLineas." (carritos_car_id, lincar_cantidad,
@@ -71,6 +77,7 @@ class Carrito extends Connection{
             
             }
         catch (Exception $e){
+            echo $e->getMessage();
             return $e->getMessage();
             }
     
@@ -91,24 +98,19 @@ class Carrito extends Connection{
     
     }
     
-    public function leer() {
+    public function recuperaCarrito() {
         try {
-            $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
-                                                FROM ". $this->tablaNombre."  WHERE pro_id = ?");
-            $stmt->execute([$this->id]);
-            $this->tablaNumReg = $stmt->rowCount();
-            
-            $record = $stmt->fetchAll()[0];
-            $this->id = $record['pro_id'];
-            $this->nombre = $record['pro_nombre'];
-            $this->descripcion = $record['pro_descripcion'];
-            $this->URLFoto = $record['pro_URLFoto'];
-            $this->ALTFoto = $record['pro_ALTFoto'];
-            $this->precioUnitario = $record['pro_precioUnitario'];
-            $this->categoria = $record['pro_categoria'];
-            $this->fecha = $record['pro_fecha'];
-            return true;
+            $stmt = $this->connect()->prepare("SELECT   car_id, car_fecha
+                                                FROM ". $this->tablaNombre."  WHERE usuarios_usu_id = ?");
+            $stmt->execute([$this->usuarioid]);
+            if ( $stmt->rowCount() >0) {
+                $record = $stmt->fetchAll()[0];
+                $this->carritoid = $record['car_id'];
+                $this->fecha = $record['car_fecha'];
+                return true;
+            }else{
+                return false;
+            };
         }
         catch (Exception $e){
             return $e->getMessage();

@@ -1,12 +1,12 @@
 <?php 
 
-$SessionStart(); 
+session_start(); 
 $title="Tienda Productos";
 require "../model/connection.php";
 require "../model/producto.php";
 $producto = new producto();
 
-if ( $_GET['error'] == 'noLogged') {
+if ( isset($_GET['error']) && $_GET['error'] == 'noLogged') {
     echo '<div class="alert alert-success" role="alert">Por favor, recuerde que para comprar deberá primero identificarse en LOGIN.</div>';
     };
 
@@ -76,7 +76,7 @@ if (isset($_POST['actualizar'])){
                         <a href="#">Leer más</a>
 <?php
 if (isset($_SESSION['user'])){    
-    echo "<a href='../includes/carrito-inc.php?id=<?=$id;?>'>Comprar</a>";
+    echo "<a href='../includes/carrito-inc.php?id=".$id."'>Comprar</a>";
 }
 ?>                                                
                     </div>

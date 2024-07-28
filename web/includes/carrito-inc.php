@@ -8,6 +8,8 @@ if (isset ($_GET['id'])){
 
     $id = $_GET['id'];
 
+    print_r($_SESSION);
+
     if (!isset ($_SESSION['user'])){
         header("Location: ../view/productosExistencias.php?id=$id&error='noLogged'");
         // " No es posible comprar sin estar identificado";
@@ -16,33 +18,35 @@ if (isset ($_GET['id'])){
 
 // Si hay una compra abierta, recupera el número de carrito
 
-    $carrito = new Carrito (); // podria aparecer un ICONO
-    if (isset($_SESSION['carrito'])) {
-        $carrito->setCarritoId($_SESSION['carrito']);
-    } else {
-        $numCarrito= $carrito->crearCarrito();
-        $_SESSION['carrito'] = $numCarrito;
-    };
 
-// recuper precio del producto    
+    $carrito = new Carrito ("","",$_SESSION['userId']); // inicializa un carrito para el usuario
+    $result = $carrito->recuperaCarrito();
+    if (!$result) {
+            $carritoId = $carrito->crearCarrito();
+            $_SESSION['carrito'] = $carritoId;
+    };
+   
+// recupera precio del producto    
     require "../model/producto.php";
     $producto = new producto($id);
     $producto->leer();
     $precio= $producto->getPrecioUnitario();
+
+    echo "precio =".$precio;
         
     if (!$precio) {
             echo " se ha producido un error."; exit();}
     
-    $carrito->setPrecioUnitario = $precio;
-    $carrito->setCantidad = 1;
-    $carrito->setProductoId = $id;
+    $carrito->setPrecioUnitario($precio);
+    $carrito->setCantidad(1);
+    $carrito->setProductoId($id);
     $carrito->añadirAlCarrito();
+    
     $producto->actualizarExistencias();
 
     
-    // vuelve a comprar
     echo "<script>  alert('Datos guardados correctamente');
-                document.location='../view/listadoProductos.php';
+                document.location='../view/listadoProductos.php?info='carro'; // vuelve a comprar
     </script>";
         
     exit();

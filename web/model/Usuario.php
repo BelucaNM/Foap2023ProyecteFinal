@@ -39,8 +39,8 @@ class Usuario extends Connection{
 
     protected function verifyLoginUser($username, $password){
         $error = 0;
-        $stmt = $this->connect()->prepare("SELECT usu_password, usu_cuentaActiva from $this->tablaNombre WHERE usu_username = ?");
-        $status = 1;
+        $stmt = $this->connect()->prepare("SELECT usu_id, usu_password, usu_cuentaActiva from $this->tablaNombre WHERE usu_username = ?");
+        
         if(!$stmt->execute(array($username))){
             $error = 1; // devuelve 1 si hay fallo en ejecución statement
         } else {
@@ -48,13 +48,13 @@ class Usuario extends Connection{
                 $res = $stmt->fetchAll();
                 $hashedPwd = $res[0]['usu_password'];
                 $activa =    $res[0]['usu_cuentaActiva'];
+                $userId = $res[0]['usu_id'];
+                
                 if(password_verify($password, $hashedPwd)==false){
                     $error = 3; // devuelve 3 si el password no coincide
                 }else{
                     if($activa==false){
                         $error = 4; // devuelve 4 si la cuenta no esta activa
-                    }else{
-                        $_SESSION["username"] = $username;
                     }
                 }
             }else{
@@ -62,7 +62,8 @@ class Usuario extends Connection{
             }
         };
         $stmt = null;
-        return $error;
+        $result = array ('error'=>$error,'usu_id'=>$userId);
+        return $result;
     }
     protected function activaCuenta($token) {        
         $result = true;
