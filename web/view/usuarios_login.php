@@ -10,7 +10,7 @@
 </head>
 <body>
 <?php
-    $title="Login";
+
     if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validaciones
 
         if ( $_GET['error'] == 'RegisterDone') {
@@ -30,9 +30,11 @@
                 };
             
     };
+    $title="Login";
+    $soy = "login";
+    include "../includes/header.php"; 
 ?>
 
-<?php include "../includes/header.php"; ?>
 
 <div class="container mt-3">
   <h2>Login</h2>

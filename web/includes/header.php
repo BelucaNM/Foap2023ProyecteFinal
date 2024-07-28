@@ -9,7 +9,18 @@
 
 <section id="navegacion" class="section">
 <?php
-    include '..includes/tablaNav.php';
+require '../includes/tablaNav.php'; 
+
+session_start();
+if(!isset($_SESSION['user'])){
+    echo " la session no ha sido iniciada";
+    $tablaNav = $_tablaNav_sinSession;
+    $user = "";
+}else{
+    echo " session iniciada";
+    $tablaNav = $_tablaNav_conSession;
+    $user = $_SESSION['user'];
+};
 ?>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
@@ -52,7 +63,7 @@
                    <li class="nav-item">
                         <a class="nav-link" href="usuarios_login.php">Iniciar Session</a>
                     </li>';}
-    if  ($tablaNav[$soy]['logout']) {
+    if  ($tablaNav[$soy]['a_logout']) {
         echo '      
                     <li class="nav-item">
                         <a class="nav-link" href="../includes/logout.php">Logout</a>

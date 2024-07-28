@@ -13,6 +13,7 @@
 
 <?php 
 $title="Registro";
+$soy = "registro";
 include "../includes/header.php"; 
 require "../includes/municipios-inc.php";
 ?>

@@ -13,15 +13,6 @@
 
 <body>
 <?php
-/*session_start();
-
-if(!isset($_SESSION['user'])){
-    echo " la session no ha sido iniciada";
-    header("Location: ../index.php");
-    exit();
-}
-
-$user = $_SESSION['user'];*/
 
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validaciones
 

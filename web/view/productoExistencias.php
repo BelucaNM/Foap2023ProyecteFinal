@@ -1,7 +1,6 @@
 <?php 
 
-session_start(); 
-$title="Tienda Productos";
+
 require "../model/connection.php";
 require "../model/producto.php";
 $producto = new producto();
@@ -61,7 +60,10 @@ if (isset($_POST['actualizar'])){
 </head>
 <body>
 
-<?php include "../includes/header.php"; ?>
+<?php 
+$title="Ficha de Producto y Existencias";
+$soy = "producto";
+include "../includes/header.php"; ?>
 <h2>Ficha de Producto</h2>
 
 <div class="cards-container mt-3">
