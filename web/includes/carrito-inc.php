@@ -18,7 +18,6 @@ if (isset ($_GET['id'])){
 
 // Si hay una compra abierta, recupera el número de carrito
 
-
     $carrito = new Carrito ("","",$_SESSION['userId']); // inicializa un carrito para el usuario
     $result = $carrito->recuperaCarrito();
     if (!$result) {

@@ -22,7 +22,6 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
 };
 //print_r($todos);
 
-$title="Listado de Productos";
 $soy = "productos";
 include "../includes/header.php"; 
 
@@ -60,7 +59,7 @@ include "../includes/header.php";
         echo "<td>".$todo['pro_URLFoto']."</td>";
         echo "<td>".$todo['pro_ALTFoto']."</td>";
         echo "<td>".$todo['pro_precioUnitario']."</td>";
-        echo "<td>  <a href='../view/productoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
+        echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
         echo "</tr>";
         }
         ?>

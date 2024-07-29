@@ -87,7 +87,7 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                     pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
-                                            FROM ". $this->tablaNombre);
+                                            FROM ".$this->tablaNombre." ORDER BY pro_nombre,pro_precioUnitario" );
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
@@ -101,7 +101,7 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
-                                                FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ?");
+                                                FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
             echo " categoria= ".$this->categoria;
             $stmt->execute([$this->categoria]);
             $this->tablaNumReg = $stmt->rowCount();
