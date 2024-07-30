@@ -30,8 +30,8 @@ if (isset ($_GET['id'])){
 // crea un pedido 
     $pedido = new Pedido("","",$_SESSION['userId']);
     
-    $pedidoid = $pedido->crearPedido(); // guarda el pedidoid creado en la variable $this->pedidoid
-    echo "devuelve ".$pedidoid;
+    $pedido->crearPedido(); // guarda el pedidoid creado en la variable $this->pedidoid
+    echo "numero de pedido creado ". $pedido->getPedidoid();
 
     $lineas = $carrito->traerLineas();
     foreach ($lineas as $linea) {
@@ -40,20 +40,16 @@ if (isset ($_GET['id'])){
         $pedido->setcantidad($linea['lincar_cantidad']);
         $pedido->setPrecioUnitario($linea['lincar_precioUnitario']);
         $pedido->insertarLinea();
+        // ??actualizar existencias
         };
     
-// borrar carrito
- //   $carrito->borrarCarrito();
-// actualizar existencias
+    
+    $carrito->borrarCarrito(); // Borra el carrito
 
-/*
-// vuelve a comprar 
     echo "<script>  alert('Datos guardados correctamente');
                 document.location='../view/listadoProductos.php?info=carro'; 
     </script>";
         
-    exit();
-*/
 }
 
 ?>

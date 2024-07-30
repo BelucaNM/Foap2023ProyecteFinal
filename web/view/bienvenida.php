@@ -28,6 +28,9 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     if ( $_GET['error'] == 'EmptyCart') {
         echo '<div class="alert alert-success" role="alert">El carrito esta vacio.</div>';
     };
+    if ( $_GET['error'] == 'noOrders') {
+        echo '<div class="alert alert-success" role="alert">No hay pedidos para este usuario.</div>';
+    };
     
 };
 

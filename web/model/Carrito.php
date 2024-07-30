@@ -62,8 +62,9 @@ class Carrito extends Connection{
             return $this->carritoid;
             
             }
+        // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
         catch (Exception $e){
-            echo $e->getMessage();
+            echo"Error al insertar datos carrito". $e->getMessage();
             return $e->getMessage();
             }
     

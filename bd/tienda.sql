@@ -216,8 +216,8 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `tienda`.`pedidos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tienda`.`pedidos` (
-  `ped_id` INT(11) NOT NULL,
-  `ped_fecha` VARCHAR(45) NULL DEFAULT NULL,
+  `ped_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ped_fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
   `usuarios_usu_id` INT(4) NOT NULL,
   PRIMARY KEY (`ped_id`),
   INDEX `fk_pedidos_usuarios1_idx` (`usuarios_usu_id` ASC) ,
