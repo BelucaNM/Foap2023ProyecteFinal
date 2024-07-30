@@ -14,6 +14,6 @@ if ($result) {
     echo $result;
     header("Location: ../view/bienvenida.php?error='FailedDelete'");
 }
-
+}
 
 ?>
