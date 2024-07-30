@@ -27,9 +27,9 @@ if (!isset ($_SESSION['user'])){
 // recupera el número de carrito para el user
 require "../model/Connection.php";
 require "../model/Pedido.php";
-$pedido = new pedido ("","",$_SESSION['userId']); 
-$todos = $pedido->traerTodos();
-
+$pedido = new Pedido ("","",$_SESSION['userId']); 
+$result = $pedido->traerTodos();
+var_dump ($result);
 if (!$result) {
     echo " El usuario no tiene pedidos";
     header("Location: ../view/bienvenida.php?error=noOrders");
@@ -46,11 +46,34 @@ if (!$result) {
         <th>Acciones</th>
         
     </tr>
-    <?php foreach ($todos as $key => $uno){
+    <?php foreach ($result as $key => $uno){
         echo "<tr>";
         echo "<td>".$uno['ped_id']."</td>";
         echo "<td>".$uno['ped_fecha']."</td>";
-        echo "<td><a href='verPedido.php?ped_id=".$uno['ped_id']."'class='btn btn-primary'>Ver Pedido</a></td>";
+        echo "<td><a href='verPedido.php?ped_id=".$uno['ped_id']."'class='btn '>Ver Pedido</a></td>";
+        echo "</tr>";
+
+        }
+
+    ?>
+    </table>
+</div>
+<div id="pedidoLineas">
+    <h2>Detalles Pedido</h2>  
+    <table>
+    <tr>
+        <th>nombre</th>
+        <th>Cantidad</th>
+        <th>Importe</th>
+        <th>subtotal</th>
+        
+    </tr>
+    <?php foreach ($result as $key => $uno){
+        echo "<tr>";
+        echo "<td>".$uno['nombre']."</td>";
+        echo "<td>".$uno['lin_cantidad']."</td>";
+        echo "<td>".$uno['lin_importe']."</td>";
+        echo "<td>".$uno['subtotal']."</td>";
         echo "</tr>";
 
         }

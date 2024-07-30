@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `tienda`.`carritolineas` (
   CONSTRAINT `fk_carritoLineas_carritos1`
     FOREIGN KEY (`carritos_car_id`)
     REFERENCES `tienda`.`carritos` (`car_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_carritoLineas_productos1`
     FOREIGN KEY (`productos_pro_id`)

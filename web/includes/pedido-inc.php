@@ -5,7 +5,7 @@ session_start();
 print_r($_SESSION);
 
 if (!isset ($_SESSION['user'])){
-            header("Location: ../view/bienvenido.php?error='noLogged'");
+            header("Location: ../view/bienvenida.php?error='noLogged'");
             // " No es posible comprar sin estar identificado";
             exit();
         }
@@ -46,10 +46,10 @@ if (isset ($_GET['id'])){
     
     $carrito->borrarCarrito(); // Borra el carrito
 
-    echo "<script>  alert('Datos guardados correctamente');
-                document.location='../view/listadoProductos.php?info=carro'; 
-    </script>";
-        
+    echo "  <script>  
+                 alert('Datos guardados correctamente');
+            </script>";
+    header("Location: ../view/listadoProductos.php?info=deliver");     
 }
 
 ?>

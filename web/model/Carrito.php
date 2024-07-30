@@ -144,7 +144,7 @@ class Carrito extends Connection{
             
             try {
                 $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE car_id=?");
-                $stmt->execute([$this->carritoid]); // debería borrar las lineas en casacada
+                $stmt->execute([$this->carritoid]); // debería borrar las lineas en cascada
                 return true;
                  }
             catch (Exception $e){

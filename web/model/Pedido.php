@@ -111,9 +111,9 @@ class Pedido extends Connection{
     public function traerTodos() {
         try {
             
-            $stmt = $this->connect()->prepare("SELECT ped_id, ped_fech FROM pedidos  
+            $stmt = $this->connect()->prepare("SELECT ped_id, ped_fecha   
                                             FROM ".$this->tablaNombre." WHERE usuarios_usu_id = ?
-                                            ORDER BY ped_fech" );
+                                            ORDER BY ped_fecha DESC" );
             $stmt->execute([$this->usuarioid]);
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
@@ -123,6 +123,21 @@ class Pedido extends Connection{
             }
     
             }
+    public function traerLineas() {
+        try {
+            $stmt = $this->connect()->prepare("SELECT  lin_id, pedidos_ped_id, lin_cantidad,
+            lin_importe, productos_pro_id, pro_nombre, (lin_importe*lin_cantidad) as subtotal
+                        FROM ". $this->tablaNombreLineas. " 
+                    join productos on productos_pro_id = pro_id WHERE pedidos_ped_id = ?");
+            $stmt->execute([$this->pedidoid]);
+            $this->tablaNumReg = $stmt->rowCount();
+            return $stmt->fetchAll();
+        }
+        catch (Exception $e){
+        return $e->getMessage();
+        }
+            
+     }
     public function getExistencias(){
 
         try {
