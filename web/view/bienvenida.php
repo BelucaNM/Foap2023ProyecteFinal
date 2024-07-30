@@ -22,6 +22,12 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     if ( $_GET['error'] == 'FailedStmt') {
         echo '<div class="alert alert-success" role="alert">No se ha podido hacer la actualizacion.</div>';
     };
+    if ( $_GET['error'] == 'FailedDelete') {
+        echo '<div class="alert alert-success" role="alert">Error en el borrado del carrito.</div>';
+    };
+    if ( $_GET['error'] == 'EmptyCart') {
+        echo '<div class="alert alert-success" role="alert">El carrito esta vacio.</div>';
+    };
     
 };
 

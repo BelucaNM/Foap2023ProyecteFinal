@@ -1,33 +1,4 @@
-<?php 
 
-    
-require "../model/Connection.php";
-require "../model/Carrito.php";
-
-session_start();
-if (isset ($_GET['id'])){
-
-    $id = $_GET['id'];
-
-    print_r($_SESSION);
-
-    if (!isset ($_SESSION['user'])){
-        header("Location: ../view/productosExistencias.php?id=$id&error='noLogged'");
-        // " No es posible comprar sin estar identificado";
-        exit();
-    }
-
-// recupera el número de carrito para el user
-
-    $carrito = new Carrito ("","",$_SESSION['userId']); 
-    $result = $carrito->recuperaCarrito();
-    if (!$result) {
-        echo " El carrito esta vacio."
-    }
-
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,48 +15,71 @@ if (isset ($_GET['id'])){
 <?php 
 $title="Carrito";
 $soy = "carrito";
-include "../includes/header.php"; ?>
-<h2>Carrito</h2>
+include "../includes/header.php"; 
 
-<div class="cards-container mt-3">
-        <div class="card">
-        <img src="<?=$URLFoto;?>" alt="<?=$ALTFoto;?>" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title"><?=$nombre;?></h3>
-                        <p class="card-text">Descripcion:<?=$descripcion;?></p>
-                        <p class="card-text">Categoria:<?=$categoria;?>//<?=$nombreCat;?></p>
-                        <p class="card-text">Fecha Alta:<?=$fecha;?></p>
-                        <p class="card-text">Precio:<?=$precioUnitario;?></p>
-                        <a href="#">Leer más</a>
-<?php
-if (isset($_SESSION['user'])){    
-    echo "<a href='../includes/pedido-inc.php?id=".$id."'>Pedir</a>";
+
+if (!isset ($_SESSION['user'])){
+        header("Location: ../view/bienvenida.php");
+        // " No es posible comprar sin estar identificado";
+        exit();
 }
-?>                                                
-                    </div>
-        </div>
-</div>
     
-<div id="existencias">
-    <h2>Existencias</h2>  
+// recupera el número de carrito para el user
+require "../model/Connection.php";
+require "../model/Carrito.php";
+$carrito = new Carrito ("","",$_SESSION['userId']); 
+$result = $carrito->recuperaCarrito();
+
+if ($result) {
+    $lineas=$carrito->traerLineas();
+    $total=0;
+}else{
+    echo " El carrito esta vacio.";
+    header("Location: ../view/bienvenida.php?error=EmptyCart");
+    exit();
+}
+?>
+<h2>Carrito</h2>
+<div id="lineas">
+    <h2>Lineas Carrito</h2>  
     <table>
     <tr>
-        <th>Tienda</th>
-        <th>Telefono</th>
-        <th>Contacto</th>
-        <th>Existencias</th>
+        <th>LineaId</th>
+        <th>ProductoId</th>
+        <th>ProductoNombre</th>
+        <th>Cantidad</th>
+        <th>PrecioUnitario</th>
+        <th>Subtotal</th>
         
     </tr>
-    <?php foreach ($existencias as $key => $stock){
+    <?php foreach ($lineas as $key => $linea){
         echo "<tr>";
-        echo "<td>".$stock['tie_nombre']."</td>";
-        echo "<td>".$stock['tie_telefono']."</td>";
-        echo "<td>".$stock['ven_username']."</td>";
-        echo "<td>".$stock['exi_cantidad']."</td>";
+        echo "<td>".$linea['lincar_id']."</td>";
+        echo "<td>".$linea['productos_pro_id']."</td>";
+        echo "<td>".$linea['pro_nombre']."</td>";
+        echo "<td>".$linea['lincar_cantidad']."</td>";
+        echo "<td>".$linea['lincar_precioUnitario']."</td>";
+        echo "<td>".$linea['subtotal']."</td>";
         echo "</tr>";
+        $total += $linea['subtotal'];
+
         }
+        $carrito->setTotal($total);
     ?>
     </table>
+</div>
+<div class="cards-container mt-3">
+        <div class="card">
+        <img src="" alt="" class="card-img">
+                    <div class="card-body">
+                        <h3 class="card-title"><?="carrito número: ". $carrito->getCarritoId();?></h3>
+                        <p class="card-text">fecha:<?=$carrito->getFecha();?></p>
+                        <p class="card-text">TOTAL:<?=$carrito->getTotal();?></p>
+                        <p class="card-text">Total Lineas:<?=$carrito->getTablaNumReg();?></p>
+                        <a href='../includes/pedido-inc.php?id=<?=$carrito->getCarritoId();?>'>Hacer Pedido</a> <br>
+                        <a href='../includes/carritoVaciar-inc.php?id=<?=$carrito->getCarritoId();?>'>Vaciar carrito</a>   
+                    </div>
+        </div>
 </div>
 
 <?php /*include "../includes/footer.php";*/ ?> 

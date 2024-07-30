@@ -51,7 +51,7 @@ $_tablaNav_sinSession =  array (
             'a_logout'=>false,// si SI session
 
         ),
-        "micarrito"=> array 
+        "carrito"=> array 
         (
             'a_tiendas'=>true,
             'a_productos'=>true,
@@ -135,7 +135,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true,// si SI session
     ),
-    "micarrito"=> array 
+    "carrito"=> array 
     (
         'a_tiendas'=>true,
         'a_productos'=>true,

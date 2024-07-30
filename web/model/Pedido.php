@@ -12,10 +12,11 @@ class Pedido extends Connection{
     private $precioUnitario;
 
     private $tablaNombre = "pedidos";
+    private $tablaNombreLineas = "pedidoLineas";
     private $tablaNumReg = 0;
 
 
-    public function __construct($pedidoid='',$fecha ='',$usuarioid='',$total='',$linea='',$productoid, $cantidad, $precioUnitario='')
+    public function __construct($pedidoid='',$fecha ='',$usuarioid='',$total='',$linea='',$productoid='', $cantidad='', $precioUnitario='')
     {   $this->pedidoid = $pedidoid;
         $this->fecha = $fecha;
         $this->usuarioid = $usuarioid;
@@ -45,38 +46,15 @@ class Pedido extends Connection{
 
     /***  */
 
-    public function categorias() {
-        try {
-            $stmt = $this->connect()->prepare("SELECT   cat_id as id, cat_nombre as nombre
-                                            FROM categoriasproductos");
-            $stmt->execute();
-            $this->tablaNumReg = $stmt->rowCount();
-            return $stmt->fetchAll();
-            }
-        catch (Exception $e){
-            return $e->getMessage();
-            }
     
-    }
-    public function getNombreCategoria() {
-        try {
-            $stmt = $this->connect()->prepare("SELECT cat_nombre as nombre
-                                            FROM categoriasproductos where cat_id = ?");
-            $stmt->execute([$this->categoria]);
-            return $stmt->fetch()['nombre'];
-            }
-        catch (Exception $e){
-            return $e->getMessage();
-            }
-    
-    }
-    public function insertarDatos() {
+    public function crearPedido() {
    
         try {
-            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id) VALUES (?,?,?,?,?,?)");
-            $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
-            } 
+            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (`usuarios_usu_id`) VALUES (?);SELECT LAST_INSERT_ID() AS id;");
+            $stmt->execute([$this->usuarioid]);
+            $this->pedidoid = $this->connect()->lastInsertId();
+            return $this->pedidoid; 
+           }  
         // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
         catch (Exception $e){
             echo "Error al insertar datos".$e->getMessage();
@@ -84,79 +62,29 @@ class Pedido extends Connection{
         }
         
     }
-    
-    public function traerTodos() {
+    public function insertarLinea() {
+        echo "pedidoid=".$this->pedidoid."<br>";
+        echo "cantidad=".$this->cantidad."<br>";
+        echo "precioUnitario".$this->precioUnitario."<br>";
+        echo "productoid".$this->productoid."<br>";
+
         try {
-            $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
-                                            FROM ". $this->tablaNombre);
-            $stmt->execute();
-            $this->tablaNumReg = $stmt->rowCount();
-            return $stmt->fetchAll();
-            }
+            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombreLineas." ('lin_cantidad', 'lin_importe', 'pedidos_ped_id', 'productos_pro_id') VALUES (?,?,?,?)");
+            $stmt->execute([$this->cantidad,$this->precioUnitario,$this->pedidoid,$this->productoid]);
+            } 
+        // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
+        // el id es autoincremental
         catch (Exception $e){
+            echo "Error al insertar datos".$e->getMessage();
             return $e->getMessage();
-            }
-    
-    }
-    public function traerUnaCategoria() {
-        try {
-            $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
-                                                FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ?");
-            echo " categoria= ".$this->categoria;
-            $stmt->execute([$this->categoria]);
-            $this->tablaNumReg = $stmt->rowCount();
-            return $stmt->fetchAll();
-            }
-        catch (Exception $e){
-            return $e->getMessage();
-            }
-        
-    }
-    
-    public function leer() {
-        try {
-            $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
-                                                FROM ". $this->tablaNombre."  WHERE pro_id = ?");
-            $stmt->execute([$this->id]);
-            $this->tablaNumReg = $stmt->rowCount();
-            
-            $record = $stmt->fetchAll()[0];
-            $this->id = $record['pro_id'];
-            $this->nombre = $record['pro_nombre'];
-            $this->descripcion = $record['pro_descripcion'];
-            $this->URLFoto = $record['pro_URLFoto'];
-            $this->ALTFoto = $record['pro_ALTFoto'];
-            $this->precioUnitario = $record['pro_precioUnitario'];
-            $this->categoria = $record['pro_categoria'];
-            $this->fecha = $record['pro_fecha'];
-            return true;
         }
-        catch (Exception $e){
-            return $e->getMessage();
-            }
         
     }
-    public function actualizar (){
-            
-        try {
-            $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
-                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=? WHERE pro_id=?");
-            $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
-                            $this->categoria, $this->id]);
-            }
-        catch (Exception $e){
-                return $e->getMessage();
-            }
-    }
-    
     public function eliminar(){
             
             try {
-                $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE pro_id=?");
-                    $stmt->execute([$this->id]);
+                $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE ped_id=?");
+                    $stmt->execute([$this->pedidoid]);
                  }
             catch (Exception $e){
                     return $e->getMessage();
