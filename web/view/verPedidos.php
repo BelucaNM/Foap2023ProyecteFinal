@@ -35,6 +35,7 @@ if (!$result) {
     header("Location: ../view/bienvenida.php?error=noOrders");
     exit();
 }
+$lineas = [];
 ?>
 
 <div id="pedidos">
@@ -68,12 +69,12 @@ if (!$result) {
         <th>subtotal</th>
         
     </tr>
-    <?php foreach ($result as $key => $uno){
+    <?php foreach ($lineas as $key => $linea){
         echo "<tr>";
-        echo "<td>".$uno['nombre']."</td>";
-        echo "<td>".$uno['lin_cantidad']."</td>";
-        echo "<td>".$uno['lin_importe']."</td>";
-        echo "<td>".$uno['subtotal']."</td>";
+        echo "<td>".$linea['nombre']."</td>";
+        echo "<td>".$linea['lin_cantidad']."</td>";
+        echo "<td>".$linea['lin_importe']."</td>";
+        echo "<td>".$linea['subtotal']."</td>";
         echo "</tr>";
 
         }
