@@ -25,6 +25,18 @@ class Municipio extends Connection{
         $stmt = null;
         return $existe;
     }
+    protected function leeMunicipio($id){
+        $existe = false; // devolvera false si el id no existe 
+        $stmt = $this->connect()->prepare("SELECT * FROM $this->tablaNombre WHERE mun_id = ?");
+        if($stmt->execute(array($id))){
+            if($stmt->rowCount() > 0){
+                $res = $stmt->fetch();
+                $existe=$res;
+            }
+        }
+        $stmt = null;
+        return $existe;
+    }
         
 }
 

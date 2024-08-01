@@ -21,6 +21,19 @@ class MunicipioContr extends Municipio{
     public function getId(){
         return $this->id;
         }
+    public function setCodpos($codpos){
+        $this->codpos = $codpos;
+        }
+    public function getCodpos(){
+        return $this->codpos;
+        }
+
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+    public function getNombre(){
+        return $this->nombre;
+        }
 
     
     /*** Terminar */
@@ -34,6 +47,10 @@ class MunicipioContr extends Municipio{
         $this->id = $this->getMunicipioId($this->codpos, $this->nombre);
         return $this->id; 
     }
-    
+    public function traerMunicipio(){
+        $existe=$this->leeMunicipio($this->id);
+        $this->codpos = $existe['mun_codpos'];
+        $this->nombre = $existe['mun_nombre'];
+    }
 
 }

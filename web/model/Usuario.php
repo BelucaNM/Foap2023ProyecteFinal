@@ -4,6 +4,21 @@ class Usuario extends Connection{
     private $tablaNombre = "usuarios";
     private $tablaNumReg = 0;
 
+    
+    
+    protected function leer($id){
+
+     // devolvera true si el username o el email existen ; false en otro caso
+        $stmt = $this->connect()->prepare("SELECT * FROM $this->tablaNombre WHERE usu_id = ? ;");
+        if($stmt->execute(array($id))){
+            if($stmt->rowCount() > 0){
+                return $stmt->fetch();
+            }
+        }
+        $stmt = null;
+        return false;
+    }
+
     protected function setUser( $username, $password, $email,
                                 $apellido="", $nombre="", $dni="",
                                 $direccion="", $municipio=""){
@@ -17,7 +32,7 @@ class Usuario extends Connection{
 
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
 
-        $exito= $stmt->execute(array(   $username, $hashedPwd, $email,
+        $exito= $stmt->execute(array( $username, $hashedPwd, $email,
                                     $apellido, $nombre, $dni,
                                     $direccion, $municipio));
         $stmt = null;
@@ -144,5 +159,32 @@ class Usuario extends Connection{
         $stmt = null;
         return $result;
         }
+    protected function actualizar ($email,$apellido,$nombre,$dni,$direccion,$municipio,$id){
+            
+            try {
+                $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET 
+                                        usu_email =?,usu_apellido=?, usu_nombre=?, usu_dni=?,
+                                        usu_direccion =?, municipios_mun_id =? WHERE usu_id=?");
+                
+                $stmt->execute([$email, $apellido,$nombre,$dni, 
+                               $direccion,$municipio,$id]);
+
+                }
+            catch (Exception $e){
+                    return $e->getMessage();
+                }
+        }
+        
+    protected function eliminar($id){
+                
+                try {
+                    $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE usu_id=?");
+                        $stmt->execute([$id]);
+                     }
+                catch (Exception $e){
+                        return $e->getMessage();
+                    }
+        }
+    
 
 }

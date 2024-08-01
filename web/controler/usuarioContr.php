@@ -1,6 +1,8 @@
 <?php 
 
 class UsuarioContr extends Usuario{
+
+    private $id;
     private $username;
     private $password;
     private $repeatPwd;
@@ -18,7 +20,7 @@ class UsuarioContr extends Usuario{
 
     public function __construct($username='', $password='', $repeatPwd='', $email='', 
                                 $token='', $deadLine='', $cuentaActiva='',
-                                $apellido='', $nombre='', $dni='', $direccion='', $municipio='' )
+                                $apellido='', $nombre='', $dni='', $direccion='', $municipio='',$id='' )
     {   $this->username = $username;
         $this->password = $password;
         $this->repeatPwd = $repeatPwd;
@@ -31,9 +33,16 @@ class UsuarioContr extends Usuario{
         $this->dni = $dni;
         $this->direccion = $direccion;
         $this->municipio = $municipio;
+        $this->id = $id;
     }
 
     /**Setters and getters */
+    public function setId($id){
+        $this->id = $id;
+   }
+   public function getId(){
+    return $this->id;
+}
     public function setUsername($username){
          $this->username = $username;
     }
@@ -61,6 +70,46 @@ class UsuarioContr extends Usuario{
     public function getEmail(){
        return $this->email;
     }
+
+    public function setApellido($apellido){
+        $this->apellido = $apellido;
+    }
+
+    public function getApellido(){
+       return $this->apellido;
+    }
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function getNombre(){
+       return $this->apellido;
+    }
+    public function setDni($dni){
+        $this->dni = $dni;
+    }
+
+    public function getDni(){
+       return $this->dni;
+    }
+
+    public function setDireccion($direccion){
+        $this->direccion = $direccion;
+    }
+
+    public function getDireccion(){
+       return $this->direccion;
+    }
+    public function setMunicipio($municipio){
+        $this->municipio = $municipio;
+    }
+
+    public function getMunicipio(){
+       return $this->municipio;
+    }
+
+
+
     /*** Terminar */
 
     private function emptyInput($input){
@@ -92,9 +141,7 @@ class UsuarioContr extends Usuario{
     }
     public function signupUser(){
         //validationes
-        
-
-
+    
         if( $this->emptyInput($this->username)  || 
             $this->emptyInput($this->password)  || 
             $this->emptyInput($this->repeatPwd)  ||
@@ -247,8 +294,47 @@ class UsuarioContr extends Usuario{
             }
         header("Location: ../views/usuarios_login.php?error=activAccount");
 
-        } 
+        }
+        public function leerUser(){
+            //validationes
+            $res = $this->leer($this->id);
 
+            if(!$res){
+                header("Location: ../view/usuarios_misdatos.php?error=userNotLogged");
+                exit();
+            }
+//            $this->username = $res['usu_username'];
+//            $this->password = $res['usu_password'];
+          
+//            $this->email = $res['email'];
+//            $this->token = $res['token'];
+//            $this->deadLine = $res['deadLine'];
+//            $this->cuentaActiva = $res['cuentaActiva'];
+            var_dump($res);
+            $this->apellido = $res['usu_apellido'];
+            $this->nombre = $res['usu_nombre'];
+            $this->dni = $res['usu_dni'];
+            $this->direccion =  $res['usu_direccion'];
+            $this->municipio = $res['municipios_mun_id'];
+    
+        } 
+        
+        public function updateUser(){
+            //validationes
+
+            if (!$this->invalidEmail()){
+                header ("location: ../view/usuarios_.php?error=InvalidEmail"); 
+                exit();}
+           
+            //setUser to DB
+            if (!$this->actualizar( $this->apellido, $this->nombre, $this->dni,
+                                    $this->email, $this->direccion, $this->municipio, $this->id )){
+                header("Location: ../view/usuarios_update.php?error=FailedStmt");
+                exit();
+            }
+         
+            header("Location: ../view/usuarios_login.php?error=UpdateDone"); //Volver a la pagina inicial
+        }
     
 Public function forgotPassword(){
                 // validaciones

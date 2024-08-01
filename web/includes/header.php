@@ -52,6 +52,12 @@ if(!isset($_SESSION['user'])){
                 <li class="nav-item">
                     <a class="nav-link" href="verCarrito.php">Ver Carrito</a>
                 </li>'; }
+
+    if  ($tablaNav[$soy]['a_logout']) { // estoy Loggeado y puedo ver y cambiar mis datos
+                    echo '
+                            <li class="nav-item">
+                                <a class="nav-link" href="usuarios_misdatos.php">Mis datos</a>
+                            </li>'; }
 ?>
             </ul>
 
