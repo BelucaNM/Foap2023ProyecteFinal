@@ -323,7 +323,7 @@ class UsuarioContr extends Usuario{
             //validationes
 
             if (!$this->invalidEmail()){
-                header ("location: ../view/usuarios_.php?error=InvalidEmail"); 
+                header ("location: ../view/usuarios_update.php?error=InvalidEmail"); 
                 exit();}
            
             //setUser to DB
