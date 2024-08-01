@@ -29,7 +29,7 @@ require "../model/Connection.php";
 require "../model/Pedido.php";
 $pedido = new Pedido ("","",$_SESSION['userId']); 
 $result = $pedido->traerTodos();
-var_dump ($result);
+//var_dump ($result);
 if (!$result) {
     echo " El usuario no tiene pedidos";
     header("Location: ../view/bienvenida.php?error=noOrders");
@@ -51,37 +51,14 @@ $lineas = [];
         echo "<tr>";
         echo "<td>".$uno['ped_id']."</td>";
         echo "<td>".$uno['ped_fecha']."</td>";
-        echo "<td><a href='verPedido.php?ped_id=".$uno['ped_id']."'class='btn '>Ver Pedido</a></td>";
+        echo "<td><a href='verPedido.php?id=".$uno['ped_id']."'class='btn'>Ver Pedido</a></td>";
         echo "</tr>";
-
         }
 
     ?>
     </table>
 </div>
-<div id="pedidoLineas">
-    <h2>Detalles Pedido</h2>  
-    <table>
-    <tr>
-        <th>nombre</th>
-        <th>Cantidad</th>
-        <th>Importe</th>
-        <th>subtotal</th>
-        
-    </tr>
-    <?php foreach ($lineas as $key => $linea){
-        echo "<tr>";
-        echo "<td>".$linea['nombre']."</td>";
-        echo "<td>".$linea['lin_cantidad']."</td>";
-        echo "<td>".$linea['lin_importe']."</td>";
-        echo "<td>".$linea['subtotal']."</td>";
-        echo "</tr>";
 
-        }
-
-    ?>
-    </table>
-</div>
 
 <?php /*include "../includes/footer.php";*/ ?> 
 
