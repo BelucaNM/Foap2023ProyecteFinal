@@ -310,7 +310,7 @@ class UsuarioContr extends Usuario{
 //            $this->token = $res['token'];
 //            $this->deadLine = $res['deadLine'];
 //            $this->cuentaActiva = $res['cuentaActiva'];
-            var_dump($res);
+          
             $this->apellido = $res['usu_apellido'];
             $this->nombre = $res['usu_nombre'];
             $this->dni = $res['usu_dni'];
