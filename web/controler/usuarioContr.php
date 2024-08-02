@@ -83,7 +83,7 @@ class UsuarioContr extends Usuario{
     }
 
     public function getNombre(){
-       return $this->apellido;
+       return $this->nombre;
     }
     public function setDni($dni){
         $this->dni = $dni;
@@ -300,7 +300,7 @@ class UsuarioContr extends Usuario{
             $res = $this->leer($this->id);
 
             if(!$res){
-                header("Location: ../view/usuarios_misdatos.php?error=userNotLogged");
+                header("Location: ../view/usuarios_misdatos.php?error=userNotSignedUp");
                 exit();
             }
 //            $this->username = $res['usu_username'];
@@ -316,25 +316,30 @@ class UsuarioContr extends Usuario{
             $this->dni = $res['usu_dni'];
             $this->direccion =  $res['usu_direccion'];
             $this->municipio = $res['municipios_mun_id'];
+            $this->email = $res['usu_email'];
+           
     
         } 
         
-        public function updateUser(){
-            //validationes
+public function updateUser(){
+    //validationes
 
-            if (!$this->invalidEmail()){
-                header ("location: ../view/usuarios_update.php?error=InvalidEmail"); 
+    if (!$this->invalidEmail()){
+                header ("location: ../view/usuarios_misDatos.php?error=InvalidEmail"); 
                 exit();}
            
-            //setUser to DB
-            if (!$this->actualizar( $this->apellido, $this->nombre, $this->dni,
-                                    $this->email, $this->direccion, $this->municipio, $this->id )){
-                header("Location: ../view/usuarios_update.php?error=FailedStmt");
-                exit();
-            }
-         
-            header("Location: ../view/usuarios_login.php?error=UpdateDone"); //Volver a la pagina inicial
-        }
+    //setUser to DB
+    
+    $result = $this->actualizar( $this->apellido, $this->nombre, $this->dni,
+                            $this->email, $this->direccion, $this->municipio, $this->id );
+    if ($result){
+        header("Location: ../view/bienvenida.php?info=UpdateDone"); //Volver a la pagina inicial
+        exit();
+    } else {
+        header("Location: ../view/usuarios_misDatos.php?error=FailedStmt");
+        exit();
+    } 
+}
     
 Public function forgotPassword(){
                 // validaciones

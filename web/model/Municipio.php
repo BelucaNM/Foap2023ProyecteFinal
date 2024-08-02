@@ -13,29 +13,29 @@ class Municipio extends Connection{
         return $stmt->fetchAll();
         
     }
-    protected function getMunicipioId($codpos, $nombre){
+    protected function getMunicipioId($codpos='', $nombre=''){
         $existe = false; // devolvera false si el codpos no existe 
         $stmt = $this->connect()->prepare("SELECT mun_id FROM $this->tablaNombre WHERE mun_codpos = ? OR mun_nombre = ?");
         if($stmt->execute(array($codpos, $nombre))){
             if($stmt->rowCount() > 0){
-                $res = $stmt->fetch();
-                $existe=$res[0];
+                $existe = $stmt->fetch();
+                
             }
         }
         $stmt = null;
         return $existe;
     }
     protected function leeMunicipio($id){
-        $existe = false; // devolvera false si el id no existe 
+        $mun = false; // devolvera false si el id no existe 
         $stmt = $this->connect()->prepare("SELECT * FROM $this->tablaNombre WHERE mun_id = ?");
         if($stmt->execute(array($id))){
             if($stmt->rowCount() > 0){
-                $res = $stmt->fetch();
-                $existe=$res;
+                $mun=$stmt->fetch();
+                
             }
         }
         $stmt = null;
-        return $existe;
+        return $mun;
     }
         
 }

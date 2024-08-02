@@ -1,22 +1,9 @@
 <?php 
 
-$title="Tienda";
-require "../model/Connection.php";
-require "../model/Usuario.php";
-require "../controler/usuarioContr.php";
-
-
-session_start();
-$id = $_SESSION["userId"];
-$usuario = new UsuarioContr();
-$usuario->setId($id);
-$usuario->leerUser();
-
-$mun_Id = $usuario->getMunicipio();
-require "../model/Municipio.php";
-require "../controler/municipioContr.php";
-$mun = new MunicipioContr("","",$mun_Id);
-$mun->traerMunicipio();
+$title="Mis Datos";
+$soy = "misDatos";
+include "../includes/header.php"; 
+include "../includes/misDatos-inc.php"; 
 
 ?>
 <!DOCTYPE html>
@@ -30,14 +17,10 @@ $mun->traerMunicipio();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-$title="Registro";
-$soy = "registro";
-include "../includes/header.php"; 
-require "../includes/municipios-inc.php";
+    
 
-<h2>Actualizar producto</h2>
 <div class="container mt-3">
-    <h2>Sign Up</h2>
+    <h2>Actualizar Datos</h2>
     <form action="../includes/misDatos-inc.php" method="post">
         <div class="mb-3">
             <label for="uid">Apellido:</label>
@@ -54,6 +37,10 @@ require "../includes/municipios-inc.php";
         <div class="mb-3">
             <label for="email">email:</label>
             <input type="email" class="form-control" id="email" placeholder="Introduzca email" name="email" value ="<?=$usuario->getEmail();?>">
+        </div>
+        <div class="mb-3">      
+            <label for ="direccion">Dirección:</label>
+            <input type="text" class="form-control" id="direccion" placeholder="Introduzca codigo postal"   name="direccion" value ="<?=$usuario->getDireccion();?>">
         </div>
         <div class="mb-3">      
             <label for ="codpos">Codigo Postal</label>

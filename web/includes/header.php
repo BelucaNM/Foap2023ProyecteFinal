@@ -11,7 +11,7 @@
 <?php
 require '../includes/tablaNav.php'; 
 
-session_start();
+if(session_status() === PHP_SESSION_NONE) {session_start();};
 if(!isset($_SESSION['user'])){
     echo " la session no ha sido iniciada";
     $tablaNav = $_tablaNav_sinSession;
@@ -53,7 +53,7 @@ if(!isset($_SESSION['user'])){
                     <a class="nav-link" href="verCarrito.php">Ver Carrito</a>
                 </li>'; }
 
-    if  ($tablaNav[$soy]['a_logout']) { // estoy Loggeado y puedo ver y cambiar mis datos
+    if  ($tablaNav[$soy]['a_datos']) { // estoy Loggeado y puedo ver y cambiar mis datos
                     echo '
                             <li class="nav-item">
                                 <a class="nav-link" href="usuarios_misdatos.php">Mis datos</a>

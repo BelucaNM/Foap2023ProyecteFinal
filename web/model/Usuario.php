@@ -8,7 +8,7 @@ class Usuario extends Connection{
     
     protected function leer($id){
 
-     // devolvera true si el username o el email existen ; false en otro caso
+     // devolvera todo si el id existe ; false en otro caso
         $stmt = $this->connect()->prepare("SELECT * FROM $this->tablaNombre WHERE usu_id = ? ;");
         if($stmt->execute(array($id))){
             if($stmt->rowCount() > 0){
@@ -159,16 +159,17 @@ class Usuario extends Connection{
         $stmt = null;
         return $result;
         }
-    protected function actualizar ($email,$apellido,$nombre,$dni,$direccion,$municipio,$id){
+    protected function actualizar ($apellido,$nombre,$dni,$email,$direccion,$municipio,$id){
             
             try {
-                $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET 
+
+                $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET 
                                         usu_email =?,usu_apellido=?, usu_nombre=?, usu_dni=?,
                                         usu_direccion =?, municipios_mun_id =? WHERE usu_id=?");
                 
-                $stmt->execute([$email, $apellido,$nombre,$dni, 
+                $result = $stmt->execute([$email, $apellido,$nombre,$dni, 
                                $direccion,$municipio,$id]);
-
+                return $result;
                 }
             catch (Exception $e){
                     return $e->getMessage();

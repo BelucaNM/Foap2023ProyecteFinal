@@ -49,8 +49,11 @@ class MunicipioContr extends Municipio{
     }
     public function traerMunicipio(){
         $existe=$this->leeMunicipio($this->id);
-        $this->codpos = $existe['mun_codpos'];
-        $this->nombre = $existe['mun_nombre'];
+        $this->codpos = "";
+        $this->nombre = "";
+        If (isset($existe['mun_codpos'])) {$this->codpos = $existe['mun_codpos'];}
+        If (isset($existe['mun_nombre'])) {$this->nombre = $existe['mun_nombre'];}
+        
     }
 
 }

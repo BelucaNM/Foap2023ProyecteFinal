@@ -31,7 +31,11 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     if ( $_GET['error'] == 'noOrders') {
         echo '<div class="alert alert-success" role="alert">No hay pedidos para este usuario.</div>';
     };
-    
+};
+if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['info'])) { 
+    if ( $_GET['info'] == 'updateDone') {
+        echo '<div class="alert alert-success" role="alert">Se han actualizado los datos del usuario.</div>';
+    };
 };
 
 $title="Bienvenid@ a nuestra tienda Outlet";
