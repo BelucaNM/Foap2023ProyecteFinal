@@ -27,9 +27,10 @@ if (!isset ($_SESSION['user'])){
 // recupera el número de carrito para el user
 require "../model/Connection.php";
 require "../model/Pedido.php";
-$pedido = new Pedido ("","",$_SESSION['userId']); 
+require "../controler/PedidoContr.php";
+$pedido = new PedidoContr ("","",$_SESSION['userId']); 
 $result = $pedido->traerTodos();
-//var_dump ($result);
+var_dump ($result);
 if (!$result) {
     echo " El usuario no tiene pedidos";
     header("Location: ../view/bienvenida.php?error=noOrders");

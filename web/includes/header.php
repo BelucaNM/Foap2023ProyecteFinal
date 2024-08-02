@@ -31,13 +31,13 @@ if(!isset($_SESSION['user'])){
     if  ($tablaNav[$soy]['a_tiendas']) {
         echo '    
                 <li class="nav-item">
-                    <a class="nav-link" href="listadoTiendas.php">Tiendas</a>
+                    <a class="nav-link" href="verTiendas.php">Tiendas</a>
                 </li>'; }
     
     if  ($tablaNav[$soy]['a_productos']) {
         echo '
                 <li class="nav-item">
-                    <a class="nav-link" href="listadoProductos.php">Productos</a>
+                    <a class="nav-link" href="verProductos.php">Productos</a>
                 </li>'; }
 
     if  ($tablaNav[$soy]['a_pedidos']) {

@@ -2,6 +2,7 @@
     
 require "../model/Connection.php";
 require "../model/Carrito.php";
+require "../controler/CarritoContr.php";
 
 session_start();
 if (isset ($_GET['id'])){
@@ -18,11 +19,13 @@ if (isset ($_GET['id'])){
 
 // Si hay una compra abierta, recupera el número de carrito
 
-    $carrito = new Carrito ("","",$_SESSION['userId']); // inicializa un carrito para el usuario
+    $carrito = new CarritoContr ("","",$_SESSION['userId']); // inicializa un carrito para el usuario
     $result = $carrito->recuperaCarrito();
     if (!$result) {
-            $carritoId = $carrito->crearCarrito();
-            $_SESSION['carrito'] = $carritoId;
+            $carrito->crearCarrito();
+            echo " identificor del carrito"; 
+            var_dump ($carrito->carritoid);
+            $_SESSION['carrito'] = $carrito->carritoid;
     };
    
 // recupera precio del producto    
@@ -43,10 +46,10 @@ if (isset ($_GET['id'])){
     $carrito->añadirAlCarrito();
     
     // vuelve a comprar
-    echo "<script>  alert('Datos guardados correctamente');
-                document.location='../view/listadoProductos.php?info=carro'; 
+ /*   echo "<script>  alert('Datos guardados correctamente');
+                document.location='../view/verProductos.php?info=carro'; 
     </script>";
-        
+ */       
     exit();
 }
 ?>

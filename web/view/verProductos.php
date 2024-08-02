@@ -1,8 +1,8 @@
 <?php
 
-require_once ("../model/Connection.php");
-require_once ("../model/Producto.php");
-require_once ("../controler/ProductoContr.php");
+require_once "../model/Connection.php";
+require_once "../model/Producto.php";
+require_once "../controler/ProductoContr.php";
 $datos = new ProductoContr();
 
 if ( isset($_GET['info']) && $_GET['info'] == 'carro') {

@@ -71,7 +71,7 @@ class TiendaContr extends Tienda{
         $record = $this->getTienda($this->id);
         
         if(!$record){
-            header("Location: ../view/listadoTiendas.php?error=unknownShop");
+            header("Location: ../view/verTiendas.php?error=unknownShop");
             exit();
         }
        

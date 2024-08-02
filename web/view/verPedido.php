@@ -3,18 +3,7 @@
 $title="Pedido";
 $soy = "pedido";
 
-
-$lineas =[];
-if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['id'])) { 
-
-
-require "../model/Connection.php";
-require "../model/Pedido.php";
-$pedido = new Pedido ($_GET['id']); 
-$lineas = $pedido->traerLineas();
-//print_r($lineas);
-$total = 0;
-};
+include "../includes/verPedido-inc.php"
 ?>
 <h2>Pedido</h2>
 <div id="lineas">

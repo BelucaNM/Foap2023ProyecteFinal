@@ -55,7 +55,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Cámaras Analógicas</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de  productos camaras. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=1" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=1" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -64,7 +64,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Cámaras Digitales</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de productos de Cámaras Digitales. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=2" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=2" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -73,7 +73,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Objetivos Manuales</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de objetivos manuales. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=3" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=3" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -82,7 +82,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Objetivos automáticos</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de objetivos automáticos. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=4" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=4" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -91,7 +91,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Filtros</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de Filtros. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=5" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=5" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -100,7 +100,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Tripodes y Soportes</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de Soportes. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=6" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=6" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -109,7 +109,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Adaptadores</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de Adaptadores. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=7" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=7" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -118,7 +118,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Baterias</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de productos de Baterias. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=8" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=8" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -127,7 +127,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Cables</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de Cables. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=9" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=9" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -136,7 +136,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Bolsas y Fundas</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de bolsas y fundas. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=10" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=10" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
                 </div>
                 <div class="card">
@@ -145,7 +145,7 @@ include "../includes/header.php";
                         <h3 class="card-title">Accesorios</h3>
                         <p class="card-text">Contenido de ejemplo para el grupo de Accesorios. Esto es una vista previa.</p>
                         <a href="#">Leer más</a>
-                        <a href="listadoProductos.php?cat=11" class="btn btn-primary">Ver Lista Productos</a>
+                        <a href="verProductos.php?cat=11" class="btn btn-primary">Ver Lista Productos</a>
                     </div>
         </div>
     </section>

@@ -11,13 +11,15 @@ if (!isset ($_SESSION['user'])){
         }
 require "../model/Connection.php";
 require "../model/Carrito.php";
+require "../controler/CarritoContr.php";
 require "../model/Pedido.php";
+require "../controler/PedidoContr.php";
 
 
 if (isset ($_GET['id'])){
 
     $id = $_GET['id']; // identificador del carrito
-    $carrito = new Carrito ($id,"",$_SESSION['userId']); // comprueba datos correctos
+    $carrito = new CarritoContr ($id,"",$_SESSION['userId']); // comprueba datos correctos
 
     $result = $carrito->compruebaUserCarrito();
     if (!$result) {
@@ -28,7 +30,7 @@ if (isset ($_GET['id'])){
 
     
 // crea un pedido 
-    $pedido = new Pedido("","",$_SESSION['userId']);
+    $pedido = new PedidoContr("","",$_SESSION['userId']);
     
     $pedido->crearPedido(); // guarda el pedidoid creado en la variable $this->pedidoid
     echo "numero de pedido creado ". $pedido->getPedidoid();
@@ -39,7 +41,7 @@ if (isset ($_GET['id'])){
         $pedido->setproductoid($linea['productos_pro_id']);
         $pedido->setcantidad($linea['lincar_cantidad']);
         $pedido->setPrecioUnitario($linea['lincar_precioUnitario']);
-        $pedido->insertarLinea();
+        $pedido->crearLinea();
         // ??actualizar existencias
         };
     
@@ -49,7 +51,7 @@ if (isset ($_GET['id'])){
     echo "  <script>  
                  alert('Datos guardados correctamente');
             </script>";
-    header("Location: ../view/listadoProductos.php?info=deliver");     
+    header("Location: ../view/verProductos.php?info=deliver");     
 }
 
 ?>

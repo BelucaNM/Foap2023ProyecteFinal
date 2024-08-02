@@ -11,8 +11,6 @@ class CarritoContr extends Carrito{
     private $cantidad;
     private $precioUnitario;
 
- 
-
 
     public function __construct($carritoid='',$fecha ='',$usuarioid='',$total='',$lineaid='',$productoid='', $cantidad='', $precioUnitario='')
     {   $this->carritoid = $carritoid;
@@ -52,60 +50,49 @@ class CarritoContr extends Carrito{
 
     public function crearCarrito() {
 
-        return $this->insertCarrito($this->usuarioid);
+        $this->carritoid = $this->insertCarrito($this->usuarioid);
+        
     }
    
     public function añadirAlCarrito() {
 
-        $this->toCarrito($this->carritoid,$this->cantidad,$this->precioUnitario,$this->productoid);
-        $this->actualizarCarrito($this->carritoid);
+        $this->alCarrito($this->carritoid,$this->cantidad,$this->precioUnitario,$this->productoid);
+    //    $this->actualizarCarrito($this->carritoid); aqui se deberia calcular el importe total
    
     }
     
     public function traerLineas() {
-
-        return $this->getLIneas($this->carritoid);
-
+        return $this->getLineas($this->carritoid);
     
     }
     
     public function recuperaCarrito() {
 
-        $record = $this->getCarrito($this->carritoid);
-        if ($record) {
+        $record = $this->getCarrito($this->usuarioid);
+        if (!$record) {
+            return false ;
+        }else{
             $this->carritoid = $record['car_id'];
             $this->fecha = $record['car_fecha'];
+            return true;
         }
 }
     public function compruebaUserCarrito() {
-        try {
-            $stmt = $this->connect()->prepare("SELECT   car_id
-                                                FROM ". $this->tablaNombre."  WHERE usuarios_usu_id = ?");
-            $stmt->execute([$this->usuarioid]);
-            if ( $stmt->rowCount() >0) {
-                $record = $stmt->fetchAll()[0];
-                if ($this->carritoid == $record['car_id']) {
-                    return true;
+        $res = false;
+        $record = $this->getCarrito($this->usuarioid);
+        if ($record) {
+            if ($this->carritoid == $record['car_id']) {
+                    $res = true;
                 };
             }
-        }
-        catch (Exception $e){
-            return $e->getMessage();
-            }
+        return $res;
         
     }
     
     
     public function borrarCarrito(){
-            
-            try {
-                $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE car_id=?");
-                $stmt->execute([$this->carritoid]); // debería borrar las lineas en cascada
-                return true;
-                 }
-            catch (Exception $e){
-                    return $e->getMessage();
-                }
+        return $this->deleteCarrito($this->carritoid);
+           
     }
     
 

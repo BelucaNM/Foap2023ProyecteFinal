@@ -1,5 +1,5 @@
 <?php 
-include "../includes/listadoTiendas-inc.php";
+include "../includes/verTiendas-inc.php";
 
 $title="Listado de tiendas";
 $soy = "tiendas";

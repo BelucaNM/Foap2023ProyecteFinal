@@ -3,7 +3,7 @@
 
 require "../model/connection.php";
 require "../model/producto.php";
-require_once ("../controler/ProductoContr.php");
+require_once "../controler/ProductoContr.php";
 $producto = new ProductoContr();
 
 if ( isset($_GET['error']) && $_GET['error'] == 'noLogged') {
@@ -47,7 +47,7 @@ if (isset($_POST['actualizar'])){
     $producto->actualizar();
 
     echo "<script>  alert('Datos actualizados');
-                document.location='../view/listadoProductos.php';
+                document.location='../view/verProductos.php';
     </script>";
         
     }

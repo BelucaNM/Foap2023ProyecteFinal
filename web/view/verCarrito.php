@@ -17,27 +17,12 @@ $title="Carrito";
 $soy = "carrito";
 include "../includes/header.php"; 
 
-
 if (!isset ($_SESSION['user'])){
         header("Location: ../view/bienvenida.php");
         // " No es posible comprar sin estar identificado";
         exit();
 }
-    
-// recupera el número de carrito para el user
-require "../model/Connection.php";
-require "../model/Carrito.php";
-$carrito = new Carrito ("","",$_SESSION['userId']); 
-$result = $carrito->recuperaCarrito();
-
-if ($result) {
-    $lineas=$carrito->traerLineas();
-    $total=0;
-}else{
-    echo " El carrito esta vacio.";
-    header("Location: ../view/bienvenida.php?error=EmptyCart");
-    exit();
-}
+include "../includes/verCarrito-inc.php";
 ?>
 <h2>Carrito</h2>
 <div id="lineas">
