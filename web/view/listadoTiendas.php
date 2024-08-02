@@ -1,9 +1,5 @@
 <?php 
-require "../model/connection.php";
-require "../model/tienda.php";
-$tienda = new Tienda();
-
-$todos = $tienda->getTodos();
+include "../includes/listadoTiendas-inc.php";
 
 $title="Listado de tiendas";
 $soy = "tiendas";
@@ -40,7 +36,7 @@ include "../includes/header.php";
             echo "<td>".$todo['tie_nombre']."</td>";
             echo "<td>".$todo['tie_direccion']."</td>";
             echo "<td>".$todo['tie_telefono']."</td>";
-            echo "<td><a href='../view/verTienda.php?id=".$todo['tie_id']."'>Ver Card</a></td>";
+            echo "<td><a href='../view/verTienda.php?id=".$todo['tie_id']."'>Ver Detalles</a></td>";
 
             echo "<td><button class = 'verDetails' id='verDetails".$todo['tie_id']."'
                                 data-id ='".$todo['tie_id']."'  
@@ -51,7 +47,7 @@ include "../includes/header.php";
                                 data-telefono = '".$todo['tie_telefono']."' 
                                 data-municipio = '".$todo['mun_nombre']."' 
                                 data-codpos = '".$todo['mun_codpos']."' 
-                                >Ver Modal</button></td>";
+                                >Ver Modal</button></td>"; // Utiliza data-SET para pasar datos al Modal
 
             echo "</tr>";
         };

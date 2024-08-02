@@ -1,35 +1,12 @@
+
 <?php 
-
-
-require "../model/connection.php";
-require "../model/tienda.php";
-$tienda = new Tienda();
-
-
-if (isset ($_GET['id'])){
-    $id = $_GET['id'];
-    $tienda->setId($id);
-    $result = $tienda->leer();
-    $nombre = $direccion= $URLFoto = $AlTFoto = $telefono = "";
-    $codpos = $municipio = $ven_id = $ven_username = $ven_email ="";
-
-    if ($result) {
-        $nombre = $tienda->getNombre();
-        $direccion = $tienda->getDireccion();
-        $URLFoto = $tienda->getURLFoto();
-        $ALTFoto = $tienda->getAlTFoto();
-        $telefono = $tienda->getTelefono();
-        $codpos = $tienda->getCodpos();
-        $municipio = $tienda->getMunicipio();
-        $ven_id = $tienda->getVen_id();
-        $ven_username =$tienda->getVen_username(); 
-        $ven_email =$tienda->getVen_email(); 
-        }
-
-    };
-
-
+    require "../includes/verTienda-inc.php";
+    $title="Ficha de tienda ( se podrian añadir existencias de producto? )";
+    $soy = "tienda";
+    include "../includes/header.php"; 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +20,7 @@ if (isset ($_GET['id'])){
 </head>
 <body>
 
-<?php 
-$title="Ficha de tienda ( se podrian añadir existencias de producto? )";
-$soy = "tienda";
-include "../includes/header.php"; ?>
+
 <h2>Ficha de tienda</h2>
 
 <div class="cards-container mt-3">

@@ -3,19 +3,24 @@
 
 require "../model/connection.php";
 require "../model/producto.php";
-$producto = new producto();
+require_once ("../controler/ProductoContr.php");
+$producto = new ProductoContr();
 
 if ( isset($_GET['error']) && $_GET['error'] == 'noLogged') {
     echo '<div class="alert alert-success" role="alert">Por favor, recuerde que para comprar deberá primero identificarse en LOGIN.</div>';
     };
 
-if (isset ($_GET['id'])){
+if (isset($_GET['id'])){
+
     $id = $_GET['id'];
     $producto->setId($id);
-    $result = $producto->leer();
     $nombre = $descripcion= $URLFoto = $AlTFoto = $categoria = "";
     $precioUnitario = $fecha = $nombreCat = "";
 
+    $id = $_GET['id'];
+    $producto->setId($id);
+    $result = $producto->leer();
+    var_dump($result);
     if ($result) {
         $nombre = $producto->getNombre();
         $descripcion = $producto->getDescripcion();
@@ -24,11 +29,12 @@ if (isset ($_GET['id'])){
         $categoria = $producto->getCategoria();
         $precioUnitario = $producto->getPrecioUnitario();
         $fecha = $producto->getFecha();
-        $nombreCat = $producto->getNombreCategoria();
-        $existencias =$producto->getExistencias(); 
+        $nombreCat = $producto->nombreCategoria();
+        $existencias = $producto->leerExistencias(); 
         }
 
     };
+
 if (isset($_POST['actualizar'])){
     print_r ($_POST);
     $producto->setNombre($_POST['nombre']);

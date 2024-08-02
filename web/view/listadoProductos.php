@@ -2,7 +2,8 @@
 
 require_once ("../model/Connection.php");
 require_once ("../model/Producto.php");
-$datos = new Producto();
+require_once ("../controler/ProductoContr.php");
+$datos = new ProductoContr();
 
 if ( isset($_GET['info']) && $_GET['info'] == 'carro') {
     echo '<div class="alert alert-success" role="alert">Su artículo ha sido incorporado al carro. Por favor, RECUERDE, que la reserva solo se hace cuando confirme el pedido.</div>';
@@ -16,12 +17,15 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     $categoria = $_GET['cat'];
     $datos->setCategoria($categoria);
     $todos = $datos->traerUnaCategoria();
-    $nombreCat = $datos->getNombreCategoria();
+    $nombreCat = $datos->nombreCategoria();
     // print_r( $nombreCat);
     $title = "Lista de productos de Categoría '".$nombreCat."'";
+
 }else{
+    
     $todos = $datos->traerTodos();
     $title = "Lista de productos";
+    
 };
 //print_r($todos);
 

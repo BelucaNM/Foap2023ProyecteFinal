@@ -27,7 +27,8 @@ if (isset ($_GET['id'])){
    
 // recupera precio del producto    
     require "../model/producto.php";
-    $producto = new producto($id);
+    require "../controler/productoContr.php";
+    $producto = new ProductoContr($id);
     $producto->leer();
     $precio= $producto->getPrecioUnitario();
 

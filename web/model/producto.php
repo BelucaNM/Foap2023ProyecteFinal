@@ -2,48 +2,13 @@
 
 class Producto extends Connection{
     
-    private $id;
-    private $nombre;
-    private $descripcion;
-    private $precioUnitario;
-    private $URLFoto;
-    private $ALTFoto;
-    private $categoria;
-    private $fecha;
+
     private $tablaNombre = "productos";
     private $tablaNumReg = 0;
 
-    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='')
-    {   $this->id = $id;
-        $this->nombre = $nombre;
-        $this->descripcion = $descripcion;
-        $this->URLFoto = $URLFoto;
-        $this->ALTFoto = $ALTFoto;
-        $this->precioUnitario = $precioUnitario;
-        $this->categoria = $categoria;    
-    }
+    
 
-    /**Setters and getters */
-    public function getId(){return $this->id;}
-    public function getNombre() {return $this->nombre;}
-    public function getDescripcion() {return $this->descripcion;}
-    public function getURLFoto() {return $this->URLFoto;}
-    public function getALTFoto() {return $this->ALTFoto;}
-    public function getCategoria() {return $this->categoria;}
-    public function getPrecioUnitario() {return $this->precioUnitario;}
-    public function getFecha() {return $this->fecha;}
-    public function setId($id){$this->id = $id;}
-    public function setNombre($nombre){$this->nombre = $nombre;}
-    public function setDescripcion($descripcion){$this->descripcion = $descripcion;}
-    public function setURLFoto($URLFoto){$this->URLFoto = $URLFoto;}
-    public function setALTFoto($ALTFoto){$this->ALTFoto = $ALTFoto;}
-    public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
-    public function setCategoria($categoria){$this->categoria = $categoria;}
-    public function setFecha($fecha){$this->fecha = $fecha;}        
-
-    /***  */
-
-    public function categorias() {
+    protected function getCategorias() {
         try {
             $stmt = $this->connect()->prepare("SELECT   cat_id as id, cat_nombre as nombre
                                             FROM categoriasproductos");
@@ -56,11 +21,11 @@ class Producto extends Connection{
             }
     
     }
-    public function getNombreCategoria() {
+    protected function getNombreCategoria($id) {
         try {
             $stmt = $this->connect()->prepare("SELECT cat_nombre as nombre
                                             FROM categoriasproductos where cat_id = ?");
-            $stmt->execute([$this->categoria]);
+            $stmt->execute([$id]);
             return $stmt->fetch()['nombre'];
             }
         catch (Exception $e){
@@ -68,14 +33,14 @@ class Producto extends Connection{
             }
     
     }
-    public function insertarDatos() {
+    protected function insertDatos($nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria) {
    
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
                                                     pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id) VALUES (?,?,?,?,?,?)");
-            $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
-            } 
-        // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
+            $stmt->execute([$nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria]);
+            } // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
+        
         catch (Exception $e){
             echo "Error al insertar datos".$e->getMessage();
             return $e->getMessage();
@@ -83,10 +48,11 @@ class Producto extends Connection{
         
     }
     
-    public function traerTodos() {
+    protected function getTodos() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, 
+                                                        categoriasProductos_cat_id as pro_categoria
                                             FROM ".$this->tablaNombre." ORDER BY pro_nombre,pro_precioUnitario" );
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
@@ -97,13 +63,13 @@ class Producto extends Connection{
             }
     
     }
-    public function traerUnaCategoria() {
+    protected function getUnaCategoria($id) {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
                                                 FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
-            echo " categoria= ".$this->categoria;
-            $stmt->execute([$this->categoria]);
+            echo " categoria= ".$id;
+            $stmt->execute([$id]);
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
             }
@@ -113,53 +79,44 @@ class Producto extends Connection{
         
     }
     
-    public function leer() {
+    protected function leerDatos($id) {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
                                                 FROM ". $this->tablaNombre."  WHERE pro_id = ?");
-            $stmt->execute([$this->id]);
-           
-            $record = $stmt->fetchAll()[0];
-            $this->id = $record['pro_id'];
-            $this->nombre = $record['pro_nombre'];
-            $this->descripcion = $record['pro_descripcion'];
-            $this->URLFoto = $record['pro_URLFoto'];
-            $this->ALTFoto = $record['pro_ALTFoto'];
-            $this->precioUnitario = $record['pro_precioUnitario'];
-            $this->categoria = $record['pro_categoria'];
-            $this->fecha = $record['pro_fecha'];
-            return true;
+            $stmt->execute([$id]);           
+            return $stmt->fetchAll()[0];
+
         }
         catch (Exception $e){
             return $e->getMessage();
             }
         
     }
-    public function actualizar (){
-            
+    protected function actualizarDatos ($nombre,$descripcion,$URLFoto, $ALTFoto, $precioUnitario,
+                                        $categoria, $id){
         try {
             $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
                                             pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=? WHERE pro_id=?");
-            $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
-                            $this->categoria, $this->id]);
+            $stmt->execute([$nombre,$descripcion,  $URLFoto, $ALTFoto, $precioUnitario,
+                            $categoria, $id]);
             }
         catch (Exception $e){
                 return $e->getMessage();
             }
     }
     
-    public function eliminar(){
+    protected function eliminarDatos($id){
             
-            try {
-                $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE pro_id=?");
-                    $stmt->execute([$this->id]);
-                 }
-            catch (Exception $e){
-                    return $e->getMessage();
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE pro_id=?");
+            $stmt->execute([$id]);
                 }
+        catch (Exception $e){
+                return $e->getMessage();
+            }
     }
-    public function getExistencias(){
+    protected function getExistencias($id){
 
         try {
             $stmt = $this->connect()->prepare("select productos_pro_id, tiendas_tie_id, exi_cantidad, tie_nombre, tie_telefono, vendedores_ven_id, ven_username 
@@ -167,14 +124,13 @@ class Producto extends Connection{
             join vendedores on vendedores_ven_id = ven_id
             where productos_pro_id = ?");
                 
-            $stmt->execute([$this->id]);
+            $stmt->execute([$id]);
             return $stmt->fetchAll();
              }
         catch (Exception $e){
                 return $e->getMessage();
             }
     }
-    public function actualizarExistencias(){
-    }
+    
 
 }
