@@ -11,23 +11,23 @@
             <ul class="navbar-nav  me-auto">
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="tiendas.php">Tiendas</a>
+                    <a class="nav-link" href="">Tiendas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="productos.php">Productos</a>
+                    <a class="nav-link" href="listadoProductos.php">Productos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pedidos.php">Pedidos</a>
+                    <a class="nav-link" href="">Pedidos</a>
                 </li>
             </ul>
             <div class="d-flex">
                 <ul class="navbar-nav  me-auto">
                 
                    <li class="nav-item">
-                        <a class="nav-link" href="usuarios_login.php">Iniciar Session</a>
+                        <a class="nav-link" href="">Iniciar Session</a>
                     </li> 
                     <li class="nav-item">
-                        <a class="nav-link" href="../includes/logout.php">Logout</a>
+                        <a class="nav-link" href="">Logout</a>
                     </li>
                 </ul>
 
