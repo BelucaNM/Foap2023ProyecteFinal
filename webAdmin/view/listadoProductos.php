@@ -1,22 +1,8 @@
 <?php
 
-require_once ("../model/Connection.php");
-require_once ("../model/Producto.php");
-$datos = new Producto();
+require ("../includes/listadoProductos-inc.php");
 
-if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) { 
 
-    $categoria = $_GET['cat'];
-    $datos->setCategoria($categoria);
-    $todos = $datos->traerUnaCategoria();
-    $nombreCat = $datos->getNombreCategoria();
-    print_r( $nombreCat);
-    $title = "Lista de productos de Categoría '".$nombreCat."'";
-}else{
-    $todos = $datos->traerTodos();
-    $title = "Lista de productos";
-};
-//print_r($todos);
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +22,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
         <th>URLFoto</th>
         <th>ALTFoto</th>
         <th>PrecioUnitario</th>
+        <th>Ubicacion</th>
         <th>Acciones</th>
     </tr>
     <?php foreach ($todos as $key => $todo){
@@ -46,6 +33,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
         echo "<td>".$todo['pro_URLFoto']."</td>";
         echo "<td>".$todo['pro_ALTFoto']."</td>";
         echo "<td>".$todo['pro_precioUnitario']."</td>";
+        echo "<td>".$todo['pro_ubicacion']."</td>";
         echo "<td>  <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
                     <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>  
                     </td>";

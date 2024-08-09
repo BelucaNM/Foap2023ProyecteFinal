@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 require "../model/connection.php";
 require "../model/producto.php";
 
-$producto = new Producto('',$_POST['nombre'],$_POST['descripcion'],$urlImg,$_POST['ALTFoto'],$_POST['precio'],$_POST['categoria']);
+$producto = new Producto('',$_POST['nombre'],$_POST['descripcion'],$urlImg,$_POST['ALTFoto'],$_POST['precio'],$_POST['categoria'],$_POST['ubicacion']);
 
 $producto->insertarDatos();
 

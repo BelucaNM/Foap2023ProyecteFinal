@@ -1,9 +1,9 @@
 <?php 
 
 $title="Tienda Productos";
-require "../model/connection.php";
-require "../model/producto.php";
-$producto = new producto();
+require "../model/Connection.php";
+require "../model/Producto.php";
+$producto = new Producto();
 $categorias = $producto->categorias();
 
 if (isset ($_GET['id'])){
@@ -22,6 +22,7 @@ if (isset ($_GET['id'])){
         $precioUnitario = $producto->getPrecioUnitario();
         $fecha = $producto->getFecha();
         $nombreCat = $producto->getNombreCategoria();
+        $ubicacion = $producto->getUbicacion();
         }
     };
 if (isset($_POST['actualizar'])){
@@ -32,6 +33,7 @@ if (isset($_POST['actualizar'])){
     $producto->setURLFoto($_POST['URLFoto']);
     $producto->setALTFoto($_POST['ALTFoto']);
     $producto->setCategoria($_POST['categoria']);
+    $producto->setUbicacion($_POST['ubicacion']);
 
     $producto->actualizar();
 
@@ -82,6 +84,11 @@ if (isset($_POST['actualizar'])){
             <label for ="ALTFoto">ALTFoto</label>
             <input type="text" class="form-control" id="ALTFoto" placeholder="Introduzca texto para Foto" name="ALTFoto" required value="<?=$ALTFoto;?>">
         </div>
+        
+        <div class="mb-3">      
+            <label for ="ubicacion">Ubicacion (*Codigo de contenedor) </label>
+            <input type="text" class="form-control" id="ubicacion" placeholder="Introduzca Ubicacion" name="ubicacion" required>
+        </div>
         <div>
             <label for ="categoria">Categoria</label>    
             <select id= "categoria" name="categoria" >
@@ -97,8 +104,9 @@ if (isset($_POST['actualizar'])){
                 }
 ?>
             </select>
+            
         </div>
-        
+        <br>
         <button name="actualizar" type="submit" class="btn btn-primary" value="Actualizar">Submit</button>
     </form>
 </div>

@@ -1,0 +1,428 @@
+
+Tienda. ObJEtivos                                                                           
+ 
+2 / 73 
+Créditos/Copyright  
+Todo el contenido de este documento de memoria, así como el código fuente y la aplicación 
+desarrollada en ocasión de este proyecto están sujetos a la siguiente licencia. 
+ 
+ 
+Esta obra está sujeta a una licencia de Reconocimiento-NoComercial 
+SinObraDerivada 3.0 España de Creative Commons 
+ 
+
+
+  
+Índice  
+1. Introducción .................................................................................................................................... 10 
+2. Descripción .................................................................................................................................... 11 
+3. Objetivos ........................................................................................................................................ 12 
+3.1 Principales ................................................................................................................................ 12 
+3.2 Secundarios .............................................................................................................................. 12 
+4. Escenario ....................................................................................................................................... 13 
+5. Contenidos ..................................................................................................................................... 16 
+5.1 Aplicación Backend .................................................................................................................. 16 
+5.2 Aplicación Frontend .................................................................................................................. 16 
+5.3 Despliegue ................................................................................................................................ 17 
+6. Metodología ................................................................................................................................... 19 
+7. Arquitectura de la aplicación.......................................................................................................... 20 
+7.1 Base de datos ........................................................................................................................... 20 
+7.2 Aplicación backend ................................................................................................................... 21 
+7.3 Aplicación front-end .................................................................................................................. 23 
+7.4 Despliegue ................................................................................................................................ 26 
+8. Plataforma de desarrollo ................................................................................................................ 29 
+9. Planificación ................................................................................................................................... 30 
+11. APIs utilizadas.............................................................................................................................. 32 
+11.1 Servicio Facebook .................................................................................................................. 32 
+11.2 Servicio Google ...................................................................................................................... 35 
+12. Diagramas UML ........................................................................................................................... 38 
+12.1 Casos de Uso ......................................................................................................................... 38 
+12.2 Clases ..................................................................................................................................... 42 
+12.3 Secuencia del Social Login .................................................................................................... 43 
+13. Prototipos ..................................................................................................................................... 45 
+14. Perfiles de usuario ....................................................................................................................... 49 
+15. Usabilidad/UX .............................................................................................................................. 50 
+16. Seguridad ..................................................................................................................................... 53 
+17. Tests ............................................................................................................................................. 55 
+18. Versiones de la aplicación/servicio.............................................................................................. 56 
+
+19. Requisitos de instalación/implantación/uso ................................................................................ 57 
+20. Instrucciones de implantación ..................................................................................................... 58 
+21. Instrucciones de desarrollo .......................................................................................................... 59 
+21.1 Aplicación Backend ................................................................................................................ 59 
+21.2 Aplicación Frontend ................................................................................................................ 60 
+22. Bugs ............................................................................................................................................. 61 
+23. Proyección a futuro ...................................................................................................................... 62 
+24. Presupuesto ................................................................................................................................. 63 
+25. Análisis de mercado..................................................................................................................... 64 
+26. Marketing y Ventas ...................................................................................................................... 65 
+26.1. Métricas de la aplicación ....................................................................................................... 66 
+27. Conclusiones................................................................................................................................ 68 
+Anexo 1. Entregables del proyecto .................................................................................................... 70 
+Anexo 2. Libro de estilo ..................................................................................................................... 71 
+Anexo 3. Glosario............................................................................................................................... 72 
+ 
+
+1- Introduccion
+En este proyecto se ha realizado una aplicación  'ObJEtivos', desde la definición de la estructura 
+de datos hasta la aplicación cliente pasando por la aplicación backend. La  aplicación es requisito para la superacion del curso Foap2023
+ 
+La  realización  de  este  proyecto  también supone  una  oportunidad para  desarrollar  una  aplicación 
+moderna  basada  en  tecnologías  como  Angular,  Spring  Boot  y  MongoDB  ampliamente  usadas  a 
+nivel profesional.  
+ 
+ 
+Palabras clave: web, webAdmin, vendedor, usuario, backend, frontend, aplicacion 
+ 
+ 
+2. Descripción 
+En este Proyecto de Final de Curso se propone la concepción de una aplicación de una tienda .
+
+Desde el punto de vista técnico, para la elaboración de la base de datos se ha optado por el uso de 
+MariaDB; para la concepción de la aplicación backEnd o de servidor se ha usado PHP y la aplicación frontEnd se ha construido con las premisas de mobile-first y usando el framework 
+HTML, CSS, y  JavaScript.
+ 
+Para  codificar  esta  aplicación  se  ha  optado  por  un  modelo Vista-Modelo-Controlador desarrollado en OOP, que permite separar mejor las diferentes responsabilidades de cada 
+parte  de  la  aplicación  (la  parte vista  presenta  la  información  mientras  que  la  parte 
+servidor  gestiona  la  información  y  la  procesa) 
+
+Aunque siendo una aplicación pequela en algunos programas se  generan las vistas HTML que enviaba al cliente desde el servidor. 
+
+ 
+
+   
+3. Objetivos 
+En este punto se exponen los diferentes objetivos propuestos para la realización de este Proyecto 
+de Fin de Curso. 
+3.1 Principales 
+En  este  apartado  se  exponen  los  objetivos  principales  que  se  persiguen  en  este  proyecto  y  que 
+deben completarse necesariamente al final del proyecto. 
+• Analizar e identificar las entidades  y las necesidades que la aplicación debe resolver. 
+• Diseñar  y  realizar  una  aplicación  backend  con  la  lógica  necesaria  para  responder  a  uso para los que esta aplicación dará servicio. 
+• Diseñar  y  desplegar  una  aplicación  frontend  para  consumir  los  servicios  ofrecidos  por  la 
+aplicación backend.   
+3.2 Secundarios  
+En este apartado los objetivos secundarios, esto es, objetivos con un menor nivel de importancia y 
+cuya asunción puede ser variable al final del proyecto.  
+• Aplicar los conocimientos de diseño de interfaces web adquiridos en este curso. 
+• Notificaciones. Integración de la aplicación con servicios de mensajería de terceros para el 
+envió de notificaciones en tiempo real. 
+• API de terceros. Integración de la aplicación con APIs de terceros
+• Calidad.  Aplicación  de  pruebas  unitarias  y  funcionales  para  asegurar  el  funcionamiento 
+deseado de las partes de las aplicaciones. 
+    
+
+
+
+
+
+************************
+
+ 
+48 / 73 
+ 
+En la imagen anterior se aprecia el diseño de la página de detalle de******. De forma parecida 
+al diseño de la página inicial, la página de detalle se basa en el uso de un grid dividido en 2 columnas 
+(que pasan a una sola columna en el caso de dispositivos pequeños). 
+ 
+En la primera columna se muestra contenido muy parecido a la tarjeta de mascota que se utilizan 
+en  la  pantalla de  inicio,  con  la  excepción  notable  de que,  en  lugar  de una  imagen,  se  incluye  un 
+carrusel  que  muestra  todas  las  imágenes  de  la  mascota,  puesto que  se pueden agregar  hasta 5 
+imágenes. También se muestra un icono, en caso de ser el propietario de la mascota, que permite 
+editar y modificar la información y las imágenes de la mascota. 
+ 
+ 
+ 
+ 
+  
+                                                                                          
+ 
+49 / 73 
+ 
+14. Perfiles de usuario 
+Para identificar los diferentes usuarios que se encuentran en la aplicación se pueden clasificar en 
+función de dos criterios: roles y procedencia del usuario en la aplicación. 
+ 
+En función de los roles, se diferencian dos usuarios diferentes: 
+ 
+• Usuarios Administradores.  Se trata de un tipo de usuario con poder para suprimir otros 
+usuarios,  mascotas  o  acciones  sobre  mascotas  además  de  realizar  todas  las  acciones 
+habituales. Solo se genera un usuario administrador al arrancar la aplicación. 
+• Usuarios sin privilegios. Todos los usuarios que se registran en la aplicación y que pueden 
+realizar las acciones habituales previstas en la aplicación. 
+ 
+En función del origen de la información utilizada para crear el usuario se diferencian dos tipos de 
+usuarios: 
+ 
+• Usuarios propios. Se considera un usuario propio a aquel que se ha registrado mediante 
+el formulario de registro de usuarios en la aplicación. Los usuarios de este tipo tienen mayor 
+flexibilidad para modificar sus datos personales en la aplicación. 
+• Usuarios sociales. Se considera un usuario social a aquel que se ha registrado mediante 
+el uso de Google. Los usuarios de este tipo son generados con menos datos 
+que los usuarios propios y tienen ciertas restricciones a la hora de modificar su perfil. 
+  
+                                                                                          
+ 
+50 / 73 
+ 
+15. Usabilidad/UX 
+La realización de la aplicación frontend de PetFinder se ha inspirado de los principios del Mobile 
+First.  El diseño y la concepción de los elementos que dan forma a la aplicación PetFinder se han 
+realizado priorizando los dispositivos móviles. Eso se traduce en el uso de patrones de diseño de 
+interfaces (como el uso de cards o modales) que se muestre sin problemas y sin que se tengan 
+que realizar grandes cambios en dispositivos.  
+ 
+En términos prácticos, la aplicación de este principio significa, por ejemplo, que cuando se codifica 
+el comportamiento de un componente para diferentes medidas de pantalla, primero se codifica el 
+comportamiento en pantallas pequeñas (por defecto) y luego se introducen las modificaciones 
+necesarias a medida que el tamaño aumenta. No al revés.  
+ 
+Este principio de diseño supone una evolución del conocido como Responsive Design y, por ello 
+mantiene sus premisas de adaptar el contenido a los diferentes anchos de pantalla de los 
+diferentes dispositivos, desde pantallas anchas hasta las pantallas de los smartphones. 
+ 
+En  relación con  la  información mostrada  en  la  página  principal de  la aplicación,  se  ha  procurada 
+aportar  al  usuario  una  vista  sintética,  con  la  información  justa  de  las  mascotas  y  con  el  uso  de 
+colores e iconografía especial para identificar el estado o el tipo de cada animal perdido. De este 
+modo, se intenta mantener la interfaz simple y entendible para el usuario.  
+ 
+La  información  detallada  –tanto  de  las  mascotas  como  de  los  usuarios  o  de  las  acciones–  se 
+encuentra  disponible  en  páginas  de  la  aplicación  separadas  y  requiere  que  el  usuario  acceda  a 
+ellas, para visualizar todo el contenido. Con ello, se consigue mantener la aplicación simple y clara 
+para el usuario. 
+ 
+En relación con los principios de diseño de interfaces aplicados en el diseño de la aplicación, es 
+preciso destacar los siguientes: 
+ 
+• Cards. En la página principal de la aplicación, la información de las diferentes productos se 
+agrupa de forma lógica en tarjetas o Cards que se muestran agrupadas en una fila (el número 
+de tarjetas por fila varía en función del ancho de la pantalla) y que permiten acceder al detalle 
+de la mascota y declarar una acción sobre esa mascota. 
+                                                                                           
+ 
+51 / 73 
+ 
+
+• Modals El uso de modales permite atraer toda la atención del usuario hacia un contenido 
+determinado que se muestra superpuesto al contenido previo. El contenido de las modales 
+debe,  además,  reducido  para  que  se  muestre  correctamente  en  los  smartphones.  En  la 
+aplicación, se usa esta técnica para recoger información a la hora introducir una acción sobre 
+una mascota. 
+• Carrousel.  El  uso  de  carrouseles  para  mostrar  imágenes  es  una  técnica  ampliamente 
+utilizada que permite, entre otras cosas, temporizar la carga de imágenes a medida que el 
+usuario  las  visualiza  para,  de  ese  modo,  reducir  la  cantidad  de  imágenes  descargadas 
+cuando, por ejemplo, el usuario no visualiza más que la primera imagen. 
+ 
+En relación con el diseño de la navegación en la aplicación se ha pensado en dos formas distintas 
+de  navegación  en  función  del  ancho  de  la  pantalla  para  maximizar  la  usabilidad  de  la  aplicación 
+tanto en grandes dispositivos como en smartphones. 
+ 
+• Horizontal Menu Dropdown. En el caso de las grandes pantallas, la aplicación se muestra 
+con un menú horizontal de navegación que se encuentra en la parte superior de la aplicación. 
+Se trata de un menú simple que ocupa todo el ancho de la pantalla y que contiene pocos 
+enlaces  directos  un  botón  desplegable  para  que  el  usuario  pueda  modificar  sus  datos  o 
+desconectarse de la aplicación. 
+• Lateral Sidebar Menu. En el caso de los pequeños dispositivos, se ha optado por introducir 
+un sidebar escondido que se abre con un Burger button y que permite ganar más espacio 
+para mostrar las mismas opciones de menú que para los grandes dispositivos en un formato 
+más claro y espaciado. 
+ 
+Por último, en lo concerniente a los formularios, también se han aplicado varios principios y 
+patrones de diseño de interfaces. 
+ 
+• Password  Strength  Meter.  En  la  página  de  registro  se  ha  introducido  un  medidor  de 
+seguridad de la contraseña introducido por el usuario. Este principio tiene por objetivo que 
+el usuario introduzca contraseñas más robustas y seguras frente a un ataque. 
+                                                                                        
+ 
+52 / 73 
+ 
+ 
+• Fill in the Blanks. Este principio hace referencia a la gestión de los inputs cuando estos se 
+muestran vacíos. En el diseño de la aplicación se ha previsto el uso de valores existentes 
+para  alimentar  los  campos  de  un  formulario  cuando  el  usuario  este  actualizando  o 
+modificando la información, así como el uso de  placeholders en aquellos casos en que se 
+trata de añadir nueva información al sistema. 
+• Good Defaults. Este principio de diseño esta bastante ligado al anterior. En este caso, al 
+insertas una nueva mascota, por ejemplo, la opción de tipo de mascota preseleccionada es 
+la del perro, puesto que, en España, el perro es la mascota más común. Este es un ejemplo 
+de la importancia de preseleccionar y usar valores por defecto correctos para ahorrar tiempo 
+al usuario y mejorar su experiencia de usuario. 
+ 
+
+ 
+  
+                                                                                         
+ 
+53 / 73 
+ 
+16. Seguridad 
+El esquema de seguridad aplicado en la aplicación PetFinder tiene varias capas que se superponen 
+y que persiguen dos objetivos; por un lado, aislar la aplicación y los sistemas con los que interactúa 
+para reducir al máximo el riesgo de intrusión (por ejemplo, el riesgo de intrusión directa en el servidor 
+de base de datos) y, por otro lado, proteger el flujo de datos servidos por la API para prevenir en 
+este punto el robo de información de clientes. 
+ 
+Mencionar el uso de sentencias prepare y ?
+Mencionar el uso de "selecion de caracteres en los campos de entrada para evitar comandos"
+Mencionar el uso de password encriptadas
+Mencionar uso de sesiones , el servidor conserva informacion del usuario en la sesiones
+Uso de token para verificaicón de cuenta de email y activacion de cuenta , y para el cambio de la contraseña 
+
+ 
+
+ 
+
+  
+ 
+ 
+ 
+  
+                                                                                          
+ 
+55 / 73 
+ 
+17. Tests  ??? revisar 
+Como se ha indicado en apartado precedentes, PetFinder esta formada por dos aplicaciones: un 
+backend que sirve de API y un frontend que, como una aplicación independiente consume y utiliza 
+los datos de esta API.  Esto hace que se deban realizar pruebas a dos niveles: la API y el cliente. 
+ 
+Para testear la API se han realizado tests funcionales mediante el uso de Postman, un cliente HTTP 
+ampliamente utilizado, con el objetivo de testear funcionalidades de la API, como, por ejemplo, la 
+autenticación o la gestión de errores. 
+ 
+En paralelo, en la aplicación del backend se han creado tests unitarios para comprobar la capa de 
+controladores de la API, importante de cara a cambios futuros en la estructura de los servicios de 
+la API. 
+ 
+En lo que concierne al frontend de PetFinder, se han realizado tests funcionales y de usabilidad en 
+los tres navegadores con mayor cuota de uso: Google Chrome, Mozilla Firefox Developer Edition y 
+Microsoft Edge.
+ 
+Imagen: Prototipo de la página de inicio 
+ 
+ 
+                                                                                        
+ 
+58 / 73 
+ 
+20. Instrucciones de implantación  ??? rellenar cuando se haga 
+La instalación de la aplicación en un servidor que cumpla con los requisitos es rápida y sencilla. 
+ 
+1. Crear un repertorio con el nombre petfinder y copiar dentro el fichero docker-compose.yml 
+de la aplicación. 
+2. Ejecutar  docker-compose  pull  para  recuperar  las  imágenes  del  repositorio  remoto:  si  las 
+imágenes no se encuentran ya en memoria se descargarán 4 imágenes. 
+3. Para lanzar el stack de contenedores que conforman PetFinder, hay que navegar dentro del 
+repertorio creado anteriormente y ejecutar el comando docker-compose up -d. 
+4. En  caso  de  querer  detener  todos  los  contenedores  de  la  aplicación,  deben  ejecutar  el 
+comando siguiente: docker-compose down. 
+ 
+ 
+  
+                                                                                           
+ 
+59 / 73 
+ 
+21. Instrucciones de desarrollo 
+
+Explicar uso de editor, PHPMYSQL y Workbench, y XAMP
+Explicar uso de bibliotecas.
+Buscar test de accesibilidad ******************* 
+
+En  este  apartado  se  van  a  explicar  las  instrucciones  para  lanzar  la  aplicación  de  backend  y  la 
+aplicación de frontend de PetFinder en modo de desarrollo en nuestra maquina local. 
+ 
+21.1 Aplicación Backend 
+Para lanzar la aplicación backend es necesario tener instalado en el ordenador el JDK 1.8 y Docker. 
+A continuación, adjunto la línea de Chocolatey (un gestor de paquetes desde línea de comandos 
+para Windows) para instalar estos componentes en Windows. 
+ 
+choco install jdk8 
+choco install docker-desktop 
+ 
+A continuación, es necesario lanzar dos contenedores de Docker, se trata de los contenedores de 
+MongoDB y de MinIO, las dos dependencias externes de la aplicación. La primera es una base de 
+datos  NoSQL  y  la  segunda  herramienta  es  un  servidor  de  almacenaje  de  ficheros  (parecido  a 
+Amazon S3). 
+ 
+docker run -p 9000:9000 -d \ 
+  -e "MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE" \ 
+  -e "MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY" \ 
+  minio/minio server /data 
+ 
+docker run -d -p 27017:27017 --name mongodb mongo:4.0.4 
+ 
+Es importante no modificar los puertos ni las variables de entorno que se pasan a MinIO puesto que 
+estas se encuentran también en la configuración de la aplicación y cualquier modificación debería 
+también realizarse sobre la aplicación Spring Boot. 
+ 
+Una vez lanzados los contenedores, hay que ejecutar la aplicación Spring Boot. 
+./mvnw clean spring-boot:run 
+PetFinder: el buscador de mascotas perdidas                                                                                            
+ 
+
+ 
+aplicación. También  me  ha permitido aprender  cómo  obtener  claves API  para  poder  utilizar  esos 
+productos. 
+ 
+Por último, la calidad es el último de los objetivos secundarios y, a la vez, es el punto del que estoy 
+menos  satisfecho.  Aunque  se  puede  afirmar  que  la  aplicación  funciona  y no  presenta  problemas 
+destacables (al menos hasta la fecha), el hecho de que no se hayan implementado tests para la 
+mayor  parte  del  código  y  las  funcionalidades  que  la  aplicación  ofrece,  hace  que  la  calidad  de  la 
+aplicación, sobre todo de cara futuras evoluciones, no sea muy buena. 
+ 
+Me  hubiera gustado concebir  una  aplicación con  las pruebas  implementadas mediante el  uso  de 
+metodologías como TDD (Test Driven Development) en que el proceso de desarrollo es “pilotado” 
+desde  la  clase  de  prueba,  o  DDD  (Domain  Driven  Development)  en  que  se  sitúa  a  los  dominios 
+como el centro integral de la lógica de la aplicación y se generan tests para los casos de uso. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+                                                                                         
+ 
+
+ 
+Anexo 1. Entregables del proyecto 
+A continuación, se indican los entregables que se presentan junto con esta memoria y que contienen 
+el código de las aplicaciones
+ 
+• Foap2023ProyecteFinal. Es una carpeta que contiene el repositorio  con el código de la aplicación 
+ 
+
+ 
+La aplicación producto de este proyecto se encuentra desplegada en la dirección 
+( poner aqui cuando haya sido subida al servidor)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+                                                                                          
+ 
+71 / 73 
+ 
+Anexo 2. Libro de estilo 
+Como  se  ha  explicado  en  apartados  anteriores,  el  diseño  de la aplicacion   se 
+apoya fuertemente en el uso y la personalización del framework Bootstrap 4.  A 
+continuación,  se  incluye  la  hoja  de  estilos  con  las  personalizaciones  de  Bootstrap  para 
+PetFinder. (style.scss) 
+ 
+ 
+ 
+ 
+  

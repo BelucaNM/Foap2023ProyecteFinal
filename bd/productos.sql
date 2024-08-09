@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-08-2024 a las 10:28:50
+-- Tiempo de generación: 09-08-2024 a las 11:22:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,36 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `tienda`
 --
-CREATE DATABASE IF NOT EXISTS `tienda` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `tienda`;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoriasproductos`
---
-
-CREATE TABLE `categoriasproductos` (
-  `cat_id` int(11) NOT NULL,
-  `cat_nombre` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `categoriasproductos`
---
-
-INSERT INTO `categoriasproductos` (`cat_id`, `cat_nombre`) VALUES
-(1, 'Cámaras Analógicas'),
-(2, 'Cámaras Digitales'),
-(3, 'Objetivos Manuales'),
-(4, 'Objetivos automático'),
-(5, 'Filtros'),
-(6, 'Tripodes y Soportes'),
-(7, 'Adaptadores'),
-(8, 'Baterias'),
-(9, 'Cables'),
-(10, 'Bolsas y Fundas'),
-(11, 'Accesorios');
 
 -- --------------------------------------------------------
 
@@ -74,12 +44,6 @@ CREATE TABLE `productos` (
 --
 
 --
--- Indices de la tabla `categoriasproductos`
---
-ALTER TABLE `categoriasproductos`
-  ADD PRIMARY KEY (`cat_id`);
-
---
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
@@ -89,12 +53,6 @@ ALTER TABLE `productos`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `categoriasproductos`
---
-ALTER TABLE `categoriasproductos`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`

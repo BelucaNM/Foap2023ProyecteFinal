@@ -10,16 +10,12 @@
 </head>
 <body>
 
-
 <?php 
-$title="Tienda Productos";
-require "../model/connection.php";
-require "../model/producto.php";
-$producto = new producto();
-$categorias = $producto->categorias();
+
+require "../includes/nuevoProducto-inc.php";
+include "../includes/header.php";
 
 ?>
-<?php include "../includes/header.php"; ?>
 <div class="container mt-3">
     
     <form action="../includes/productoInsertar.php" method="post" enctype="multipart/form-data">
@@ -43,6 +39,12 @@ $categorias = $producto->categorias();
             <label for ="ALTFoto">ALTFoto</label>
             <input type="text" class="form-control" id="ALTFoto" placeholder="Introduzca texto para Foto" name="ALTFoto" required>
         </div>
+
+        <div class="mb-3">      
+            <label for ="ubicacion">Ubicacion (*Codigo de contenedor) </label>
+            <input type="text" class="form-control" id="ubicacion" placeholder="Introduzca Ubicacion" name="ubicacion" required>
+        </div>
+        
         <div>
             <label for ="categoria">Categoria</label>    
             <select id= "categoria" name="categoria">
@@ -54,7 +56,7 @@ $categorias = $producto->categorias();
 ?>
             </select>
         </div>
-        
+        <br>     
         <button name="submit" type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

@@ -102,6 +102,7 @@ CREATE TABLE IF NOT EXISTS `tienda`.`productos` (
   `pro_precioUnitario` DECIMAL(7,2) NOT NULL,
   `categoriasProductos_cat_id` INT(11) NOT NULL,
   `pro_fecha` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+  `pro_ubicacion` varchar(6) NOT NULL,
   PRIMARY KEY (`pro_id`),
   INDEX `fk_productos_categoriasProductos1_idx` (`categoriasProductos_cat_id` ASC) ,
   CONSTRAINT `fk_productos_categoriasProductos1`

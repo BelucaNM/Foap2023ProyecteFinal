@@ -14349,7 +14349,8 @@ CREATE TABLE `productos` (
   `pro_ALTFoto` varchar(45) NOT NULL,
   `pro_precioUnitario` decimal(7,2) NOT NULL,
   `categoriasProductos_cat_id` int(11) NOT NULL,
-  `pro_fecha` datetime NOT NULL DEFAULT current_timestamp()
+  `pro_fecha` datetime NOT NULL DEFAULT current_timestamp(),
+  `pro_ubicacion` varchar(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --

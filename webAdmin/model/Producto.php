@@ -9,18 +9,20 @@ class Producto extends Connection{
     private $URLFoto;
     private $ALTFoto;
     private $categoria;
+    private $ubicacion;
     private $fecha;
     private $tablaNombre = "productos";
     private $tablaNumReg = 0;
 
-    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='')
+    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='',$ubicacion='')
     {   $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->URLFoto = $URLFoto;
         $this->ALTFoto = $ALTFoto;
         $this->precioUnitario = $precioUnitario;
-        $this->categoria = $categoria;    
+        $this->categoria = $categoria;
+        $this->ubicacion = $ubicacion;     
     }
 
     /**Setters and getters */
@@ -32,6 +34,7 @@ class Producto extends Connection{
     public function getCategoria() {return $this->categoria;}
     public function getPrecioUnitario() {return $this->precioUnitario;}
     public function getFecha() {return $this->fecha;}
+    public function getUbicacion() {return $this->ubicacion;}
     public function setId($id){$this->id = $id;}
     public function setNombre($nombre){$this->nombre = $nombre;}
     public function setDescripcion($descripcion){$this->descripcion = $descripcion;}
@@ -39,7 +42,8 @@ class Producto extends Connection{
     public function setALTFoto($ALTFoto){$this->ALTFoto = $ALTFoto;}
     public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
     public function setCategoria($categoria){$this->categoria = $categoria;}
-    public function setFecha($fecha){$this->fecha = $fecha;}        
+    public function setFecha($fecha){$this->fecha = $fecha;}  
+    public function setUbicacion($ubicacion){$this->ubicacion = $ubicacion;}       
 
     /***  */
 
@@ -72,7 +76,7 @@ class Producto extends Connection{
    
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id) VALUES (?,?,?,?,?,?)");
+                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id, pro_ubicacion) VALUES (?,?,?,?,?,?,?)");
             $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
             } 
         // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
@@ -86,7 +90,7 @@ class Producto extends Connection{
     public function traerTodos() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
+                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_ubicacion
                                             FROM ". $this->tablaNombre);
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
@@ -100,7 +104,7 @@ class Producto extends Connection{
     public function traerUnaCategoria() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ?");
             echo " categoria= ".$this->categoria;
             $stmt->execute([$this->categoria]);
@@ -116,7 +120,7 @@ class Producto extends Connection{
     public function leer() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha, pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE pro_id = ?");
             $stmt->execute([$this->id]);
             $this->tablaNumReg = $stmt->rowCount();
@@ -130,6 +134,7 @@ class Producto extends Connection{
             $this->precioUnitario = $record['pro_precioUnitario'];
             $this->categoria = $record['pro_categoria'];
             $this->fecha = $record['pro_fecha'];
+            $this->ubicacion = $record['pro_ubicacion'];
             return true;
         }
         catch (Exception $e){
@@ -141,9 +146,9 @@ class Producto extends Connection{
             
         try {
             $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
-                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=? WHERE pro_id=?");
+                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, pro_ubicacion = ? WHERE pro_id=?");
             $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
-                            $this->categoria, $this->id]);
+                            $this->categoria,$this->ubicacion, $this->id]);
             }
         catch (Exception $e){
                 return $e->getMessage();
