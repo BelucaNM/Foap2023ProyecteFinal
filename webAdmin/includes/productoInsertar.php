@@ -42,11 +42,34 @@ require "../model/producto.php";
 
 $producto = new Producto('',$_POST['nombre'],$_POST['descripcion'],$urlImg,$_POST['ALTFoto'],$_POST['precio'],$_POST['categoria'],$_POST['ubicacion']);
 
-$producto->insertarDatos();
+$res = $producto->insertarDatos();
 
-echo "<script>  alert('Datos guardados correctamente');
-                document.location='../view/listadoProductos.php';
-    </script>";
+echo "respuesta ";
+    var_dump($res);
+    if ($res === true) {
+       
+  
+        echo "Producto creado ";
+        header("Location: ../view/listadoProductos.php?error=insertDone&sqlError=$res");
+        exit();
         
+    }else {
+        
+        echo "Error al insertar un producto ". $res;
+        if ($res === '23000') {
+            
+            echo "Problemas por claves referenciadas ";
+            header("Location: ../view/listadoProductos.php?error=FailedInsert&sqlError=ProductoClaveReferenciada"); 
+            
+        } else {
+            echo "Error ".$res ;
+            header("Location: ../view/listadoProductos.php?error=FailedInsert&sqlError=$res");
+            
+        
+        }
+        exit(); 
+
+    
+    }
 };
 ?>

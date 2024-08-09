@@ -55,7 +55,7 @@ class Producto extends Connection{
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
             }
-        catch (Exception $e){
+        catch (PDOException $e){
             return $e->getMessage();
             }
     
@@ -67,25 +67,12 @@ class Producto extends Connection{
             $stmt->execute([$this->categoria]);
             return $stmt->fetch()['nombre'];
             }
-        catch (Exception $e){
+        catch (PDOException $e){
             return $e->getMessage();
             }
     
     }
-    public function insertarDatos() {
-   
-        try {
-            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id, pro_ubicacion) VALUES (?,?,?,?,?,?,?)");
-            $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
-            } 
-        // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
-        catch (Exception $e){
-            echo "Error al insertar datos".$e->getMessage();
-            return $e->getMessage();
-        }
-        
-    }
+    
     
     public function traerTodos() {
         try {
@@ -96,7 +83,7 @@ class Producto extends Connection{
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
             }
-        catch (Exception $e){
+        catch (PDOException $e){
             return $e->getMessage();
             }
     
@@ -111,7 +98,7 @@ class Producto extends Connection{
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
             }
-        catch (Exception $e){
+        catch (PDOException $e){
             return $e->getMessage();
             }
         
@@ -137,9 +124,23 @@ class Producto extends Connection{
             $this->ubicacion = $record['pro_ubicacion'];
             return true;
         }
-        catch (Exception $e){
+        catch (PDOException $e){
             return $e->getMessage();
             }
+        
+    }
+    public function insertarDatos() {
+   
+        try {
+            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
+                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id, pro_ubicacion) VALUES (?,?,?,?,?,?,?)");
+            return $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
+            } 
+        // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
+        catch (PDOException $e){
+            echo "Error al insertar datos".$e->getMessage();
+            return $e->getMessage();
+        }
         
     }
     public function actualizar (){
@@ -147,23 +148,25 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
                                             pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, pro_ubicacion = ? WHERE pro_id=?");
-            $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
+            return $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
                             $this->categoria,$this->ubicacion, $this->id]);
             }
-        catch (Exception $e){
-                return $e->getMessage();
+        catch (PDOException $e){
+            echo "Error al actualizar datos".$e->getMessage();
+            return $e->getCode();
             }
     }
     
     public function eliminar(){
             
-            try {
-                $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE pro_id=?");
-                    $stmt->execute([$this->id]);
-                 }
-            catch (Exception $e){
-                    return $e->getMessage();
-                }
+        try {
+               
+            $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombre."  WHERE pro_id=?");
+            return  $stmt->execute([$this->id]);
+            }
+        catch (PDOException $e){
+            return $e->getCode();
+            }
     }
 
 }

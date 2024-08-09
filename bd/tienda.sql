@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `tienda`.`pedidolineas` (
   CONSTRAINT `fk_pedidoLineas_pedidos1`
     FOREIGN KEY (`pedidos_ped_id`)
     REFERENCES `tienda`.`pedidos` (`ped_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pedidoLineas_productos1`
     FOREIGN KEY (`productos_pro_id`)

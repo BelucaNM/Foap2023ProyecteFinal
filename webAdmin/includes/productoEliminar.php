@@ -6,11 +6,35 @@ $record = new Producto();
 
 if (isset($_GET['id'])){
     $record->setId($_GET['id']);
-    $record->eliminar();
+    $res = $record->eliminar();
+    echo "respuesta ";
+    var_dump($res);
+    
+    if ($res === true) {
+       
+  
+        echo "Producto Eliminado ";
+        header("Location: ../view/listadoProductos.php?error=deleteDone&sqlError=$res");
+        exit();
+        
+    }else {
+        
+        echo "Error al eliminar el producto ". $res;
+        if ($res === '23000') {
+            
+            echo "Producto con existencias o un pedido asociado ";
+            header("Location: ../view/listadoProductos.php?error=FailedDelete&sqlError=ProductoClaveReferenciada"); 
+            
+        } else {
+            echo "Error ".$res ;
+            header("Location: ../view/listadoProductos.php?error=FailedDelete&sqlError=$res");
+            
+        
+        }
+        exit(); 
 
-    echo "<script>  alert('Datos borrados');
-                document.location='../view/listadoProductos.php';
-    </script>";
+    
+    }
 
 }
 ?>

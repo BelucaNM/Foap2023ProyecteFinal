@@ -14599,7 +14599,7 @@ ALTER TABLE `vendedores`
 -- Filtros para la tabla `carritolineas`
 --
 ALTER TABLE `carritolineas`
-  ADD CONSTRAINT `fk_carritoLineas_carritos1` FOREIGN KEY (`carritos_car_id`) REFERENCES `carritos` (`car_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_carritoLineas_carritos1` FOREIGN KEY (`carritos_car_id`) REFERENCES `carritos` (`car_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_carritoLineas_productos1` FOREIGN KEY (`productos_pro_id`) REFERENCES `productos` (`pro_id`);
 
 --
@@ -14619,7 +14619,7 @@ ALTER TABLE `existencias`
 -- Filtros para la tabla `pedidolineas`
 --
 ALTER TABLE `pedidolineas`
-  ADD CONSTRAINT `fk_pedidoLineas_pedidos1` FOREIGN KEY (`pedidos_ped_id`) REFERENCES `pedidos` (`ped_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_pedidoLineas_pedidos1` FOREIGN KEY (`pedidos_ped_id`) REFERENCES `pedidos` (`ped_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_pedidoLineas_productos1` FOREIGN KEY (`productos_pro_id`) REFERENCES `productos` (`pro_id`);
 
 --
