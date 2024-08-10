@@ -2,7 +2,7 @@
     
 require "../model/Connection.php";
 require "../model/Carrito.php";
-require "../controler/CarritoContr.php";
+require "../controler/carritoContr.php";
 
 session_start();
 if (isset ($_GET['id'])){
@@ -29,7 +29,7 @@ if (isset ($_GET['id'])){
     };
    
 // recupera precio del producto    
-    require "../model/producto.php";
+    require "../model/Producto.php";
     require "../controler/productoContr.php";
     $producto = new ProductoContr($id);
     $producto->leer();

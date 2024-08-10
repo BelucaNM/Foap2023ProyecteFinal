@@ -9,16 +9,19 @@ class ProductoContr extends Producto{
     private $ALTFoto;
     private $categoria;
     private $fecha;
+    private $ubicacion;
 
 
-    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='')
+    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='',$fecha='',$ubicacion='')
     {   $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->URLFoto = $URLFoto;
         $this->ALTFoto = $ALTFoto;
         $this->precioUnitario = $precioUnitario;
-        $this->categoria = $categoria;    
+        $this->categoria = $categoria;
+        $this->categoria = $fecha; 
+        $this->ubicacion = $ubicacion;     
     }
 
     /**Setters and getters */
@@ -30,6 +33,7 @@ class ProductoContr extends Producto{
     public function getCategoria() {return $this->categoria;}
     public function getPrecioUnitario() {return $this->precioUnitario;}
     public function getFecha() {return $this->fecha;}
+    public function getUbicacion() {return $this->ubicacion;}
     public function setId($id){$this->id = $id;}
     public function setNombre($nombre){$this->nombre = $nombre;}
     public function setDescripcion($descripcion){$this->descripcion = $descripcion;}
@@ -37,7 +41,8 @@ class ProductoContr extends Producto{
     public function setALTFoto($ALTFoto){$this->ALTFoto = $ALTFoto;}
     public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
     public function setCategoria($categoria){$this->categoria = $categoria;}
-    public function setFecha($fecha){$this->fecha = $fecha;}        
+    public function setFecha($fecha){$this->fecha = $fecha;}  
+    public function setUbicacion($ubicacion){$this->ubicacion = $ubicacion;}         
 
     public function categorias(){
         return $this->getCategorias();
@@ -47,7 +52,7 @@ class ProductoContr extends Producto{
     }
     public function insertarDatos()  {
         $this->insertDatos( $this->nombre,$this->descripcion,$this->URLFoto,
-                            $this->ALTFoto,$this->precioUnitario,$this->categoria);
+                            $this->ALTFoto,$this->precioUnitario,$this->categoria,$this->ubicacion);
     }
     public function traerTodos()  {
         return $this->getTodos();
@@ -67,13 +72,14 @@ class ProductoContr extends Producto{
             $this->precioUnitario = $record['pro_precioUnitario'];
             $this->categoria = $record['pro_categoria'];
             $this->fecha = $record['pro_fecha'];
+            $this->ubicacion = $record['pro_ubicacion'];
             return true;
         }
         return false;
     }
     public function actualizar () {
         $this->actualizarDatos( $this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
-                                $this->categoria, $this->id);
+                                $this->categoria, $this->ubicacion, $this->id);
 
     }
     public function eliminar() {

@@ -11,9 +11,9 @@ if (!isset ($_SESSION['user'])){
         }
 require "../model/Connection.php";
 require "../model/Carrito.php";
-require "../controler/CarritoContr.php";
+require "../controler/carritoContr.php";
 require "../model/Pedido.php";
-require "../controler/PedidoContr.php";
+require "../controler/pedidoContr.php";
 
 
 if (isset ($_GET['id'])){

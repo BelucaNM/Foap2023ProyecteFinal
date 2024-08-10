@@ -33,12 +33,12 @@ class Producto extends Connection{
             }
     
     }
-    protected function insertDatos($nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria) {
+    protected function insertDatos($nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria,$ubicacion) {
    
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id) VALUES (?,?,?,?,?,?)");
-            $stmt->execute([$nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria]);
+                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id,pro_ubicacion) VALUES (?,?,?,?,?,?,?)");
+            $stmt->execute([$nombre,$descripcion,$URLFoto,$ALTFoto,$precioUnitario,$categoria,$ubicacion]);
             } // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
         
         catch (Exception $e){
@@ -52,7 +52,9 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, 
-                                                        categoriasProductos_cat_id as pro_categoria
+                                                        categoriasProductos_cat_id as pro_categoria,
+                                                        pro_fecha,
+                                                        pro_ubicacion
                                             FROM ".$this->tablaNombre." ORDER BY pro_nombre,pro_precioUnitario" );
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
@@ -66,7 +68,8 @@ class Producto extends Connection{
     protected function getUnaCategoria($id) {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria,
+                                                        pro_fecha,pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
             echo " categoria= ".$id;
             $stmt->execute([$id]);
@@ -82,7 +85,8 @@ class Producto extends Connection{
     protected function leerDatos($id) {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, 
+                                                        pro_fecha,pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE pro_id = ?");
             $stmt->execute([$id]);           
             return $stmt->fetchAll()[0];
@@ -94,12 +98,12 @@ class Producto extends Connection{
         
     }
     protected function actualizarDatos ($nombre,$descripcion,$URLFoto, $ALTFoto, $precioUnitario,
-                                        $categoria, $id){
+                                        $categoria, $ubicacion, $id){
         try {
             $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
-                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=? WHERE pro_id=?");
+                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, pro_ubicacion = ? WHERE pro_id=?");
             $stmt->execute([$nombre,$descripcion,  $URLFoto, $ALTFoto, $precioUnitario,
-                            $categoria, $id]);
+                            $categoria, $ubicacion, $id]);
             }
         catch (Exception $e){
                 return $e->getMessage();

@@ -8,15 +8,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 //echo 'Creando instancia de tabla municipios <br>';
 
-require "../model/connection.php";
-require "../model/municipio.php";
+require "../model/Connection.php";
+require "../model/Municipio.php";
 require "../controler/municipioContr.php";
    
 //instanciar las classes
 //require "autoload.models.php";
 //require "autoload.controlers.php";
 
-$municipio = new municipioContr($codpos,$nombre);
+$municipio = new MunicipioContr($codpos,$nombre);
 $elMunicipio= $municipioContr->checkMunicipio();
 
 if (!$elMunicipio) { // error STMT

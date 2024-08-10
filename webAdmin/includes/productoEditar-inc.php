@@ -33,7 +33,10 @@ if (isset($_POST['actualizar'])){
     $producto->setURLFoto($_POST['URLFoto']);
     $producto->setALTFoto($_POST['ALTFoto']);
     $producto->setCategoria($_POST['categoria']);
+    $producto->setPrecioUnitario($_POST['precioUnitario']);
+    $producto->setCategoria($_POST['categoria']);
     $producto->setUbicacion($_POST['ubicacion']);
+    
 
     $res = $producto->actualizar();
     echo "respuesta ";

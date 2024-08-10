@@ -14,7 +14,7 @@
                     <a class="nav-link" href="">Tiendas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="listadoProductos.php">Productos</a>
+                    <a class="nav-link" href="../view/listadoProductos.php">Productos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Pedidos</a>

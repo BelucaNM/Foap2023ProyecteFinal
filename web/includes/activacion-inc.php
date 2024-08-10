@@ -3,7 +3,7 @@
     $token = $_GET["token"];
 
     //instanciar las classes
-    require "../model/connection.php";
+    require "../model/Connection.php";
     require "../model/Usuario.php";
     require "../controler/usuarioContr.php";
 

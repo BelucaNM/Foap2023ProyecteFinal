@@ -5,11 +5,11 @@
 //require "autoload.controlers.php";
 
 //echo 'Creando instancia de tabla de Pedidos <br>';
-require "../model/connection.php";
-require "../model/producto.php";
+require "../model/Connection.php";
+require "../model/Producto.php";
 require "../controler/productoContr.php";
 
-$producto = new productoContr();
+$producto = new ProductoContr();
 $todos= $producto->getTodos();
 
 if ($todos == 1 ) { // error STMT

@@ -16,5 +16,5 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     $todos = $datos->traerTodos();
     $title = "Lista de productos";
 };
-print_r($todos);
+//print_r($todos);
 ?>

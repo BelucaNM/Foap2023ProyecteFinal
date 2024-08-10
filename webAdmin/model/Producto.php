@@ -11,10 +11,11 @@ class Producto extends Connection{
     private $categoria;
     private $ubicacion;
     private $fecha;
+
     private $tablaNombre = "productos";
     private $tablaNumReg = 0;
 
-    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='',$ubicacion='')
+    public function __construct($id='',$nombre ='',$descripcion='',$URLFoto='',$ALTFoto='',$precioUnitario='',$categoria='', $fecha = '', $ubicacion='')
     {   $this->id = $id;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
@@ -22,6 +23,7 @@ class Producto extends Connection{
         $this->ALTFoto = $ALTFoto;
         $this->precioUnitario = $precioUnitario;
         $this->categoria = $categoria;
+        $this->fecha = $fecha;
         $this->ubicacion = $ubicacion;     
     }
 
@@ -77,7 +79,8 @@ class Producto extends Connection{
     public function traerTodos() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_ubicacion
+                                                    pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, 
+                                                    pro_fecha, pro_ubicacion
                                             FROM ". $this->tablaNombre);
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
@@ -91,7 +94,8 @@ class Producto extends Connection{
     public function traerUnaCategoria() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_ubicacion
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, 
+                                                        pro_fecha, pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ?");
             echo " categoria= ".$this->categoria;
             $stmt->execute([$this->categoria]);
@@ -107,7 +111,8 @@ class Producto extends Connection{
     public function leer() {
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
-                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, pro_fecha, pro_ubicacion
+                                                        pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria, 
+                                                        pro_fecha, pro_ubicacion
                                                 FROM ". $this->tablaNombre."  WHERE pro_id = ?");
             $stmt->execute([$this->id]);
             $this->tablaNumReg = $stmt->rowCount();
@@ -134,7 +139,8 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (pro_nombre, pro_descripcion, 
                                                     pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id, pro_ubicacion) VALUES (?,?,?,?,?,?,?)");
-            return $stmt->execute([$this->nombre,$this->descripcion,$this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria]);
+            return $stmt->execute([$this->nombre,$this->descripcion,
+                                   $this->URLFoto,$this->ALTFoto,$this->precioUnitario,$this->categoria, $this->ubicacion]);
             } 
         // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
         catch (PDOException $e){
@@ -147,9 +153,10 @@ class Producto extends Connection{
             
         try {
             $stmt = $this->connect()->prepare("UPDATE ".$this->tablaNombre." SET pro_nombre =?, pro_descripcion=?, 
-                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, pro_ubicacion = ? WHERE pro_id=?");
-            return $stmt->execute([$this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
-                            $this->categoria,$this->ubicacion, $this->id]);
+                                            pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, 
+                                            pro_ubicacion = ? WHERE pro_id=?");
+            return $stmt->execute([$this->nombre, $this->descripcion, $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
+                            $this->categoria, $this->ubicacion, $this->id]);
             }
         catch (PDOException $e){
             echo "Error al actualizar datos".$e->getMessage();

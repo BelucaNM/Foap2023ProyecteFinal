@@ -23,15 +23,17 @@ if (isset($_GET['id'])){
         if ($res === '23000') {
             
             echo "Producto con existencias o un pedido asociado ";
-            header("Location: ../view/listadoProductos.php?error=FailedDelete&sqlError=ProductoClaveReferenciada"); 
+            header("Location: ../view/listadoProductos.php?error=FailedDelete&sqlError=ProductoClaveReferenciada");
+            exit();  
             
         } else {
             echo "Error ".$res ;
             header("Location: ../view/listadoProductos.php?error=FailedDelete&sqlError=$res");
+            exit(); 
             
         
         }
-        exit(); 
+        
 
     
     }
