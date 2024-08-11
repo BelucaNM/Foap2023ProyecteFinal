@@ -44,8 +44,8 @@ if (isset($_POST['submit'])) {
     };
 
     
-require "../model/connection.php";
-require "../model/producto.php";
+require "../model/Connection.php";
+require "../model/Producto.php";
 
 $producto = new Producto('',$_POST['nombre'], $_POST['descripcion'], $urlImg, $_POST['ALTFoto'],
                          $_POST['precio'], $_POST['categoria'],'', $_POST['ubicacion']);
