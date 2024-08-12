@@ -52,10 +52,13 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, 
-                                                        categoriasProductos_cat_id as pro_categoria,
+                                                        categoriasProductos_cat_id as pro_categoria, 
+                                                        cat_nombre,
                                                         pro_fecha,
                                                         pro_ubicacion
-                                            FROM ".$this->tablaNombre." ORDER BY pro_nombre,pro_precioUnitario" );
+                                            FROM ".$this->tablaNombre." 
+                                            JOIN categoriasproductos ON categoriasProductos_cat_id = cat_id 
+                                            ORDER BY pro_nombre,pro_precioUnitario" );
             $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
@@ -69,10 +72,40 @@ class Producto extends Connection{
         try {
             $stmt = $this->connect()->prepare("SELECT   pro_id, pro_nombre, pro_descripcion, 
                                                         pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria,
+                                                        cat_nombre,
                                                         pro_fecha,pro_ubicacion
-                                                FROM ". $this->tablaNombre."  WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
+                                                FROM ". $this->tablaNombre."  
+                                                JOIN categoriasproductos ON categoriasProductos_cat_id = cat_id 
+                                                WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
             echo " categoria= ".$id;
             $stmt->execute([$id]);
+            $this->tablaNumReg = $stmt->rowCount();
+            return $stmt->fetchAll();
+            }
+        catch (Exception $e){
+            return $e->getMessage();
+            }
+        
+    }
+    protected function getProductosCon($texto) {
+        try {
+                
+            $sql ="SELECT   pro_id, pro_nombre, pro_descripcion, 
+                pro_URLFoto, pro_ALTFoto, pro_precioUnitario, categoriasProductos_cat_id as pro_categoria,
+                cat_nombre,
+                pro_fecha,pro_ubicacion
+                FROM ". $this->tablaNombre."  
+                JOIN categoriasproductos ON categoriasProductos_cat_id = cat_id 
+                WHERE 1 ";
+                        
+            foreach(explode(' ',$texto) as $termino){
+                 $sql.=" AND  ( pro_nombre LIKE '%".$termino."%' OR cat_nombre LIKE '%".$termino."%' OR pro_descripcion LIKE '%".$termino."%')";
+                };
+                        
+            $sql.= " ORDER BY pro_nombre,pro_precioUnitario ";
+            $stmt = $this->connect()->prepare($sql);
+            
+            $stmt->execute();
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
             }

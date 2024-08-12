@@ -18,6 +18,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     $datos->setCategoria($categoria);
     $todos = $datos->traerUnaCategoria();
     $nombreCat = $datos->nombreCategoria();
+
     // print_r( $nombreCat);
     $title = "Lista de productos de Categoría '".$nombreCat."'";
 
@@ -25,6 +26,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
     
     $todos = $datos->traerTodos();
     $title = "Lista de productos";
+    echo json_encode($todos);
     
 };
 //print_r($todos);
@@ -45,12 +47,23 @@ include "../includes/header.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="../includes/productos.js"></script>
 </head>
 <body>
-  <h2><?=$title;?></h2>  
-  <table>
+    <h2><?=$title;?></h2>
+    <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nom]</a>&nbsp;
+<?php
+if (!isset($_GET['cat'])) { 
+        echo '<a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
+};
+?>
+    <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
+
+  
+  <table id="tProductos">
     <tr>
         <th>ProductoId</th>
+        <th>Categoria</th>
         <th>Nombre</th>
         <th>Descripcion</th>
         <th>URLFoto</th>
@@ -61,6 +74,7 @@ include "../includes/header.php";
     <?php foreach ($todos as $key => $todo){
         echo "<tr>";
         echo "<td>".$todo['pro_id']."</td>";
+        echo "<td>".$todo['cat_nombre']."</td>";
         echo "<td>".$todo['pro_nombre']."</td>";
         echo "<td>".$todo['pro_descripcion']."</td>";
         echo "<td>".$todo['pro_URLFoto']."</td>";
@@ -76,4 +90,37 @@ include "../includes/header.php";
     <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
     <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
 </body>
+<script>
+// event para garantizar que la página está cargada antes de comprobaciones en el DOCUMENT
+            document.addEventListener("DOMContentLoaded", function() {
+            
+            window.products = <?php echo json_encode($todos);?>;
+
+            //Saca por Consola informacio del la pagina
+            let url = document.URL;
+            console.log ("la URL es :"+ url);
+
+            let formularios = document.forms;
+            console.log ("Los formularios :"+ formularios);
+            console.log ( "Hay :", document.forms.length, " formularios.");
+             for ( let i=0; i<formularios.length ;i++) {
+                let elForm = formularios[i];
+                let susElementos = elForm.elements;
+                for (let j=0; j<susElementos.length; j++) {
+                    console.log(susElementos[j].name);
+                }
+             };
+
+            let imagenes = document.images;
+            console.log ("las imagenes : " + imagenes);
+            console.log ( "Hay :" +imagenes.length+ " imagenes.");
+            for (  i=0; i<imagenes.length ;i++) {console.log (imagenes[i])};
+
+            let x = document.getElementById("myform");
+            if (x !== null){ console.log ("El form by ID: " , x[0]);};
+             x = document.getElementsByName("myform");
+             if (x !== null){console.log ("El form By Name : " , x[0]);};
+
+            })
+</script>
 </html>

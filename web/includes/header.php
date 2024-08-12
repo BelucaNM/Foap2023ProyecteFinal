@@ -38,6 +38,9 @@ if(!isset($_SESSION['user'])){
         echo '
                 <li class="nav-item">
                     <a class="nav-link" href="verProductos.php">Productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buscarProductosTexto.php">Buscar Productos por texto</a> 
                 </li>'; }
 
     if  ($tablaNav[$soy]['a_pedidos']) {

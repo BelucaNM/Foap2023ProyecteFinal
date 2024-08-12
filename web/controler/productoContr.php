@@ -60,6 +60,9 @@ class ProductoContr extends Producto{
     public function traerUnaCategoria() {
         return $this->getUnaCategoria($this->categoria);
     }
+    public function traerCon($texto) {
+        return $this->getProductosCon($texto);
+    }
 
     public function leer() {
         $record= $this->leerDatos($this->id);
