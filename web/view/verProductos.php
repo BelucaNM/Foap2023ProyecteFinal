@@ -1,10 +1,5 @@
 <?php
 
-require_once "../model/Connection.php";
-require_once "../model/Producto.php";
-require_once "../controler/ProductoContr.php";
-$datos = new ProductoContr();
-
 if ( isset($_GET['info']) && $_GET['info'] == 'carro') {
     echo '<div class="alert alert-success" role="alert">Su artículo ha sido incorporado al carro. Por favor, RECUERDE, que la reserva solo se hace cuando confirme el pedido.</div>';
     };
@@ -12,28 +7,11 @@ if ( isset($_GET['info']) && $_GET['info'] == 'deliver') {
     echo '<div class="alert alert-success" role="alert">Su pedido ha sido realizado</div>';
     };
 
-if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) { 
-
-    $categoria = $_GET['cat'];
-    $datos->setCategoria($categoria);
-    $todos = $datos->traerUnaCategoria();
-    $nombreCat = $datos->nombreCategoria();
-
-    // print_r( $nombreCat);
-    $title = "Lista de productos de Categoría '".$nombreCat."'";
-
-}else{
-    
-    $todos = $datos->traerTodos();
-    $title = "Lista de productos";
-    echo json_encode($todos);
-    
-};
-//print_r($todos);
-
+$title = "Listado de Productos";
 $soy = "productos";
 include "../includes/header.php"; 
 
+include "../includes/verProductos-inc.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -49,47 +27,55 @@ include "../includes/header.php";
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="../includes/productos.js"></script>
 </head>
-<body>
-    <h2><?=$title;?></h2>
-    <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nom]</a>&nbsp;
-<?php
-if (!isset($_GET['cat'])) { 
-        echo '<a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
-};
-?>
-    <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
 
-  
-  <table id="tProductos">
-    <tr>
-        <th>ProductoId</th>
-        <th>Categoria</th>
-        <th>Nombre</th>
-        <th>Descripcion</th>
-        <th>URLFoto</th>
-        <th>ALTFoto</th>
-        <th>PrecioUnitario</th>
-        <th>Acciones</th>
-    </tr>
-    <?php foreach ($todos as $key => $todo){
-        echo "<tr>";
-        echo "<td>".$todo['pro_id']."</td>";
-        echo "<td>".$todo['cat_nombre']."</td>";
-        echo "<td>".$todo['pro_nombre']."</td>";
-        echo "<td>".$todo['pro_descripcion']."</td>";
-        echo "<td>".$todo['pro_URLFoto']."</td>";
-        echo "<td>".$todo['pro_ALTFoto']."</td>";
-        echo "<td>".$todo['pro_precioUnitario']."</td>";
-        echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
-        echo "</tr>";
-        }
-        ?>
-    </table>
-    <!-- Las opciones siguientes solo estan en la version de la APP para los vendedores
-    <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
-    <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
-    <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
+<body>
+    <section id="cuerpoPagina" class="section">
+        
+        <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nombre]</a>&nbsp;
+    <?php
+    if (!isset($_GET['cat'])) { 
+            echo '<a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
+        };
+    ?>
+        <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
+
+    
+        <table class = 'table' id="tProductos">
+            <thead>
+                <tr>
+                <th scope="col">#Id</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">URLFoto</th>
+                <th scope="col">ALTFoto</th>
+                <th scope="col">PrecioUnitario</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($todos as $key => $todo){
+                    echo "<tr>";
+                    echo "<td scope= 'row'>".$todo['pro_id']."</td>";
+                    echo "<td>".$todo['cat_nombre']."</td>";
+                    echo "<td>".$todo['pro_nombre']."</td>";
+                    echo "<td>".$todo['pro_descripcion']."</td>";
+                    echo "<td>".$todo['pro_URLFoto']."</td>";
+                    echo "<td>".$todo['pro_ALTFoto']."</td>";
+                    echo "<td>".$todo['pro_precioUnitario']."</td>";
+                    echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
+                    echo "</tr>";
+                    }
+                    ?>
+            </tbody>
+        </table>
+        <!-- Las opciones siguientes solo estan en la version de la APP para los vendedores
+        <a href='../includes/productoEditar.php?id=".$todo['pro_id']."'>Editar</a>|
+        <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
+        <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
+    </section>
 </body>
+
 <script>
 // event para garantizar que la página está cargada antes de comprobaciones en el DOCUMENT
             document.addEventListener("DOMContentLoaded", function() {

@@ -1,11 +1,10 @@
 
 <?php 
     require "../includes/verTienda-inc.php";
-    $title="Ficha de tienda ( se podrian añadir existencias de producto? )";
+    $title="Acceso a una Tienda ( ¿se podrian añadir existencias de productos? )";
     $soy = "tienda";
     include "../includes/header.php"; 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,13 +15,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="AppStyle.css">
 </head>
 <body>
 
-
-<h2>Ficha de tienda</h2>
-
+<section id="cuerpoPagina" class="section">
 <div class="cards-container mt-3">
         <div class="card">
         <img src="<?=$URLFoto;?>" alt="<?=$ALTFoto;?>" class="card-img">
@@ -37,6 +34,7 @@
                     </div>
         </div>
 </div>
+</section>
     
 <?php /*include "../includes/footer.php";*/ ?> 
 

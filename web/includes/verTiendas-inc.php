@@ -6,5 +6,4 @@ $tienda = new TiendaContr();
 
 $todos = $tienda->leerTodos();
 
-
 ?>

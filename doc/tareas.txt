@@ -1,0 +1,18 @@
+averiguar/solicitar licencia de reconocimiento no NoComercial para proyecto
+documentacion
+documentacionBD
+
+
+favicon
+logo
+codigo carruserl
+codifo model
+homegeneizar codigo
+validaciones JavaScript
+CSS
+
+generar algin pdf ( pedido)
+
+cosas que faltan ----gestion de pagos
+----comprobar para moviles
+--- en listas de productos poner "ver 25"

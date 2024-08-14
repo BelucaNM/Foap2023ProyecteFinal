@@ -10,6 +10,7 @@ $_tablaNav_sinSession =  array (
             'a_login'=>true,   // 
             'a_logout'=>false,//
             'a_datos'=>false,
+            'a_bienvenida'=>false,
  
            
         ),
@@ -21,7 +22,8 @@ $_tablaNav_sinSession =  array (
             'a_carrito'=>false, // 
             'a_login'=>true,   // 
             'a_logout'=>false,//
-            'a_datos'=>false, // 
+            'a_datos'=>false, //
+            'a_bienvenida'=>true, 
         ),
         "tienda" => array 
         (
@@ -32,6 +34,7 @@ $_tablaNav_sinSession =  array (
             'a_login'=>true,   //
             'a_logout'=>false,// 
             'a_datos'=>false, // 
+            'a_bienvenida'=>true, 
         ),
         "productos" => array
         (
@@ -41,7 +44,8 @@ $_tablaNav_sinSession =  array (
             'a_carrito'=>false, // si SI session
             'a_login'=>true,  // si SI !session
             'a_logout'=>false,//
-            'a_datos'=>false, // 
+            'a_datos'=>false, //
+            'a_bienvenida'=>true,  
         ),
         "producto" => array 
         (
@@ -51,7 +55,8 @@ $_tablaNav_sinSession =  array (
             'a_carrito'=>false, // si SI session
             'a_login'=>true,   // si SI !session
             'a_logout'=>false,//
-            'a_datos'=>false, // 
+            'a_datos'=>false, //
+            'a_bienvenida'=>true,  
         ),
         "carrito"=> array 
         (
@@ -62,6 +67,7 @@ $_tablaNav_sinSession =  array (
             'a_login'=>false,   //
             'a_logout'=>false,//
             'a_datos'=>false, // 
+            'a_bienvenida'=>true, 
         ),
         "mispedidos" => array 
         (
@@ -71,6 +77,7 @@ $_tablaNav_sinSession =  array (
             'a_carrito'=>true, // 
             'a_login'=>false,   //
             'a_datos'=>true, // 
+            'a_bienvenida'=>true, 
         ),
       "login" => array (
             'a_tiendas'=>true,
@@ -80,6 +87,7 @@ $_tablaNav_sinSession =  array (
             'a_login'=>false,   //
             'a_logout'=>false,//
             'a_datos'=>false, // 
+            'a_bienvenida'=>true, 
 
         ),
         "registro"=> array 
@@ -90,7 +98,30 @@ $_tablaNav_sinSession =  array (
             'a_carrito'=>false, // 
             'a_login'=>true,   //
             'a_logout'=>false,//
-            'a_datos'=>false, // 
+            'a_datos'=>false, //
+            'a_bienvenida'=>true,  
+        ),
+        "forPassword"=> array 
+        (
+            'a_tiendas'=>true,
+            'a_productos'=>true,
+            'a_pedidos'=>false, // 
+            'a_carrito'=>false, // 
+            'a_login'=>true,   //
+            'a_logout'=>false,//
+            'a_datos'=>false, //
+            'a_bienvenida'=>true,  
+        ),
+        "newPassword"=> array 
+        (
+            'a_tiendas'=>true,
+            'a_productos'=>true,
+            'a_pedidos'=>false, // 
+            'a_carrito'=>false, // 
+            'a_login'=>true,   //
+            'a_logout'=>false,//
+            'a_datos'=>false, //
+            'a_bienvenida'=>true,  
         ),
        
 );
@@ -104,6 +135,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true, // si SI session
         'a_datos'=>true, // 
+        'a_bienvenida'=>false, 
     ),
     "tiendas" => array 
     (
@@ -114,6 +146,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true,// si SI session
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
     "tienda" => array 
     (
@@ -124,6 +157,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true,// si SI session
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
     "productos" => array
     (
@@ -134,6 +168,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true,// si SI session
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
     "producto" => array 
     (
@@ -144,6 +179,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   // si SI !session
         'a_logout'=>true,// si SI session
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
     "carrito"=> array 
     (
@@ -154,6 +190,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   //
         'a_logout'=>true,//
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
     "mispedidos" => array 
     (
@@ -164,6 +201,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   //
         'a_logout'=>true,//
         'a_datos'=>true, //
+        'a_bienvenida'=>true, 
     ),
   "login" => array (
         'a_tiendas'=>true,
@@ -183,6 +221,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   //
         'a_logout'=>false,//
         'a_datos'=>false, //
+        'a_bienvenida'=>true, 
         ),
     "misDatos"=> array 
     (
@@ -193,6 +232,7 @@ $_tablaNav_conSession =  array (
         'a_login'=>false,   //
         'a_logout'=>true,//
         'a_datos'=>false, //
+        'a_bienvenida'=>true, 
         ),
 );
 
