@@ -68,7 +68,7 @@
     <div>
     
     <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nom]</a>&nbsp;
-    <a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
+    <a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;
     <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
 
     <table id="tProductos">

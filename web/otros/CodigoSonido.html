@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Web con Sonido de Inicio</title>
+</head>
+<body>
+
+    <!-- Contenido de la aplicación -->
+
+    <!-- Elemento de audio -->
+    <audio id="startup-sound1" src="../audio/camera-shutter-6305.mp3" preload="auto"></audio>
+    <audio id="startup-sound2" src="../audio/camara_5.mp3" preload="auto"></audio>
+
+    <script>
+        window.onload = function() {
+            var audio = document.getElementById('startup-sound1');
+            audio.play();
+        };
+    </script>
+</body>
+</html>

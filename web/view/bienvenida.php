@@ -47,7 +47,7 @@ include "../includes/header.php";
 
 
 <section id="gruposProducto" class="section">
-        <h2>Productos</h2> <!-- carrusel -->
+        <h2>Productos</h2> 
         <div class="cards-container">
                 <div class="card">
                     <img src="../img/imagenCamarasANA200px.jpg" alt="ImagenCamarasANA" class="card-img">

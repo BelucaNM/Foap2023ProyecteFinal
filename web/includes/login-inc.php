@@ -21,6 +21,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
 
     //Ir a la pagina inicial
-    header("Location: ../view/bienvenida.php");
+    header("Location: ../view/bienvenidaCarousel.php");
 
 }

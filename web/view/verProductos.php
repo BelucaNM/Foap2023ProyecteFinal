@@ -7,7 +7,7 @@ if ( isset($_GET['info']) && $_GET['info'] == 'deliver') {
     echo '<div class="alert alert-success" role="alert">Su pedido ha sido realizado</div>';
     };
 
-$title = "Listado de Productos";
+$title = "Relación de Productos";
 $soy = "productos";
 include "../includes/header.php"; 
 

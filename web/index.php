@@ -1,2 +1,2 @@
 <?php
-header("Location: view/bienvenida.php");
+header("Location: view/bienvenidaCarousel.php");

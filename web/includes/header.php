@@ -1,6 +1,6 @@
 <header>
 <section id="header" class="section">
-   <div id="header" class = "container mt-3 clearfix">
+   <div class = "container mt-3 clearfix">
         
         <span class="float-start"><img id="logo" src="..\img\logo.jpg" class = "rounded-circle"></span>
         <span class="h1 float-start"> obJEtivos </span>
@@ -32,7 +32,7 @@
         if  ($tablaNav[$soy]['a_bienvenida']) {
             echo '    
                 <li class="nav-item">
-                    <a class="nav-link" href="bienvenida.php">Bienvenida</a>
+                    <a class="nav-link" href="bienvenidaCarousel.php">Bienvenida</a>
                 </li>'; }
 
         if  ($tablaNav[$soy]['a_tiendas']) {

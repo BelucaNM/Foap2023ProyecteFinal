@@ -1,0 +1,154 @@
+<!-- Slideshow container -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <link rel="stylesheet" type="text/css" href="styleCarousel.css">
+
+
+</head>
+<body>
+    
+
+<div class="slideshow-vista" class="container">
+
+    <!-- Full-width images with number and caption text -->
+    <div id = '0' class="mySlide fade">
+      <div class="numbertext">1 / 8</div>
+      <img src=".\imgApp\img1.jpg">
+      <div class="text">Caption Text</div>
+    </div>
+  
+    <div id = '1' class="mySlide fade">
+      <div class="numbertext">2 / 8</div>
+      <img src=".\imgApp\img2.jpg">
+      <div class="text">Caption Two</div>
+    </div>
+  
+    <div id = '2' class="mySlide fade">
+      <div class="numbertext">3 / 8</div>
+      <img src=".\imgApp\img3.jpg">
+      <div class="text">Caption Three</div>
+    </div>
+
+    <div id = '3' class="mySlide fade">
+        <div class="numbertext">4 / 8</div>
+        <img src=".\imgApp\img4.jpg">
+        <div class="text">Caption Three</div>
+      </div>
+    
+      <div id = '4' class="mySlide fade">
+        <div class="numbertext">5 / 8</div>
+        <img src=".\imgApp\img5.jpg">
+        <div class="text">Caption Text</div>
+      </div>
+    
+      <div id = '5' class="mySlide fade">
+        <div class="numbertext">6 / 8</div>
+        <img src=".\imgApp\img6.jpg">
+        <div class="text">Caption Two</div>
+      </div>
+    
+      <div id = '6' class="mySlide fade">
+        <div class="numbertext">7 / 8</div>
+        <img src=".\imgApp\img7.jpg">
+        <div class="text">Caption Three</div>
+      </div>
+  
+      <div id = '7' class="mySlide fade">
+          <div class="numbertext">8 / 8</div>
+          <img src=".\imgApp\img8.jpg">
+          <div class="text">Caption Three</div>
+        </div>
+  
+    <!-- Next and previous buttons -->
+    <div id='Anterior'>
+    <button id = 'banterior'  class="prev" onclick="plusSlides(-1)"> Anterior </a> <!-- &#10094; -->
+    </div>
+    <div id='Posterior'>
+    <button  id = 'bPosterior' class="next" onclick="plusSlides(1)">Siguiente</a> <!--&#10095;-->
+    </div>
+  </div>
+  <br>
+  
+  
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <!--
+  // Thumbnail images 
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src=".\imgApp\img1.jpg" onclick="currentSlide(1)" alt="The Woods">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src=".\imgApp\img2.jpg" onclick="currentSlide(2)" alt="Cinque Terre">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src=".\imgApp\img3.jpg" onclick="currentSlide(3)" alt="Mountains and fjords">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src=".\imgApp\img4.jpg" onclick="currentSlide(4)" alt="Northern Lights">
+    </div>
+    
+  </div>
+-->
+<script>
+
+function showSlides(primerIndex,numero) {
+  let slides = document.querySelectorAll('.mySlide');
+  let totalSlides = slides.length;
+  
+  for (i = 0; i < totalSlides; i++) {
+    slides[i].style.display = 'none'; // Ocultar todos los slides
+    console.log ("Presentando el Slide" + i);
+    if ((i>=primerIndex)&& (i<primerIndex+numero)) {
+      slides[i].style.display = "inline-block";};
+  }
+};
+
+// Next/previous controls
+function plusSlides(n){ 
+  // Busca el identificador del 1er slide que tiene el display = 'inline-block'
+  // Selecciona todos los elementos con la clase 'mySlide'
+const elements = document.querySelectorAll('.mySlide');
+console.log (elements);
+let totalSlides = elements.length;
+// Filtra los elementos que tienen display: inline-block
+const inlineBlockElements = Array.from(elements).filter(element => {
+    return window.getComputedStyle(element).display === 'inline-block';
+});
+
+console.log(inlineBlockElements);
+// Obtiene el primer elemento que tiene display: inline-block
+  let elPrimero = inlineBlockElements[0];
+  
+  console.log (elPrimero);
+  let primerIndex = parseInt(elPrimero.id);
+  let ultimoIndex= 0;
+  
+  if (n>0) {
+    primerIndex= primerIndex + parseInt(n);
+    ultimoIndex = primerIndex + 3 + parseInt(n);
+    if (ultimoIndex > totalSlides-1) {
+      ultimoIndex =totalSlides-1; 
+      primerIndex = ultimoIndex -3;};
+    };
+  if (n<0) {
+    primerIndex= primerIndex +n;
+    if (primerIndex < 0) {
+      ultimoIndex =3; 
+      primerIndex = 0;};
+    };
+    showSlides(primerIndex,4)
+  };
+  
+let primerIndex = 0;
+showSlides(primerIndex,4);
+
+</script>
+</body>
+</html>
