@@ -53,7 +53,7 @@ $lineas = [];
         echo "<td>".$uno['ped_id']."</td>";
         echo "<td>".$uno['ped_fecha']."</td>";
         echo "<td><a href='verPedido.php?id=".$uno['ped_id']."'class='btn'>Ver</a></td>";
-        echo "<td><a href='generaPDF-inc.php?id=".$uno['ped_id']."'class='btn'>Imprimir</a></td>";
+        echo "<td><a href='generaPDF-inc.php?numcomanda=".$uno['ped_id']."'class='btn'>Imprimir Albaran</a></td>";
         echo "</tr>";
         }
 

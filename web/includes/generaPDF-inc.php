@@ -8,7 +8,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['numcomanda']) ){
     require "../controler/pedidoContr.php";
 
     $formatoInvoice_php ="invoice.php";
-    $pedidoContr= new pedidoContr($numcomanda);
+    $pedidoContr= new PedidoContr($numcomanda);
     $pedidoContr->setformatoInvoice_php($formatoInvoice_php);
     $pedidoContr->creaInvoice();
 

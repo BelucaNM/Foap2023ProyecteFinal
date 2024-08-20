@@ -9,6 +9,9 @@ class PedidoContr extends Pedido{
     private $productoid;
     private $cantidad;
     private $precioUnitario;
+    private $formatoinvoice_php;
+    private $emailclie;
+    private $nomclie;
 
 
     public function __construct($pedidoid='',$fecha ='',$usuarioid='',$total='',$linea='',$productoid='', $cantidad='', $precioUnitario='')
@@ -37,7 +40,14 @@ class PedidoContr extends Pedido{
     public function setCantidad($cantidad){$this->cantidad = $cantidad;}
     public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
        
-/****/
+
+    public function getformatoInvoice_php() {
+        return $this->formatoinvoice_php;
+        }
+    public function setformatoInvoice_php($formatoinvoice_php) {
+        $this->formatoinvoice_php = $formatoinvoice_php;
+        }   
+    /****/
 
     
     public function crearPedido() {
@@ -75,6 +85,49 @@ class PedidoContr extends Pedido{
         return $this->selectExistencias($this->productoid);
       
     }
+
+    public function consultaLineas() {// revisar
+
+        $result = $this->selectLineasPedido();
+        
+        if ($result[0] == 1) {
+                echo " Ejecución stmt incorrecta";
+                header ("location: ../view/verPedidos.php?error=FailedStmt");
+                exit();
+                }
+        if ($result[0] == 2) { 
+                echo " El pedido no tiene lineas";
+                header ("location: ../views/verPedidos.php?error=noOrderLines"); 
+                exit();
+                }
+        return $result[1];
+        }
+
+public function consultaPedido() {// revisar
+
+        $result = $this->selectPedido();
+
+        if ($result[0] == 1) {
+                echo " Ejecución stmt incorrecta";
+                header ("location: ../views/verPedidos.php?error=FailedStmt");
+                exit();
+                }
+        if ($result[0] == 2) { 
+                echo " El pedido no corresponde a ningun cliente actual";
+                header ("location: ../views/verPedidos.php?error=noRefCostumer"); 
+                exit();
+                }
+//        print_r($result);
+
+        $this->setdatacomanda($result[1]['datacomanda']);
+        $this->setnumClie($result[1]['numclie']); 
+        $this->setnomclie($result[1]['nomclie']);
+        $this->setemailClie($result[1]['emailclie']);
+        $this->setnumemp($result[1]['numemp']);
+        $this->setnomemp($result[1]['nomven']);
+        $this->setimportTotal($result[1]['importtotal']);
+        return $result[1];
+}
     
     public function creaInvoice(){
 
