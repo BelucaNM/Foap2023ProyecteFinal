@@ -74,20 +74,21 @@ include "../includes/header.php"; ?>
 
 <div class="cards-container mt-3">
         <div class="card">
-        <img src="<?=$URLFoto;?>" alt="<?=$ALTFoto;?>" class="card-img">
-                    <div class="card-body">
+            <img src="<?=$URLFoto;?>" alt="<?=$ALTFoto;?>" class="card-img">
+            
                         <h3 class="card-title"><?=$nombre;?></h3>
                         <p class="card-text">Descripcion:<?=$descripcion;?></p>
                         <p class="card-text">Categoria:<?=$categoria;?>//<?=$nombreCat;?></p>
                         <p class="card-text">Fecha Alta:<?=$fecha;?></p>
                         <p class="card-text">Precio:<?=$precioUnitario;?></p>
-                        <a href="#">Leer más</a>
+            
+            <a class ="card-enlace" href="#">Leer más</a>
 <?php
 if (isset($_SESSION['user'])){    
-    echo "<a href='../includes/carrito-inc.php?id=".$id."'>Comprar</a>";
+    echo "<a class = 'btn btn-primary card-boton' href='../includes/carrito-inc.php?id=".$id."'>Comprar</a>";
 }
 ?>                                                
-                    </div>
+                    
         </div>
 </div>
     

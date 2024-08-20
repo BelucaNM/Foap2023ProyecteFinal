@@ -46,10 +46,10 @@ if (isset ($_GET['id'])){
     $carrito->añadirAlCarrito();
     
     // vuelve a comprar
- /*   echo "<script>  alert('Datos guardados correctamente');
+    echo "<script>  alert('Datos guardados correctamente');
                 document.location='../view/verProductos.php?info=carro'; 
     </script>";
- */       
+        
     exit();
 }
 ?>
