@@ -36,7 +36,7 @@ include "../includes/verProductos-inc.php";
     ?>
         <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
 
-        <table class = 'table' id="tProductos">
+        <table class = 'table table-striped' id="tProductos">
             <thead>
                 <tr>
                 <th scope="col">#Id</th>
@@ -45,7 +45,7 @@ include "../includes/verProductos-inc.php";
                 <th scope="col">Descripcion</th>
                 <th scope="col">URLFoto</th>
                 <th scope="col">ALTFoto</th>
-                <th scope="col">PrecioUnitario</th>
+                <th scope="col" align="right" >PrecioUnitario</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -58,7 +58,7 @@ include "../includes/verProductos-inc.php";
                     echo "<td>".$todo['pro_descripcion']."</td>";
                     echo "<td>".$todo['pro_URLFoto']."</td>";
                     echo "<td>".$todo['pro_ALTFoto']."</td>";
-                    echo "<td>".$todo['pro_precioUnitario']."</td>";
+                    echo "<td align='right'>".$todo['pro_precioUnitario']."</td>";
                     echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
                     echo "</tr>";
                     }
@@ -71,7 +71,7 @@ include "../includes/verProductos-inc.php";
         <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
     </section>
 
-    <?php /*include "../includes/footer.php";*/ ?> 
+    <?php include "../includes/footer.php"; ?> 
 </body>
 
 <script>

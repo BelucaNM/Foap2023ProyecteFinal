@@ -208,7 +208,7 @@ include "../includes/header.php";
             <p>Aqui se  agregará un enlace de email y un enlace para chat.</p>
     </section>
 </main>
-    
+<?php include "../includes/footer.php";  ?>    
 <script>
 
     function showSlides(primerIndex) {

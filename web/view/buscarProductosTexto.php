@@ -101,7 +101,7 @@
     </div>
 
     
-    <?php include ("../includes/footer.php");?>
+    <?php include "../includes/footer.php";?>
 </body>
 <script>
 // event para garantizar que la página está cargada antes de comprobaciones en el DOCUMENT

@@ -16,7 +16,6 @@
 $title="Relación de Tiendas";
 $soy = "tiendas";
 include "../includes/header.php";
-
 include "../includes/verTiendas-inc.php";
 
 ?>
@@ -24,7 +23,7 @@ include "../includes/verTiendas-inc.php";
 <section id="cuerpoPagina" class="section">
 <div id="tiendas">
 
-    <table class = 'table'>
+    <table class = 'table table-striped'>
       <thead>
         <tr>
             <th scope="col">#</th>
@@ -85,9 +84,7 @@ include "../includes/verTiendas-inc.php";
     </form>
 </dialog>
   
-<?php
- include "../includes/footer.php";  
-?>  
+<?php include "../includes/footer.php";  ?>  
 
 <script>
  (() => {

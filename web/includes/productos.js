@@ -28,10 +28,13 @@ function ordenaPerCategoria() {
 
 function ordenaPerPreu() {
     let products = getProducts();
+    const compareNumbers = (a, b) => a - b;
     products.sort( (p1, p2) => {
-        if (p1.pro_precioUnitario < p2.pro_precioUnitario) return -1;
-        if (p1.pro_precioUnitario > p2.pro_precioUnitario) return 1;
-        return 0;
+
+        p1preu = +parseInt(p1.pro_precioUnitario);
+        p2preu = +parseInt(p2.pro_precioUnitario);
+        return compareNumbers(p1preu, p2preu);
+
     });
     escriureTaula(products);
 }
@@ -54,9 +57,9 @@ function filtraPer(elFiltre) {
 
 function escriureTaula(products) {
     console.log(products);
-    let theTable = "<thead><tr><th scope='col'>#Id</th><th scope='col'>Categoria</th><th scope='col'>Nombre</th><th scope='col'>Descripcion</th><th scope='col'>URLFoto</th><th scope='col'>ALTFoto</th><th scope='col'>PrecioUnitario</th><th scope='col'>Acciones</th></tr>";
+    let theTable = "<thead><tr><th scope='col'>#Id</th><th scope='col'>Categoria</th><th scope='col'>Nombre</th><th scope='col'>Descripcion</th><th scope='col'>URLFoto</th><th scope='col'>ALTFoto</th><th scope='col' text-align= 'righ'>PrecioUnitario</th><th scope='col'>Acciones</th></tr><thead>";
     let product = null;
-
+    theTable+="<tbody>";
     products.forEach((product) => {
      theTable+= "<tr><td scope= 'row'>"+product.pro_id+
                 "</td><td>"+product.cat_nombre+ 
@@ -64,11 +67,10 @@ function escriureTaula(products) {
                 "</td><td>"+product.pro_descripcion+
                 "</td><td>"+product.pro_URLFoto+
                 "</td><td>"+product.pro_ALTFoto+
-                "</td><td>"+product.pro_precioUnitario+
+                "</td><td align='right'>"+product.pro_precioUnitario+
                 "</td><td><a href='../view/verProductoExistencias.php?id="+product.pro_id+"'>Ver</a> </td></tr>";
               
-        }); 
-        
-
+        });
+    theTable+="</tbody>"; 
     document.getElementById("tProductos").innerHTML=theTable;
 }
