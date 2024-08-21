@@ -11,7 +11,7 @@ if ($result) {
     $total=0;
 }else{
     echo " El carrito esta vacio.";
-    header("Location: ../view/bienvenida.php?error=EmptyCart");
+    header("Location: ../view/bienvenidaCarousel.php?error=EmptyCart");
     exit();
 }
 ?>

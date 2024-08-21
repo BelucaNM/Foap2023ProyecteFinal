@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
 
@@ -18,7 +19,8 @@
     include "../includes/verProductoExistencias-inc.php"; 
 ?>
 
-
+<ul id="viewProExi">
+<li id="viewizq">
 <div class="cards-container mt-3">
     <div class="card">
             <img src="<?=$URLFoto;?>" alt="<?=$ALTFoto;?>" class="card-img">
@@ -37,7 +39,9 @@
                     
     </div>
 </div>
-    
+</li>
+
+<li id="viewder">
 <div id="existencias">
     <h2>Existencias</h2>  
     <table class='table table-striped'>
@@ -65,6 +69,8 @@
         </tbody>
     </table>
 </div>
+</li>
+</ul>
 
 <?php include "../includes/footer.php"; ?> 
 </body>

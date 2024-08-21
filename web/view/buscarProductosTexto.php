@@ -9,42 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
     <script src="../includes/productos.js"></script>
-
-<!-- >    <link rel="stylesheet" type="text/css" href="estilo.css" title="style" /> <-->
+    <link rel="stylesheet" type="text/css" href="style.css"/> 
         
 </head>
 <body>
 
     <?php
-    $soy = "productos";
+
+    $soy = "buscar";
     $title ="Busqueda de Productos por texto";
     include "../includes/header.php"; 
-    
-    
-    require_once "../model/Connection.php";
-    require_once "../model/Producto.php";
-    require_once "../controler/ProductoContr.php";
-    $producto = new ProductoContr();
-    
-    
-    $error= $texto= $mensajes = "";
-    $seleccion = "";
-  
-      
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") { // verificar entrada por formulario
-    
-        if ((!isset ($_POST["texto"])) || (empty($_POST["texto"]))) {
-            $error= "Introduzca Texto";
-        } else {
-            $texto = $_POST["texto"];
-            $seleccion = $producto->traerCon($texto);
-            if (is_null($seleccion)) {
-                $error = " No hay productos con este texto ";
-            
-            };
-        };
-    };
+    include "../includes/buscarTexto-inc.php";
+     
     ?>
     <div class="row">
     <div class="col-3"></div>

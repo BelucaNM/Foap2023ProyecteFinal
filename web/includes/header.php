@@ -1,11 +1,9 @@
 <header>
 <section id="header" class="section">
    <div class = "container mt-3 clearfix">
-        
         <span class="float-start"><img id="logo" src="..\img\logo.jpg" class = "rounded-circle"></span>
         <span class="h1 float-start"> obJEtivos </span>
         <span class="h1 float-end"> <?=$title;?> </span>
-
     </div>
 </section>
 
@@ -28,65 +26,93 @@
         <div class="container-fluid">
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav  me-auto">
-    <?php
-        if  ($tablaNav[$soy]['a_bienvenida']) {
-            echo '    
                 <li class="nav-item">
-                    <a class="nav-link" href="bienvenidaCarousel.php">Bienvenida</a>
-                </li>'; }
-
-        if  ($tablaNav[$soy]['a_tiendas']) {
-            echo '    
-                    <li class="nav-item">
-                        <a class="nav-link" href="verTiendas.php">Tiendas</a>
-                    </li>'; }
-        
-        if  ($tablaNav[$soy]['a_productos']) {
-            echo '
-                    <li class="nav-item">
-                        <a class="nav-link" href="verProductos.php">Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="buscarProductosTexto.php">Buscar Productos por texto</a> 
-                    </li>'; }
-
-        if  ($tablaNav[$soy]['a_pedidos']) {
-            echo '
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="verPedidos.php">Ver Pedidos</a>
-                    </li>'; }
-
-        if  ($tablaNav[$soy]['a_carrito']) {
-            echo '
-                    <li class="nav-item">
-                        <a class="nav-link" href="verCarrito.php">Ver Carrito</a>
-                    </li>'; }
-
-        if  ($tablaNav[$soy]['a_datos']) { // estoy Loggeado y puedo ver y cambiar mis datos
-                        echo '
-                                <li class="nav-item">
-                                    <a class="nav-link" href="usuarios_misdatos.php">Mis datos</a>
-                                </li>'; }
-    ?>
+                    <?php
+                        if  (array_key_exists('a_bienvenida', $tablaNav[$soy])) {
+                            echo '<a class="nav-link" href="bienvenidaCarousel.php">Bienvenida</a>';
+                        }else{
+                            echo '<a class="nav-link not-active" href="bienvenidaCarousel.php">Bienvenida</a>';
+                        }; 
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_tiendas', $tablaNav[$soy])) {
+                            echo '<a class="nav-link" href="verTiendas.php">Tiendas</a>';  
+                        }else{
+                            echo '<a class="nav-link not-active" href="verTiendas.php">Tiendas</a>';
+                        };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_productos', $tablaNav[$soy])){
+                            echo '<a class="nav-link" href="verProductos.php">Productos</a>';
+                        }else{
+                            echo '<a class="nav-link not-active" href="verProductos.php">Productos</a>'; 
+                        };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_buscar', $tablaNav[$soy])) {
+                            echo '<a class="nav-link" href="buscarProductosTexto.php">Buscar Productos por texto</a>';
+                        }else{
+                            echo '<a class="nav-link  not-active" href="buscarProductosTexto.php">Buscar Productos por texto</a>'; 
+                        };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_pedidos',$tablaNav[$soy])) {
+                            echo '<a class="nav-link" href="verPedidos.php">Ver Pedidos</a>';
+                         }else{
+                            echo '<a class="nav-link  not-active" href="verPedidos.php">Ver Pedidos</a>';
+                        };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_carrito',$tablaNav[$soy])){
+                            echo '<a class="nav-link" href="verCarrito.php">Ver Carrito</a>';
+                        }else{
+                            echo '<a class="nav-link not-active" href="verCarrito.php">Ver Carrito</a>';
+                        };
+                    ?>
+                </li>
             </ul>
 
-            <div class="d-flex">
-                <ul class="navbar-nav  me-auto">
-        <?php
-            if  ($tablaNav[$soy]['a_login']) {
-                echo '                
-                        <li class="nav-item">
-                                <a class="nav-link" href="usuarios_login.php">Iniciar Session</a>
-                            </li>';}
-            if  ($tablaNav[$soy]['a_logout']) {
-                echo '      
-                            <li class="nav-item">
-                                <a class="nav-link" href="../includes/logout.php">Logout</a>
-                            </li>';}
-        ?>                
-                </ul>
-            </div>
+        <div class="d-flex">
+            <ul class="navbar-nav  me-auto">
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_login',$tablaNav[$soy])){
+                            echo ' <a class="nav-link" href="usuarios_login.php">Iniciar Session</a>';
+                        }else{
+                            echo ' <a class="nav-link not-active" href="usuarios_login.php">Iniciar Session</a>';
+                        };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_logout',$tablaNav[$soy])) {
+                            echo '<a class="nav-link" href="../includes/logout.php">Logout</a>';
+                        }else{
+                            echo '<a class="nav-link not-active" href="../includes/logout.php">Logout</a>';
+                         };
+                    ?>
+                </li>
+                <li class="nav-item">
+                    <?php
+                        if  (array_key_exists('a_datos',$tablaNav[$soy])){
+                            echo '<a class="nav-link" href="usuarios_misdatos.php">Mis datos</a>';
+                        }else{
+                            echo '<a class="nav-link not-active" href="usuarios_misdatos.php">Mis datos</a>';
+                        };
+                    ?>
+                </li>
+            </ul>
+        </div>
         </div>
         </div>
         </nav>

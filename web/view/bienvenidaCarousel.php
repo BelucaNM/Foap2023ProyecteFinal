@@ -224,7 +224,7 @@ include "../includes/header.php";
             }
         };
         var audio = document.getElementById('startup-sound1');
-//        audio.play();
+        audio.play();
     };
 
 // Next/previous controls
