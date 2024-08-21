@@ -77,7 +77,7 @@ class Producto extends Connection{
                                                 FROM ". $this->tablaNombre."  
                                                 JOIN categoriasproductos ON categoriasProductos_cat_id = cat_id 
                                                 WHERE categoriasProductos_cat_id = ? ORDER BY pro_nombre,pro_precioUnitario ");
-            echo " categoria= ".$id;
+            //echo " categoria= ".$id;
             $stmt->execute([$id]);
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();

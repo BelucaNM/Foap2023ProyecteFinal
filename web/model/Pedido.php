@@ -5,6 +5,7 @@ class Pedido extends Connection{
     private $tablaNombre = "pedidos";
     private $tablaNombreLineas = "pedidoLineas";
     private $tablaNumReg = 0;
+    protected $accesException = 0;
 
 
     protected function insertPedido($id) {
@@ -66,7 +67,7 @@ class Pedido extends Connection{
 
     protected function selectPedidosUsuario($usuarioid) {
         try {
-            
+            $this->accesException = 0;
             $stmt = $this->connect()->prepare("SELECT ped_id, ped_fecha   
                                             FROM ".$this->tablaNombre." WHERE usuarios_usu_id = ?
                                             ORDER BY ped_fecha DESC" );
@@ -75,57 +76,42 @@ class Pedido extends Connection{
             return $stmt->fetchAll();
             }
         catch (Exception $e){
+            $this->accesException = 1;
             return $e->getMessage();
             }
     
+        }
+    protected function selectPedido($pedidoid) { 
+        try {
+            $this->accesException = 0;
+            $stmt = $this->connect()->prepare("SELECT ped_id, ped_fecha, usuarios_usu_id 
+                                            FROM ".$this->tablaNombre."                                          
+                                            WHERE ped_id = ?" );
+            $stmt->execute([$pedidoid]);
+            $this->tablaNumReg = $stmt->rowCount();
+            return $stmt->fetchAll();
             }
-    protected function selectPedido() { // rehacer
-            
-                $error=0;
-                $stmt = $this->connect()->prepare("SELECT 
-                                                    co.data as datacomanda, 
-                                                    co.clie as numclie, 
-                                                    co.import_total as importtotal,
-                                                    co.rep_ven as numemp,
-                                                    c.nom  as nomclie, 
-                                                    c.email as emailclie, 
-                                                    e.nom as nomven
-                                                    FROM comanda as co 
-                                                    JOIN clients as c on c.numclie = co.clie 
-                                                    JOIN empleats as e on co.rep_ven = e.numemp 
-                                                    WHERE numcomanda = ?");
-                                                
-                if (!$stmt->execute(array($this->numcomanda))){
-                        $error = 1;
-                }else{
-                        if( $stmt->rowCount() >0) {
-                            $result = $stmt->fetchAll();
-                            print_r($result);
-                            
-                            $array[1] =$result[0];
-        
-                        }else{
-                            $error = 2;
-                        }
-                };
-                $array[0] =$error;
-                $stmt = null;
-                return $array;
-            
-                }
+        catch (Exception $e){
+            $this->accesException = 1;
+            return $e->getMessage();
+            }
+    
+        }
     protected function selectLineasPedido($pedidoid) { // rehacer
         try {
+            $this->accesException = 0;
             $stmt = $this->connect()->prepare("SELECT  lin_id, pedidos_ped_id, lin_cantidad,
             lin_importe, productos_pro_id, pro_nombre, (lin_importe*lin_cantidad) as subtotal
                         FROM ". $this->tablaNombreLineas. " 
-                    join productos on productos_pro_id = pro_id WHERE pedidos_ped_id = ?");
+                        join productos on productos_pro_id = pro_id WHERE pedidos_ped_id = ?");
             $stmt->execute([$pedidoid]);
             $this->tablaNumReg = $stmt->rowCount();
             return $stmt->fetchAll();
         }
         catch (Exception $e){
-        return $e->getMessage();
-        }
+            $this->accesException = 1;
+            return $e->getMessage();
+            }
             
      }
     protected function selectExistencias($id){

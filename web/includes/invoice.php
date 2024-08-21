@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Factura</title>
+    <title>PDF Alabaran</title>
     <style>
     *{
         font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -41,7 +41,7 @@
         background-color: white;
         padding: 20px;
         text-align :right;
-        font-size: 12px;
+        font-size: 10px;
         width: 598px;
     }
     th,.fondoGris {
@@ -50,93 +50,90 @@
     </style>
 </head>
 <body>
-<div id = "cabecera">
-<table id="pedidoLineas">
-<tr>
-    <td>
-        <div id = "imagen">
-            <img  src='../images/150x150.png' alt='' class=''>
-        </div>
-    </td>
-    <td>      
-        <div id = "company">
-            <h2>Shira Electric Power Company</h2>
-            <br>   
-            <h4>Company representative name</h4>
-            <h4>Company Address</h4>
-            <h4>Tax Id</h4>
-            <h4>phone</h4>
-            <h4>fax</h4>
-        </div>
-    </td>
-</tr>
-</table>
-</div>
+    <div id = "cabecera">
+        <table id="pedidoLineas">
+            <tr>
+                <td>
+                    <div id = "imagen">
+                        <img  src='../images/150x150.png' alt='' class=''>
+                    </div>
+                </td>
+                <td>      
+                    <div id = "company">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
 
-<div id = "FromTo">
-    <div>
-        <p><strong>From:</strong></p>
-        <p><?=$pedido['nomven']?></p>
+    <div id = "FromTo">
+        <div>
+            <p><strong>From:</strong></p>
+            <p>ObJEtivos</p>
+        </div>
+        <div>
+            <p><strong>To:</strong></p>
+            <h4><?=$nombre." ".$apellido?></h4>
+            <h4>NIF : <?=$dni?></h4>
+            <h4>Direccion : <?=$direccion?></h4>
+            <h4><?=$muncodpos." ".$munnombre?></h4>
+            <h4>Email : <?=$email?></h4>
+        </div>
+    
     </div>
-    <div>
-        <p><strong>To:</strong></p>
-        <p><?=$pedido['nomclie']?></p>
-    </div>
-   
-</div>
 <div>
 <table id="pedidoLineas">
-<thead>
-    <tr>
-        <th>#</th>
-        <th>descripcion</th>
-        <th>quantity</th>
-        <th>Unit Prize $</th>
-        <th>Total $</th>
-    </tr>   
-</thead>
-<tbody>
-    <?php
-
-    $preu_subtotal = 0;
-
-    foreach ($lineas as $linea) {
-        print_r( $linea);
-        $preu_subtotal += $linea['import'];
-
-            echo "<tr class = 'row'>";
-
-            echo "<td>$linea[lin_com]</td>";
-            echo "<td>$linea[descr]</td>";
-            echo "<td>$linea[quant]</td>";
-            echo "<td>$linea[preu]</td>";
-            echo "<td>$linea[import]</td>";
-
+    <thead>
+        <tr>
+            <th>#IdLinea</th>
+            <th>ProId</th>
+            <th>ProNombre</th>
+            <th>Cantidad</th>
+            <th>PrecioUnitario</th>
+            <th>Subtotal</th>
+            
+        </tr>   
+    </thead>
+    <tbody>
+    <?php 
+        $preu_subtotal = 0;
+        foreach ($lineas as $key => $linea){
+            echo "<tr>";
+            echo "<td>".$linea['lin_id']."</td>";
+            echo "<td>".$linea['productos_pro_id']."</td>";
+            echo "<td>".$linea['pro_nombre']."</td>";
+            echo "<td>".$linea['lin_cantidad']."</td>";
+            echo "<td>".$linea['lin_importe']."</td>";
+            echo "<td>".$linea['subtotal']."</td>";
             echo "</tr>";
-    };
-    ?>
-</tbody>
+            $preu_subtotal += strval($linea['subtotal']);
+            }
+            
+            
+            
+        ?>
+    </tbody>
 <tfoot>
     <tr class = 'row'>
         <td></td>
         <td></td>
         <td></td>
-        <td>Subtotal$</td>
+        <td>Subtotal €</td>
         <td text-align="right"><?=$preu_subtotal?></td>
     </tr>
     <tr class = 'row'>
         <td></td>
         <td></td>
         <td></td>
-        <td>Tax $</td>
-        <td text-align="right"><?=$pedido['importtotal']-$preu_subtotal?></td>
+        <td>Tax-IVA 21%</td>
+        <td text-align="right"><?=strval($preu_subtotal)*0,21?></td>
     </tr>
     <tr class = 'row fondoGris'> 
         <td></td>
         <td></td>
         <td></td>
-        <td>Total $</td>
-        <td text-align="right"><?=$pedido['importtotal']?></td>
+        <td>Total €</td>
+        <td text-align="right"><?=strval($preu_subtotal)*1,21?></td>
     </tr>
   </tfoot>
 </table>

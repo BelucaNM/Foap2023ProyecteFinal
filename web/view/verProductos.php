@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tienda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="../includes/productos.js"></script>
+</head>
+<body>
 <?php
 
 if ( isset($_GET['info']) && $_GET['info'] == 'carro') {
@@ -10,36 +23,19 @@ if ( isset($_GET['info']) && $_GET['info'] == 'deliver') {
 $title = "Relación de Productos";
 $soy = "productos";
 include "../includes/header.php"; 
-
 include "../includes/verProductos-inc.php"; 
+
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Tienda</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="../includes/productos.js"></script>
-</head>
-
-<body>
     <section id="cuerpoPagina" class="section">
         
         <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nombre]</a>&nbsp;
     <?php
     if (!isset($_GET['cat'])) { 
-            echo '<a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
+        echo '<a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;';
         };
     ?>
         <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
 
-    
         <table class = 'table' id="tProductos">
             <thead>
                 <tr>
@@ -74,6 +70,8 @@ include "../includes/verProductos-inc.php";
         <a href='../includes/productoEliminar.php?id=".$todo['pro_id']."'>Eliminar</a>| 
         <a href='nuevoProducto.php' class=""btn-2">Nuevo producto</a>| -->
     </section>
+
+    <?php /*include "../includes/footer.php";*/ ?> 
 </body>
 
 <script>
@@ -86,26 +84,6 @@ include "../includes/verProductos-inc.php";
             let url = document.URL;
             console.log ("la URL es :"+ url);
 
-            let formularios = document.forms;
-            console.log ("Los formularios :"+ formularios);
-            console.log ( "Hay :", document.forms.length, " formularios.");
-             for ( let i=0; i<formularios.length ;i++) {
-                let elForm = formularios[i];
-                let susElementos = elForm.elements;
-                for (let j=0; j<susElementos.length; j++) {
-                    console.log(susElementos[j].name);
-                }
-             };
-
-            let imagenes = document.images;
-            console.log ("las imagenes : " + imagenes);
-            console.log ( "Hay :" +imagenes.length+ " imagenes.");
-            for (  i=0; i<imagenes.length ;i++) {console.log (imagenes[i])};
-
-            let x = document.getElementById("myform");
-            if (x !== null){ console.log ("El form by ID: " , x[0]);};
-             x = document.getElementsByName("myform");
-             if (x !== null){console.log ("El form By Name : " , x[0]);};
 
             })
 </script>

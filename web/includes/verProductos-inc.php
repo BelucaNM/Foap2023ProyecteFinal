@@ -18,7 +18,7 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['cat'])) {
 }else{
     
     $todos = $datos->traerTodos();
-//    echo json_encode($todos);
+//  echo json_encode($todos);
     
 };
 //print_r($todos);

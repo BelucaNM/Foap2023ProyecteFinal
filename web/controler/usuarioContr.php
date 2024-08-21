@@ -298,6 +298,7 @@ class UsuarioContr extends Usuario{
         public function leerUser(){
             //validationes
             $res = $this->leer($this->id);
+            //print_r($res);
 
             if(!$res){
                 header("Location: ../view/usuarios_misdatos.php?error=userNotSignedUp");
@@ -317,7 +318,7 @@ class UsuarioContr extends Usuario{
             $this->direccion =  $res['usu_direccion'];
             $this->municipio = $res['municipios_mun_id'];
             $this->email = $res['usu_email'];
-           
+            
     
         } 
         
@@ -385,7 +386,7 @@ Private function generateToken(){
         }   
  
 
-Private function enviaEmail($issue){
+Public function enviaEmail($issue, $pedido=""){
 //            use PHPMailer\PHPMailer\PHPMailer;
 //            use PHPMailer\PHPMailer\Exception;
 //            use PHPMailer\PHPMailer\SMTP;
@@ -404,7 +405,7 @@ Private function enviaEmail($issue){
             $mail->SMTPAuth = true;
             $mail->Username = 'foap408@gmail.com';
             $mail->Password = 'dyrv alyq ojiq acyd';
-        //    $mail->addAddress('$this->email', 'Usuario Blog');
+        //    $mail->addAddress('$this->email', '$this->username');
             $mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
             $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
 
@@ -412,16 +413,23 @@ Private function enviaEmail($issue){
         //Para enviar texto plano     
             
             if ($issue == 'forgotPassword'){
+                $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
                 $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara recuperar tu contraseña, haz click en el enlace siguiente. Si no has solicitado este
                     correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
                 $mail->msgHTML("<a href='".$link."'> Link para crear nueva contraseña</a>"); 
                 };
             if ($issue == 'activacion'){
+                $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
                 $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara activar tu cuenta, haz click en el enlace siguiente. Si no has solicitado este
                     correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
+                };
+            if ($issue == 'factura'){
+                $mail->Subject = "Su factura Foap2023-OOP";
+                $mail->Body = "Hola ".$this->username.", Adjunto su factura correspondienta a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
+                $mail->addAttachment('../invoicesPDF/'.$pedido.'.pdf');
                 };
            
 
