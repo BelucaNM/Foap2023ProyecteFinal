@@ -57,13 +57,13 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['numcomanda']) ){
     
     
     // Download the generated PDF
-    // $dompdf->stream()
+    // $dompdf->stream();
     // $dompdf->stream("test", array("Attachment" => 1, "compress" => 0));
     //echo ' despues de "stream"';
 
    // Envia email
    
-    $err = $usuarioContr->enviaEmail('factura',$numcomanda);
+    // $err = $usuarioContr->enviaEmail('factura',$numcomanda); 
     
     if (!$err) {
         header("Location: ../view/verPedidos.php?error=MailSent");

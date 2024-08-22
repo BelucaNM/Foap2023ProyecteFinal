@@ -24,48 +24,69 @@ if (!isset ($_SESSION['user'])){
 }
 include "../includes/verCarrito-inc.php";
 ?>
-<h2>Carrito</h2>
-<div id="lineas">
-    <h2>Lineas Carrito</h2>  
-    <table>
-    <tr>
-        <th>LineaId</th>
-        <th>ProductoId</th>
-        <th>ProductoNombre</th>
-        <th>Cantidad</th>
-        <th>PrecioUnitario</th>
-        <th>Subtotal</th>
+<section id="cuerpoPagina" class="section">
+<div class="cards-container mt-3">
+        <table class="table table-striped" id="carrito">
+        <thead>
+            <tr>
+                    
+                <th scope="col">#Carrito</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">#Productos</th>
+                <th scope="col"> Acciones </th>
+   
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                    
+            <td scope= 'row'><?=$carrito->getCarritoId();?></td>
+            <td><?=$carrito->getFecha();?></td>
+            <td><?=$carrito->getTablaNumReg();?></td>
+            <td>  
+                        <a href='../includes/pedido-inc.php?id=<?=$carrito->getCarritoId();?>'>Hacer Pedido</a> 
+                        <a href='../includes/borrarCarrito.php?id=<?=$carrito->getCarritoId();?>'>Borrar carrito</a>   
+            </td>
+        </tr>
+        </tbody>
         
-    </tr>
-    <?php foreach ($lineas as $key => $linea){
-        echo "<tr>";
-        echo "<td>".$linea['lincar_id']."</td>";
-        echo "<td>".$linea['productos_pro_id']."</td>";
-        echo "<td>".$linea['pro_nombre']."</td>";
-        echo "<td>".$linea['lincar_cantidad']."</td>";
-        echo "<td>".$linea['lincar_precioUnitario']."</td>";
-        echo "<td>".$linea['subtotal']."</td>";
-        echo "</tr>";
-        $total += $linea['subtotal'];
+</div>
+<div>
+     
+    <table class = 'table table-striped' id="tlineasCarrito">
+        <thead>
+            <tr>
+                <th scope="col">LineaId</th>
+                <th scope="col">ProductoId</th>
+                <th scope="col">ProductoNombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">PrecioUnitario</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Acciones</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($lineas as $key => $linea){
+                echo "<tr>";
+                echo "<td>".$linea['lincar_id']."</td>";
+                echo "<td>".$linea['productos_pro_id']."</td>";
+                echo "<td>".$linea['pro_nombre']."</td>";
+                echo "<td>".$linea['lincar_cantidad']."</td>";
+                echo "<td>".$linea['lincar_precioUnitario']."</td>";
+                echo "<td>".$linea['subtotal']."</td>";
+                echo "<td><a href='../includes/borrarLCarrito.php?id=".$linea['lincar_id']."'>Borrar artículo</a></td>";
+                echo "</tr>";
+                $total += $linea['subtotal'];
 
-        }
-        $carrito->setTotal($total);
-    ?>
+                }
+                $carrito->setTotal($total);
+            ?>
+        </tbody>
     </table>
 </div>
-<div class="cards-container mt-3">
-        <div class="card">
-        <img src="" alt="" class="card-img">
-                    <div class="card-body">
-                        <h3 class="card-title"><?="carrito número: ". $carrito->getCarritoId();?></h3>
-                        <p class="card-text">fecha:<?=$carrito->getFecha();?></p>
-                        <p class="card-text">TOTAL:<?=$carrito->getTotal();?></p>
-                        <p class="card-text">Total Lineas:<?=$carrito->getTablaNumReg();?></p>
-                        <a href='../includes/pedido-inc.php?id=<?=$carrito->getCarritoId();?>'>Hacer Pedido</a> <br>
-                        <a href='../includes/carritoVaciar-inc.php?id=<?=$carrito->getCarritoId();?>'>Vaciar carrito</a>   
-                    </div>
-        </div>
-</div>
+</section>
+
 
 <?php include "../includes/footer.php"; ?> 
 

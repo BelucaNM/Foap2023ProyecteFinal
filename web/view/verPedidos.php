@@ -26,8 +26,7 @@ include "../includes/verPedidos-inc.php";
 
 ?>
 <section id="cuerpoPagina" class="section">
-
-    <table class = 'table' id="tPedidos">
+    <table class = 'table table-striped' id="tPedidos">
         <thead>
             <tr>
                 <th scope="col">PedidoId</th>
@@ -35,19 +34,19 @@ include "../includes/verPedidos-inc.php";
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
-            <tbody>
+        <tbody>
             <?php foreach ($result as $key => $uno){
                 echo "<tr>";
                 echo "<td scope= 'row'>".$uno['ped_id']."</td>";
                 echo "<td>".$uno['ped_fecha']."</td>";
-                echo "<td><a href='verPedido.php?id=".$uno['ped_id']."'>Ver</a>";
+                echo "<td><a href='verPedido.php?id=".$uno['ped_id']."'>Ver Detalle</a>";
                 echo " / <a href='albaranPDF.php?numcomanda=".$uno['ped_id']."'>Imprimir Albaran</a></td>";
                 echo "</tr>";
                 }
             ?>
-            </tbody>
-        </table>
-    </section>
+        </tbody>
+    </table>
+</section>
 
 <?php include "../includes/footer.php"; ?> 
 

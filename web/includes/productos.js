@@ -19,8 +19,10 @@ function ordenaPerNom() {
 function ordenaPerCategoria() {
     let products = getProducts();
     products.sort( (p1, p2) => {
-        if (p1.pro_categoria < p2.pro_) return -1;
-        if (p1.pro_categoria > p2.pro_id) return 1;
+        p1cat = p1.cat_nombre.toUpperCase();
+        p2cat = p2.cat_nombre.toUpperCase();
+        if (p1cat < p2cat) return -1;
+        if (p1cat > p2cat) return 1;
         return 0;
     });
     escriureTaula(products);

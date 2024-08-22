@@ -11,7 +11,7 @@
     header {
         background-color: gainsboro;
         color: black;
-        padding: 10px 0;
+/*        padding: 10px 0; */
         text-align: center;
         }
     nav {
@@ -26,14 +26,19 @@
             cursor: not-allowed;
             pointer-events: none;
         }
-    main {
-        padding: 20px;
-        }
+/*    main {
+        padding: 20px; 
+        }*/
+
     .section {
         margin-bottom: 30px;
         border-bottom: 1px solid #ccc;
         padding-bottom: 20px;
-        }
+    }
+    #tieDialog{
+        padding-bottom: 8px;
+        padding-top: 8px;
+    } 
     .cards-container {
         display: flex;
         flex-wrap: wrap;
@@ -46,7 +51,7 @@
         position: relative;
         overflow: hidden;
         width: 300px;
-        height: 430px;
+        height: 475px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     .card-img {
@@ -107,14 +112,14 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     footer {
-        background-color: gainsboro;
-        color: white;
-        text-align: left;
+        background-color: white;
+        color: black;
+        text-align: center;
         padding: 0px;
-        position: fixed;
+        position: fixed; 
         bottom: 0;
         width: 100%;
-        font-size: 0.75em;
+        font-size: 0.6em;
         }
     #gruposProducto {
         background-color: whitesmoke;
@@ -139,24 +144,24 @@
         flex-direction: column ;*/
       }  
 
-      #viewProExi li{
+    #viewProExi li{
         background: white;
         flex:1;
       }
    
-    table tbody tr:nth-child(odd) {
+    .table tbody tr:nth-child(odd) {
         background: #fff5e0;
     }
-    table tbody tr:nth-child(even) {
+    .table tbody tr:nth-child(even) {
         background: #fdf8ef;
     }
-    table thead {
+    .table thead {
       background: #444;
       color: #fff;
       font-size: 18px;
     }
-    table {
-      border-collapse: collapse;
+    .table {
+    /*  border-collapse: collapse; */
       width: 100%;
     }
     thead {color:green;}

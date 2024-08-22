@@ -66,19 +66,17 @@ include "../includes/verTiendas-inc.php";
 <dialog id="tieDialog">
     <form method="dialog">
       <menu>
-        <button id="cerrarDetails" class= "cerrarDetails" type="reset">Cerrar</button>
+        <button class="cerrarDetails" type="reset" style="float: right;">Cerrar</button>
       </menu>
       <section>
-        <p>
-        <h2>Ficha de tienda</h2>
+        
         <p class="card-text" id="id"></p>
-        <p class="card-text" id="title"></p>
         <p class="card-text" id="direccion"></p>
         <p class="card-text" id="municipio"></p>
         <p class="card-text" id="telefono"></p>
         <p class="card-text" id="responsable"></p>
         <p class="card-text" id="email"></p>
-        </p>
+        
       </section>
       
     </form>
@@ -101,8 +99,7 @@ include "../includes/verTiendas-inc.php";
                 const municipio = button.dataset.municipio;
                 const codpos = button.dataset.codpos;
                 eldialog.show();
-                document.getElementById('id').textContent = "Id :"+ nombre;
-                document.getElementById('title').textContent = "Nombre de la Tienda :"+ nombre;
+                document.getElementById('id').textContent = "Tienda :"+ nombre;
                 document.getElementById('direccion').textContent = "Direccion : "+direccion;
                 document.getElementById('municipio').textContent = "Municipio: " + codpos + " " + municipio ;
                 document.getElementById('telefono').textContent = "TelefonoTienda : "+telefono;

@@ -266,7 +266,7 @@ include "../includes/header.php";
 
 window.onload = function() {
     let primerIndex = 0;
-    document.verCards = 5; 
+    document.verCards = 4; 
     showSlides(primerIndex);
     
 };

@@ -23,9 +23,9 @@ if (isset ($_GET['id'])){
     $result = $carrito->recuperaCarrito();
     if (!$result) {
             $carrito->crearCarrito();
-            echo " identificor del carrito"; 
-            var_dump ($carrito->carritoid);
-            $_SESSION['carrito'] = $carrito->carritoid;
+            echo " identificador del carrito"; 
+            var_dump ($carrito->getCarritoId());
+            $_SESSION['carrito'] = $carrito->getCarritoId();
     };
    
 // recupera precio del producto    

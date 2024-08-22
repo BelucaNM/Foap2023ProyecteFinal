@@ -118,22 +118,31 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>Subtotal €</td>
-        <td text-align="right"><?=$preu_subtotal?></td>
+        <td></td>
+        <td>Importe €</td>
+        <td text-align="right"><?=$preu_subtotal;?></td>
     </tr>
     <tr class = 'row'>
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         <td>Tax-IVA 21%</td>
-        <td text-align="right"><?=strval($preu_subtotal)*0,21?></td>
+        <td text-align="right"><?
+                                $iva =$preu_subtotal *0.21;
+                                echo '$iva';
+                                ?></td>
     </tr>
     <tr class = 'row fondoGris'> 
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
         <td>Total €</td>
-        <td text-align="right"><?=strval($preu_subtotal)*1,21?></td>
+        <td text-align="right"><?
+                                $total =$preu_subtotal *1.21;
+                                echo '$total';
+                                ?></td>
     </tr>
   </tfoot>
 </table>

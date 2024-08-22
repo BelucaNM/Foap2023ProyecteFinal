@@ -25,6 +25,11 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <div class="container-fluid">
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <?php
+            if  (!array_key_exists($soy, $tablaNav)) {
+                echo 'Opción no configurada en barra de NAVegación. Contacte con el Administrador.';
+            }else{
+        ?>
             <ul class="navbar-nav  me-auto">
                 <li class="nav-item">
                     <?php
@@ -81,7 +86,7 @@
                     ?>
                 </li>
             </ul>
-
+        
         <div class="d-flex">
             <ul class="navbar-nav  me-auto">
                 <li class="nav-item">
@@ -113,6 +118,10 @@
                 </li>
             </ul>
         </div>
+        
+        <?php
+            };
+        ?>
         </div>
         </div>
         </nav>
