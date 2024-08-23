@@ -87,4 +87,15 @@ class Carrito extends Connection{
                     return $e->getMessage();
                 }
     }
+    Protected function deleteLineaCarrito($lineaid){
+            
+        try {
+            $stmt = $this->connect()->prepare("DELETE FROM ".$this->tablaNombreLineas."  WHERE lincar_id=?");
+            $stmt->execute([$lineaid]); // borra la linea
+            return true;
+            }
+        catch (Exception $e){
+                return $e->getMessage();
+            }
+}
 }

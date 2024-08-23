@@ -405,7 +405,8 @@ Public function enviaEmail($issue, $pedido=""){
             $mail->SMTPAuth = true;
             $mail->Username = 'foap408@gmail.com';
             $mail->Password = 'dyrv alyq ojiq acyd';
-        //    $mail->addAddress('$this->email', '$this->username');
+        //  $mail->addAddress('$this->email', '$this->username'); // comprador
+        //  $mail->addCC('beluca.navarrina@gmail.com', 'Beluca'); // vendedor
             $mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
             $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
 
@@ -427,8 +428,8 @@ Public function enviaEmail($issue, $pedido=""){
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
                 };
             if ($issue == 'factura'){
-                $mail->Subject = "Su factura Foap2023-OOP";
-                $mail->Body = "Hola ".$this->username.", Adjunto su factura correspondienta a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
+                $mail->Subject = "Su albaran Foap2023-OOP";
+                $mail->Body = "Hola ".$this->username.", Adjunto albaran correspondienta a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
                 $mail->addAttachment('../invoicesPDF/'.$pedido.'.pdf');
                 };
            

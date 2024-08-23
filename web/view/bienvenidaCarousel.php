@@ -4,6 +4,8 @@
 <head>
     <title>Bienvenida</title>
     <meta charset="utf-8">
+    <meta description="Basecon favicon">
+    <link rel="shortcut icon" href="..\img\favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -13,12 +15,11 @@
 </head>
 
 <body>
-    <!-- Elemento de audio -->
-    <audio id="startup-sound1" src="../audio/camera-shutter-6305.mp3" preload="auto"></audio>
-    <audio id="startup-sound2" src="../audio/camara_5.mp3" preload="auto"></audio>
+
 <?php
 
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validaciones
+
 
     if ( $_GET['error'] == 'Printed') {
         echo '<div class="alert alert-success" role="alert">Se ha generado el listado en DIR Prints.pdf.</div>';
@@ -35,6 +36,9 @@ if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validac
     if ( $_GET['error'] == 'noOrders') {
         echo '<div class="alert alert-success" role="alert">No hay pedidos para este usuario.</div>';
     };
+    if ( $_GET['error'] == 'InternalError') {
+        echo '<div class="alert alert-success" role="alert">El carrito no corresponde al usuario. Contacte con el administrador</div>';
+    };
 };
 if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['info'])) { 
     if ( $_GET['info'] == 'updateDone') {
@@ -47,6 +51,9 @@ $soy = "bienvenida";
 include "../includes/header.php"; 
 
 ?>
+<!-- Elemento de audio -->
+<audio id="startup-sound1" src="../audio/camera-shutter-6305.mp3" preload="auto"></audio>
+<audio id="startup-sound2" src="../audio/camara_5.mp3" preload="auto"></audio>
 <main>
 
 

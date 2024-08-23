@@ -3,6 +3,8 @@
 <head>
     <title>Tienda</title>
     <meta charset="utf-8">
+    <meta description="Basecon favicon">
+    <link rel="shortcut icon" href="..\img\favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
@@ -33,7 +35,7 @@
         
             <?php
                 if (isset($_SESSION['user'])){    
-                    echo "<a class = 'btn btn-primary card-boton' href='../includes/carrito-inc.php?id=".$id."'>Comprar</a>";
+                    echo "<a class = 'btn btn-primary card-boton' href='../includes/carrito-inc.php?id=".$id."'>Añadir al Carrito</a>";
                 }
             ?>                                                
                     

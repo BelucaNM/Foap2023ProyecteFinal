@@ -23,8 +23,15 @@ if (isset ($_GET['id'])){
 
     $result = $carrito->compruebaUserCarrito();
     if (!$result) {
-        header("Location: ../view/bienvenida.php?error='internalError'");
+        header("Location: ../view/bienvenidaCarousel.php?error=InternalError");
         echo " El carrito no corresponde al user";
+        exit();
+        };
+    
+    $lineas = $carrito->traerLineas();
+    if ($carrito->getTablaNumReg() == 0) {
+        header("Location: ../view/bienvenidaCarousel.php?error=EmptyCart");
+        echo " El carrito está vacio";
         exit();
     };
 
@@ -35,8 +42,8 @@ if (isset ($_GET['id'])){
     $pedido->crearPedido(); // guarda el pedidoid creado en la variable $this->pedidoid
     echo "numero de pedido creado ". $pedido->getPedidoid();
 
-    $lineas = $carrito->traerLineas();
-    foreach ($lineas as $linea) {
+    
+    foreach ($lineas as $linea) { // lineas en carrito
     
         $pedido->setproductoid($linea['productos_pro_id']);
         $pedido->setcantidad($linea['lincar_cantidad']);
@@ -51,7 +58,6 @@ if (isset ($_GET['id'])){
     echo "  <script>  
                  alert('Datos guardados correctamente');
             </script>";
-    header("Location: ../view/verProductos.php?info=deliver");     
-}
-
+    header("Location: ../view/verPedidos.php?info=deliver");     
+    };
 ?>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Alabaran</title>
+    <title>PDF Albaran</title>
     <style>
     *{
         font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -51,35 +51,40 @@
 </head>
 <body>
     <div id = "cabecera">
-        <table id="pedidoLineas">
+        <table>
             <tr>
                 <td>
                     <div id = "imagen">
                         <img  src='../images/150x150.png' alt='' class=''>
                     </div>
                 </td>
+                
                 <td>      
                     <div id = "company">
-                    </div>
+                        <p>ObJEtivos</p>
+                        <p>Serra del Cadi 12 08818 Olivella</p>
+                        <p>Albarán de Pedido Num.:<?=$numcomanda?></p>
+                        <p>Fecha:<?=$pedido[0]['ped_fecha']?></p>
+
+                  </div>
                 </td>
+                
             </tr>
         </table>
     </div>
 
     <div id = "FromTo">
         <div>
-            <p><strong>From:</strong></p>
-            <p>ObJEtivos</p>
-        </div>
-        <div>
-            <p><strong>To:</strong></p>
+            <p><strong>Cliente:</strong></p>
             <h4><?=$nombre." ".$apellido?></h4>
             <h4>NIF : <?=$dni?></h4>
             <h4>Direccion : <?=$direccion?></h4>
             <h4><?=$muncodpos." ".$munnombre?></h4>
             <h4>Email : <?=$email?></h4>
         </div>
-    
+        <div>
+            <p><strong>Vendedor: Beluca Navarrina Martinez</strong></p>
+        </div>
     </div>
 <div>
 <table id="pedidoLineas">
@@ -91,7 +96,6 @@
             <th>Cantidad</th>
             <th>PrecioUnitario</th>
             <th>Subtotal</th>
-            
         </tr>   
     </thead>
     <tbody>
@@ -108,9 +112,6 @@
             echo "</tr>";
             $preu_subtotal += strval($linea['subtotal']);
             }
-            
-            
-            
         ?>
     </tbody>
 <tfoot>
@@ -127,11 +128,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td>Tax-IVA 21%</td>
-        <td text-align="right"><?
-                                $iva =$preu_subtotal *0.21;
-                                echo '$iva';
-                                ?></td>
+        <td>Tax-IVA</td>
+        <td text-align="right"><?='No procede/Venta entre particulares';?></td>
     </tr>
     <tr class = 'row fondoGris'> 
         <td></td>
@@ -139,10 +137,7 @@
         <td></td>
         <td></td>
         <td>Total €</td>
-        <td text-align="right"><?
-                                $total =$preu_subtotal *1.21;
-                                echo '$total';
-                                ?></td>
+        <td text-align="right"><?=$preu_subtotal?></td>
     </tr>
   </tfoot>
 </table>

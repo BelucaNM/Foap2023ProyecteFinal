@@ -40,7 +40,7 @@ class CarritoContr extends Carrito{
     public function setFecha($fecha){$this->fecha = $fecha;}
     public function setusuarioid($usuarioid){$this->usuarioid = $usuarioid;}
     public function setTotal($total){$this->total = $total;}
-    public function setLinea($lineaid){$this->lineaid = $lineaid;}
+    public function setLineaid($lineaid){$this->lineaid = $lineaid;}
     public function setproductoid($productoid){$this->productoid = $productoid;}
     public function setCantidad($cantidad){$this->cantidad = $cantidad;}
     public function setPrecioUnitario($precioUnitario){$this->precioUnitario = $precioUnitario;}
@@ -49,9 +49,8 @@ class CarritoContr extends Carrito{
     /***  */
 
     public function crearCarrito() {
-
         $this->carritoid = $this->insertCarrito($this->usuarioid);
-        
+    
     }
    
     public function añadirAlCarrito() {
@@ -88,10 +87,12 @@ class CarritoContr extends Carrito{
         return $res;
         
     }
-    
-    
     public function borrarCarrito(){
         return $this->deleteCarrito($this->carritoid);
+           
+    }
+    public function borrarLineaCarrito(){
+        return $this->deleteLineaCarrito($this->lineaid);
            
     }
     

@@ -43,7 +43,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['numcomanda']) ){
         
     require_once '../../lib/dompdf/vendor/autoload.php';
     $dompdf = new Dompdf\Dompdf();
-     ob_start();
+    ob_start();
     include '../includes/invoice.php'; // si es dinámica , para que el PHP sea interpretado                
 
     $html_file = ob_get_contents();
@@ -52,7 +52,7 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['numcomanda']) ){
     $dompdf->setPaper('A4', 'portrait');
     $dompdf->render();
     $pdf_string = $dompdf->output(); 
-    $pdf_file_loc = '../invoicesPDF/'.$numcomanda.'.pdf';
+    $pdf_file_loc = '../invoicesPDF/fac'.$numcomanda.'.pdf';
     file_put_contents($pdf_file_loc, $pdf_string);
     
     
