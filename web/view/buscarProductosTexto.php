@@ -22,32 +22,34 @@
     include "../includes/buscarTexto-inc.php";
      
     ?>
-    <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-
-    <div  id="buscarProductos" class = "container pt-3 pb-3 mt-3 bg-light shadow-lg">
-            <form method="post" ref="">
+<section id="cuerpoView" class="section">
+    <div  id="buscarProductos" class = "container mt-3">
+        <form method="post" ref="">
             <span><?=$error;?></span>
-            <div class="form-floating mb-3 mt-3">
-                <input type="text" class="form-control"  id= "texto" name="texto" value= "<?=$texto;?>" placeholder="Introduzca usuario"> 
-                <label for ="texto">Texto</label> 
+            <div class="mb-3">
+                <input type="text" class="form-control"  id= "texto" name="texto" value= "<?=$texto;?>" placeholder="Introduzca texto"> 
+ 
             </div> 
             <div>
                 <input class="btn btn-primary" type="submit" name="signIn" value="Buscar">
             </div>
             </form>
-            <div class = "container pt-3 pb-3 mt-3 bg-light shadow-lg">
-                <a class="btnStack" href = "verProductos.php"> Cerrar Buscador </a>
+            <div class = "container mt-3">
+                <a class="btnStack" href="verProductos.php">Cerrar Buscador</a>
             </div>
     </div>
-    <div>
-    
+    <section>
+
+</section>
+<div id="navOrdena">
+<!--    
     <a href="#" onclick="javascript:ordenaPerNom()">[Ordena por Nom]</a>&nbsp;
     <a href="#" onclick="javascript:ordenaPerCategoria()">[Ordena por Categoria]</a>&nbsp;
     <a href="#"  onclick="javascript:ordenaPerPreu()">[Ordena por Precio ]</a><p>
-
-    <table id="tProductos">
+-->
+</div>   
+<table id="tProductos">
+    <!--
     <tr>
         <th>ProductoId</th>
         <th>Categoria</th>
@@ -58,6 +60,7 @@
         <th>PrecioUnitario</th>
         <th>Acciones</th>
     </tr>
+-->
     <?php 
 /*      foreach ($seleccion as $key => $linea){
         echo "<tr>";
