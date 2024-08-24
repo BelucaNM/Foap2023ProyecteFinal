@@ -137,6 +137,7 @@ class Producto extends Connection{
                                             pro_URLFoto=?, pro_ALTFoto=?, pro_precioUnitario=?, categoriasProductos_cat_id=?, pro_ubicacion = ? WHERE pro_id=?");
             $stmt->execute([$nombre,$descripcion,  $URLFoto, $ALTFoto, $precioUnitario,
                             $categoria, $ubicacion, $id]);
+            return true;
             }
         catch (Exception $e){
                 return $e->getMessage();
@@ -166,6 +167,26 @@ class Producto extends Connection{
              }
         catch (Exception $e){
                 return $e->getMessage();
+            }
+    }
+    protected function updateExistencias($id,$operacion,$n){
+
+
+        try {
+            if ($operacion == 'suma') {
+                $stmt = $this->connect()->prepare("UPDATE existencias SET exi_cantidad = exi_cantidad  + ? 
+                where tiendas_tie_id = ? and productos_pro_id = ?");}
+            
+            else {if ($operacion == 'resta') {
+                $stmt = $this->connect()->prepare("UPDATE existencias SET exi_cantidad = exi_cantidad  - ? 
+                where tiendas_tie_id = ? and productos_pro_id = ?");}
+            }
+           
+            $stmt->execute([$n,2,$id]); // la tienda id=2 es el almacen ahora
+            return true;
+             }
+        catch (Exception $e){
+            return $e->getMessage();
             }
     }
     

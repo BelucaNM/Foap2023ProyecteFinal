@@ -81,9 +81,15 @@ class ProductoContr extends Producto{
         return false;
     }
     public function actualizar () {
-        $this->actualizarDatos( $this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
+        $result = $this->actualizarDatos( $this->nombre,$this->descripcion,  $this->URLFoto, $this->ALTFoto, $this->precioUnitario,
                                 $this->categoria, $this->ubicacion, $this->id);
-
+        if($result){
+                header("Location: ../view/verProductos.php?error=updateDone");
+                exit();
+        }else{
+                header("Location: ../view/verProductos.php?info=FailedStmt");
+                exit();
+        };
     }
     public function eliminar() {
         $this->eliminarDatos($this->id);
@@ -92,7 +98,9 @@ class ProductoContr extends Producto{
         return $this->getExistencias($this->id);
 
     }
-    public function actualizarExistencias() {}
+    public function actualizaExistencias($operacion,$n) {
+        $result = $this->updateExistencias($this->id,$operacion,$n);
+    }
 
 }
 

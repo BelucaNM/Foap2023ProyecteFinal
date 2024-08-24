@@ -55,9 +55,15 @@ class CarritoContr extends Carrito{
    
     public function añadirAlCarrito() {
 
-        $this->alCarrito($this->carritoid,$this->cantidad,$this->precioUnitario,$this->productoid);
-    //    $this->actualizarCarrito($this->carritoid); aqui se deberia calcular el importe total
-   
+        $res = $this->alCarrito($this->carritoid,$this->cantidad,$this->precioUnitario,$this->productoid);
+        if(!$res){
+            header("Location: ../view/verProductoExistencias.php?error=FailedStmt");
+            exit();
+        }else{
+            header("Location: ../view/verProductos.php?info=carro");
+            exit();
+        };
+    
     }
     
     public function traerLineas() {

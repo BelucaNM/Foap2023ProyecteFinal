@@ -5,7 +5,7 @@ session_start();
 print_r($_SESSION);
 
 if (!isset ($_SESSION['user'])){
-            header("Location: ../view/bienvenida.php?error='noLogged'");
+            header("Location: ../view/bienvenida.php?error=noLogged");
             // " No es posible comprar sin estar identificado";
             exit();
         }
@@ -14,6 +14,9 @@ require "../model/Carrito.php";
 require "../controler/carritoContr.php";
 require "../model/Pedido.php";
 require "../controler/pedidoContr.php";
+require "../model/Producto.php";
+require "../controler/productoContr.php";
+
 
 
 if (isset ($_GET['id'])){
@@ -38,6 +41,7 @@ if (isset ($_GET['id'])){
     
 // crea un pedido 
     $pedido = new PedidoContr("","",$_SESSION['userId']);
+    $producto = new ProductoContr();
     
     $pedido->crearPedido(); // guarda el pedidoid creado en la variable $this->pedidoid
     echo "numero de pedido creado ". $pedido->getPedidoid();
@@ -49,7 +53,10 @@ if (isset ($_GET['id'])){
         $pedido->setcantidad($linea['lincar_cantidad']);
         $pedido->setPrecioUnitario($linea['lincar_precioUnitario']);
         $pedido->crearLinea();
-        // ??actualizar existencias
+
+        // actualizar existencias
+        $producto->setId($linea['productos_pro_id']);
+        $producto->actualizaExistencias('resta',1);
         };
     
     

@@ -5,10 +5,6 @@ require "../model/producto.php";
 require_once "../controler/ProductoContr.php";
 $producto = new ProductoContr();
 
-if ( isset($_GET['error']) && $_GET['error'] == 'noLogged') {
-    echo '<div class="alert alert-success" role="alert">Por favor, recuerde que para comprar deberá primero identificarse en LOGIN.</div>';
-    };
-
 if (isset($_GET['id'])){
 
     $id = $_GET['id'];
@@ -45,9 +41,7 @@ if (isset($_POST['actualizar'])){
 
     $producto->actualizar();
 
-    echo "<script>  alert('Datos actualizados');
-                document.location='../view/verProductos.php';
-    </script>";
+    
         
     }
 

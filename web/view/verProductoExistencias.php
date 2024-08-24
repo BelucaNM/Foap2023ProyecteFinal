@@ -15,6 +15,17 @@
 <body>
 
 <?php 
+if (($_SERVER['REQUEST_METHOD'] == 'GET') && isset($_GET['error'])) { // Validaciones
+    if ( $_GET['error'] == 'FailedStmt') {
+        echo '<div class="alert alert-success" role="alert">El producto no se ha podido incorporar al carrito.</div>';
+    };
+    if ( $_GET['error'] == 'noPrecio') {
+        echo '<div class="alert alert-success" role="alert">El producto no se ha podido incorporar al carrito porque no consta precio. Contacte con tienda.</div>';
+    };
+    if ( $_GET['error'] == 'noLogged') {
+        echo '<div class="alert alert-success" role="alert">Por favor, recuerde que para comprar deberá primero identificarse en LOGIN.</div>';
+        };
+};
     $title="Producto y Existencias";
     $soy = "producto";
     include "../includes/header.php"; 
@@ -35,7 +46,7 @@
         
             <?php
                 if (isset($_SESSION['user'])){    
-                    echo "<a class = 'btn btn-primary card-boton' href='../includes/carrito-inc.php?id=".$id."'>Añadir al Carrito</a>";
+                    echo "<a class = 'btn btn-primary card-boton' href='../includes/añadirCarrito.php?id=".$id."'>Añadir al Carrito</a>";
                 }
             ?>                                                
                     

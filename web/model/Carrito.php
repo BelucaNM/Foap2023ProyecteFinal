@@ -13,12 +13,18 @@ class Carrito extends Connection{
     Protected function insertCarrito($usuarioid) {
         
         try {
+
+            $con = $this->connect();
             
-            $stmt = $this->connect()->prepare("INSERT INTO ".$this->tablaNombre." (usuarios_usu_id) VALUES (?)");
+            $stmt = $con->prepare("INSERT INTO ".$this->tablaNombre." (usuarios_usu_id) VALUES (?)");
             $stmt->execute([$usuarioid]);
-            $id = $this->connect()->lastInsertId();
-            return $id;
-            
+
+            $stmt = $con->prepare("SELECT LAST_INSERT_ID() AS id");
+            $stmt->execute();
+            $res= $stmt->fetchAll();
+            var_dump ($res);
+            return $res[0]['id']; // devuelve el identificador del registro creado
+                        
             }
         // la fecha de de alta/modificació de datos se actualiza en MySql a current_timestamp
         catch (Exception $e){
@@ -38,7 +44,7 @@ class Carrito extends Connection{
             return true;
             }
         catch (Exception $e){
-            echo $e->getMessage();
+            echo "Error al insertar datos linea de carrito".$e->getMessage();
             return $e->getMessage();
             }
     
