@@ -167,4 +167,12 @@
     thead {color:green;}
     tbody {color:blue;}
     tfoot {color:red;}
+
+    /* Iconos */              
+    .icoCarro {font-size: 20px;}
+    .icoBasu {font-size: 20px;}
+    .icoEscr {font-size: 20px; opacity : 0}
+    .icoDown {font-size: 20px;}
+    
+    .invisible {opacity: 0;}
  

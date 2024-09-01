@@ -79,9 +79,9 @@
                 <li class="nav-item">
                     <?php
                         if  (array_key_exists('a_carrito',$tablaNav[$soy])){
-                            echo '<a class="nav-link" href="verCarrito.php">Ver Carrito</a>';
+                            echo '<a class="nav-link" href="verCarrito.php"><span class="icoCarro">&#128722;</span></a>';
                         }else{
-                            echo '<a class="nav-link not-active" href="verCarrito.php">Ver Carrito</a>';
+                            echo '<a class="nav-link not-active" href="verCarrito.php"><span class="icoCarro">&#128722;</span></a>';
                         };
                     ?>
                 </li>

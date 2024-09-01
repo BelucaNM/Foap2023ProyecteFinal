@@ -3,15 +3,15 @@ documentacion
 documentacionBD
 
 
+validaciones JavaScript
 favicon
 logo
-codigo carruserl
-codifo model
+codigo carrusel en productos
+codigo model
 homegeneizar codigo
-validaciones JavaScript
-CSS
 
-generar algin pdf ( pedido)
+revisar CSS
+
 
 cosas que faltan ----gestion de pagos
 ----comprobar para moviles
