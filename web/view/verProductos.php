@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="canonical" href="https://multitod.com/iconos-para-paginas-web-codigo-php.php" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="../includes/productos.js"></script>
 </head>
@@ -62,7 +61,7 @@ include "../includes/verProductos-inc.php";
                     echo "<td>".$todo['pro_URLFoto']."</td>";
                     echo "<td>".$todo['pro_ALTFoto']."</td>";
                     echo "<td align='right'>".$todo['pro_precioUnitario']."</td>";
-                    echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a> </td>";
+                    echo "<td>  <a href='../view/verProductoExistencias.php?id=".$todo['pro_id']."'>Ver</a></td>";
                     echo "</tr>";
                     }
                     ?>

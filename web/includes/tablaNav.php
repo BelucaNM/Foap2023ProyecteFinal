@@ -50,7 +50,6 @@ $_tablaNav_sinSession =  array (
             'a_login'=>true,     
              
         ),
-        
         "login" => array (
             'a_bienvenida'=>true,
             'a_tiendas'=>true,
@@ -83,7 +82,6 @@ $_tablaNav_sinSession =  array (
             'a_login'=>true,    
             
         ),
-       
 );
 $_tablaNav_conSession =  array (
     // Con session iniciada
@@ -130,18 +128,16 @@ $_tablaNav_conSession =  array (
         'a_carrito'=>true,    
         'a_logout'=>true,   
         'a_datos'=>true,  
-        
- 
     ),
     "buscar" => array
         (
-            'a_bienvenida'=>true, 
-            'a_tiendas'=>true,
-            'a_productos'=>true,
-            'a_pedidos'=>true,    
-            'a_carrito'=>true,    
-            'a_logout'=>true,   
-            'a_datos'=>true,   
+        'a_bienvenida'=>true, 
+        'a_tiendas'=>true,
+        'a_productos'=>true,
+        'a_pedidos'=>true,    
+        'a_carrito'=>true,    
+        'a_logout'=>true,   
+        'a_datos'=>true,   
         ),
     "producto" => array 
     (
@@ -153,7 +149,6 @@ $_tablaNav_conSession =  array (
         'a_carrito'=>true,    
         'a_logout'=>true,   
         'a_datos'=>true,  
-        
     ),
     "carrito"=> array 
     (
@@ -164,7 +159,6 @@ $_tablaNav_conSession =  array (
         'a_pedidos'=>true,   
         'a_logout'=>true, 
         'a_datos'=>true,  
-     
     ),
     "mispedidos" => array 
     (
@@ -175,7 +169,6 @@ $_tablaNav_conSession =  array (
         'a_carrito'=>true,   
         'a_logout'=>true, 
         'a_datos'=>true,  
-         
     ),
     "pedido" => array 
     (
@@ -187,9 +180,7 @@ $_tablaNav_conSession =  array (
         'a_carrito'=>true,   
         'a_logout'=>true, 
         'a_datos'=>true,  
-         
     ),
-  
     "misDatos"=> array 
     (   'a_bienvenida'=>true,
         'a_tiendas'=>true,
