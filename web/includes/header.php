@@ -22,8 +22,8 @@
         $user = $_SESSION['user'];
     };
     ?>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
-        <div class="container-fluid d-flex align-items-center">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="container-fluid">
         <?php
             if  (!array_key_exists($soy, $tablaNav)) {
                 echo 'Opción no configurada en barra de NAVegación. Contacte con el Administrador.';
@@ -41,7 +41,7 @@
                 <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <div class="collapse navbar-collapse" id="collapsibleNavbar" style="text-align: left">
         
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -80,23 +80,22 @@
                         };
                     ?>
                 </li>
-                <li class="nav-item me-auto">
+                <li class="nav-item">
                     <?php
                         if  (array_key_exists('a_carrito',$tablaNav[$soy])){
-    //                        echo '<a class="nav-link" href="verCarrito.php"><span class="icoCarro">&#128722;</span></a>';
-                            echo '<a class="nav-link" href="verCarrito.php"><i class="bi bi-cart"></i></a>';
+                            echo '<a class="nav-link" href="verCarrito.php"><i class="bi bi-cart">Carrito</i></a>';
                         }else{
-                            
-    //                        echo '<a class="nav-link not-active" href="verCarrito.php"><span class="icoCarro">&#128722;</span></a>';
-                            echo '<a class="nav-link not-active" href="verCarrito.php"><i class="bi bi-cart"></i></a>';
+                            echo '<a class="nav-link not-active" href="verCarrito.php"><i class="bi bi-cart">Carrito</i></a>';
                         };
                     ?>
                 </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUsuario" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownUsuario" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 100px;">
                         Usuario
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <ul class="dropdown-menu " aria-labelledby="navbarDropdownUsuario">
                         <li>
                         <?php
                             if  (array_key_exists('a_login',$tablaNav[$soy])){

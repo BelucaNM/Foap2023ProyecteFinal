@@ -254,7 +254,7 @@ PHPmailer para mensajes en tiempo real
 He realizado pruebas de uso en navegadores
 Google Chrome,  Y Mozilla Firefox Developer Edition.
  
-
+Asegura la accesibilidad usando un elemento <nav> en barra de navegacion para identificarla a los usuarios de asistencias
  
  
                                                                                         
