@@ -40,18 +40,18 @@
 
 <section id="cuerpoView" class="section">
   <div class="container mt-3">
-    <form action="../includes/login-inc.php" method="post">
+    <form action="../includes/login-inc.php" method="post" autocomplete="off">
       <div class="mb-3">
         <label for="uid">Username:</label>
-        <input type="text" class="form-control" id="uid" placeholder="Enter your username" name="uid">
+        <input type="text" class="form-control" id="uid" placeholder="Introduzca su nombre de usuario" name="uid" autocomplete="nope">
       </div>
       <div class="mb-3">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+        <input type="password" class="form-control" id="pwd" placeholder="Introduzca su password" name="pwd" autocomplete="off">
       </div>
       <div class="mb-3">
-        <a href="forgotpassword.php">Forgot Password?</a> /
-        <a href="usuarios_signup.php">Don't have an account yet? Sign up here!</a>
+        <a href="forgotpassword.php">Ha olvidado el password?</a> /
+        <a href="usuarios_signup.php">¿Todavía no es usuario? ¡Pulse para darse de alta !</a>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>

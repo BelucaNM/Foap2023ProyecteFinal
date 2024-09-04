@@ -258,7 +258,7 @@ class UsuarioContr extends Usuario{
 //        echo $this->password;
         if (!$result) {
                 echo " no se ha podido hacer la actualización";
-                header ("location: ../bienvenida.php?error=FailedStmt");
+                header ("location: ../bienvenidaCarousel.php?error=FailedStmt");
                 exit();
         } else {
                 echo " actualización realizada con éxito";
@@ -334,7 +334,7 @@ public function updateUser(){
     $result = $this->actualizar( $this->apellido, $this->nombre, $this->dni,
                             $this->email, $this->direccion, $this->municipio, $this->id );
     if ($result){
-        header("Location: ../view/bienvenida.php?info=UpdateDone"); //Volver a la pagina inicial
+        header("Location: ../view/bienvenidaCarousel.php?info=UpdateDone"); //Volver a la pagina inicial
         exit();
     } else {
         header("Location: ../view/usuarios_misDatos.php?error=FailedStmt");

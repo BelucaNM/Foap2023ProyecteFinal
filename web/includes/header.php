@@ -116,7 +116,7 @@
                         ?>
                         </li>
                         <li><hr class="dropdown-divider"></li>
-                        <li">
+                        <li>
                         <?php
                             if  (array_key_exists('a_logout',$tablaNav[$soy])) {
                                 echo '<a class="dropdown-item" href="../includes/logout.php">Logout</a>';

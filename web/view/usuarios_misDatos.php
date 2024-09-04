@@ -1,11 +1,3 @@
-<?php 
-
-$title="Mis Datos";
-$soy = "misDatos";
-include "../includes/header.php"; 
-include "../includes/misDatos-inc.php"; 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +12,14 @@ include "../includes/misDatos-inc.php";
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+<?php 
+
+$title="Mis Datos";
+$soy = "misDatos";
+include "../includes/header.php"; 
+include "../includes/misDatos-inc.php"; 
+
+?>
     
 <section id="cuerpoView" class="section">
     <div class="container mt-3">
@@ -77,26 +77,53 @@ include "../includes/misDatos-inc.php";
 // Validación de campos de entrada en el navegador
 
 document.addEventListener("DOMContentLoaded", function() {
-
-    let onlyLetters = /^[A-Za-z]+$/;
+    let onlyLetters = /^[a-zA-ZáéíóúüÁÉÍÓÚÜñÑ ]*$/u;
     let onlyNumbers = /^[0-9]$/;
     let formatoFecha= /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
     let patternDni= /^[0-9]{8}[A-Za-z]{1}$/;
     let patternEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     let fdescripcion25 ="";
 
+    function validate_input($input)
+    { // sanear datos
+        $input.trim(); // quitar blancos al principio y al final
+        $input = escapeHtml($input); // quitar caracteres html
+        $input = stripSlashes($input); // quitar slashes
+        return $input;
 
-    function countDigits(str) {
-        var count = 0;
-        let array = str.split('');
-        array.forEach(function(val) {
-         if((val.charCodeAt(0)>47) && (val.charCodeAt(0)<58)) {
-            count += 1;
-            }            
+    };
+
+    function stripSlashes (str) {
+        return String(str).replace(/\\/g, '');
+        };
+  
+    function escapeHtml (str) {
+        var entityMap = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;',
+            '/': '&#x2F;',
+            '`': '&#x60;',
+            '=': '&#x3D;'
+        };
+        return String(str).replace(/[&<>"'`=\/]/g, function (s) {
+        return entityMap[s];
         });
-        return count;
-        }
+    };
 
+function countDigits(str) {
+    var count = 0;
+    let array = str.split('');
+    array.forEach(function(val) {
+     if((val.charCodeAt(0)>47) && (val.charCodeAt(0)<58)) {
+        count += 1;
+        }            
+    });
+    return count;
+    };
+    
     const emiForm = document.getElementById("datosForm");
     console.log (emiForm);
     emiForm.addEventListener('submit', (event)=>{
@@ -111,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // validacion apellido 
         fapellido = document.getElementById("apellido").value.trim()
-         // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intodzca solo espacios en blanco
+        // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intoduzca solo espacios en blanco
         let fapellidoError = document.getElementById("fapellidoError") //elemento span para mostrar errores en la entrada del campo
         
         fapellidoError.innerHTML =""
@@ -119,12 +146,12 @@ document.addEventListener("DOMContentLoaded", function() {
             fapellidoError.innerHTML = "El campo apellido no puede estar vacio"
             error = true
         }else{ 
-            found= countDigits(fapellido)
-            if ((found >= 1 )) {
+            if (!onlyLetters.test(fapellido)){
                 error = true
-                fapellido1Error.innerHTML ="El campo apellido no debe tener números"
-            }
-        };
+                fapellidoError.innerHTML = "El apellido debe contener solo letras"
+                }
+        }
+        
 
         // validacion nombre
         let fname = document.getElementById("nombre").value.trim()
@@ -136,11 +163,9 @@ document.addEventListener("DOMContentLoaded", function() {
             fnameError.innerHTML = "El campo nombre no puede estar vacio"
             error = true
         }else{
-            found= countDigits(fname)
-            if ((found >= 1 )) {
-                unCampoConNumero = true
+            if (!onlyLetters.test(fname)){
                 error = true
-                fnameError.innerHTML ="El campo nombre no debe tener números"
+                fnameError.innerHTML ="El campo nombre debe contener solo letras"
             }
         };
     
@@ -156,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fdniError.innerHTML = ""
 
         if ((fdni.length != 9) ||  (numDNI<0) || (numDNI>99999999)) {
-            fdniError.innerHTML= "El numero proporcionado no es valido "
+            fdniError.innerHTML= "El numero proporcionado no es valido"
             error = true
         } else {
             numResto23 = numDNI  % 23;
