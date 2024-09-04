@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <Title > ejercicio 1 se lanza un escucha sobre un input 
+            de manera que si se detecta una entrada se hace una validacion y se pueden personalizar los mensajes</Title>
+            <style>
+                * {font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+            </style>
+    </head>
+    <body>
+        <form id="miForm" name="miForm" method="get">
+            <div>
+            <label> Nombre:</label>
+            <br><input type="text" id="fname" name="fname" size="30" placeholder="Introducir nombre">
+            <br><span id="fnameError" style="font-size: small; color: #f00;"></span>
+            </div>
+
+            <div>
+            <br><label> Apellidos:</label>
+            <br><input type="text" id="fapellido1" name="fapellido1" size="30" placeholder="Introducir  1er apellido">
+            <br><span id="fapellido1Error" style="font-size: small; color: #f00;"></span>
+            <br><input type="text" id="fapellido2" name="fapellido2" size="30" placeholder="Introducir  2º apellido">
+            <br><span id="fapellido2Error" style="font-size: small; color: #f00;"></span>
+            <br><span id="fnombreError" style="font-size: small; color: #f00;"></span>
+            </div>
+
+            <div>
+            <br><label> Dni:</label>
+            <br><input type="text" id = "fdni" name="fdni"  placeholder="Introducir DNI">
+            <br><span id="fdniError" style="font-size: small; color: #f00;"></span>
+            </div>
+
+            <div>
+            <br><label> email:</label>
+            <br><input type="text"  id="femail" name="femail"  size="50" placeholder="Introducir email">
+            <br><span id="femailError" style="font-size: small; color: #f00;"></span>
+            </div>
+            <br>
+            <div>
+                <div>
+                    <input type="radio" id="fespañol" name="fnacion" value="español" checked />
+                    <label for="fespañol">Español</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="fresidente" name="fnacion" value="residente" />
+                    <label for="fresidente">Residente UE</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="fnoResidente" name="fnacion" value="noResidente" />
+                    <label for="fnoResidente">No residente</label>
+                </div>
+            </div>
+           
+
+            <div>
+            <br><input type="checkbox" id ="facepto" name ="facepto"><label></label>Acepto las condiciones de uso</label>
+            <span id="faceptoError" style="font-size: small; color: #f00;"></span>
+            
+            <br><br><textarea  id="fobservaciones" name="fobservaciones" rows="4" cols="100" placeholder="Introducir observaciones:"></textarea>
+            <span id="fobservacionesError" style="font-size: small; color: #f00;"></span>
+            </div>
+    
+            <br><input type="submit" name="OK" value="OK">
+
+<!-- >            <button> Enviar </button> Es equivalente al input submit<-->
+
+        </form>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        let onlyLetters = /^[A-Za-z]+$/;
+        let onlyNumbers = /^[0-9]$/;
+        let formatoFecha= /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
+        let patternDni= /^[0-9]{8}[A-Za-z]{1}$/;
+        let patternEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        let fdescripcion25 ="";
+
+
+        function countDigits(str) {
+            var count = 0;
+            let array = str.split('');
+            array.forEach(function(val) {
+                if((val.charCodeAt(0)>47) && (val.charCodeAt(0)<58)) {
+                    count += 1;
+                }            
+            });
+            return count;
+        }
+
+        const emiForm = document.getElementById("miForm");
+		console.log (emiForm);
+		emiForm.addEventListener('submit', (event)=>{
+        
+            let error= false
+
+            //interrumpe el funcionamiento del evento que lo envoca en este caso es el submit, por lo tanto para el envio del formulario
+            event.preventDefault()
+
+            // FNAME
+            let unnumero = false
+            let found = ""
+            let unCampoConNumero = false
+            // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intodzca solo espacios en blanco
+            let fname = document.getElementById("fname").value.trim()
+            //accedo al elemento span nombreError
+            let fnameError = document.getElementById("fnameError")
+
+            // validacion fname
+            if(fname.length==0){ // obligatorio
+                fnameError.innerHTML = "El campo nombre es obligatorio"
+                error = true
+            }else{
+                
+                found= countDigits(fname)
+                if ((found == 1 )) {unCampoConNumero = true;}
+                fnameError.innerHTML =""
+            };
+
+            let fapellido1 = document.getElementById("fapellido1").value.trim()
+            //accedo al elemento span nombreError
+            let fapellido1Error = document.getElementById("fapellido1Error")
+            if(fapellido1.length==0){ // obligatorio
+                fapellido1Error.innerHTML = "Los apellidos son obligatorios"
+                error = true
+            }else{ 
+                found= countDigits(fapellido1)
+                if ((found == 1 )) {unCampoConNumero = true}
+                fapellido1Error.innerHTML =""
+            };
+
+            let fapellido2 = document.getElementById("fapellido2").value.trim()
+            //accedo al elemento span nombreError
+            let fapellido2Error = document.getElementById("fapellido2Error")
+            if(fapellido2.length==0){ // obligatorio
+                fapellido2Error.innerHTML = "Los apellidos son obligatorios"
+                error = true
+            }else {
+                found= countDigits(fapellido2)
+                if ((found == 1 )) {unCampoConNumero = true}
+                fapellido2Error.innerHTML =""
+            };
+
+            if (!unCampoConNumero) {
+                fnombreError.innerHTML ="Ninguno de los tres campos anteriores tienen un número"
+                error = true
+            } else {
+                fnombreError.innerHTML ="";
+            };
+            
+            
+            // FDNI
+                      
+            var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E','T'];
+
+            let fdni = document.getElementById("fdni").value.trim()
+            let numDNI   = fdni.substring(0,8);
+            let letraDNI = fdni.substring(8,9);
+            let fdniError = document.getElementById("fdniError")
+            
+
+            if ((fdni.length != 9) ||  (numDNI<0) || (numDNI>99999999))
+                    {fdniError.innerHTML= "El numero proporcionado no es valido ";
+                    error = true
+            } else {
+                numResto23 = numDNI  % 23;
+                letraDNIasignada = letras [numResto23];
+                if ( letraDNIasignada !== letraDNI) {
+                    fdniError.innerHTML = " la letra asignada deberia ser " + letraDNIasignada+ " no se corresponde con la letra introducida";
+                error = true
+                }
+             else  fdniError.innerHTML =""; }
+
+
+             // validacion email
+             let femail = document.getElementById("femail").value.trim()
+             let femailError = document.getElementById("femailError")
+             if(femail.length==0){ // obligatorio
+                femailError.innerHTML = "El campo nombre es obligatorio"
+                error = true
+            }else{
+                if (!patternEmail.test(femail)){
+                    error = true;
+                    femailError.innerHTML = " Introduzca un email correcto"
+            }else {
+                femailError.innerHTML =""
+            }};
+
+
+
+            // "acepto las condiciones.."marcado
+            let facepto = document.getElementById("facepto")
+            let faceptoError = document.getElementById("faceptoError")
+            console.log (facepto)
+            if (!facepto.checked) { 
+                faceptoError.innerHTML = "Debe aceptar las condiciones de uso"
+                error = true
+            }
+
+            //fobservaciones 
+            let fobservaciones = document.getElementById("fobservaciones").value.trim()
+            
+            let fobservacionesError = document.getElementById("fobservacionesError")
+            if (fobservaciones.length >200) { 
+                fobservacionesError.innerHTML = "El campo descripcion no puede tener mas de 200 caracteres"
+                error = true
+            }else{
+                fobservacionesError.innerHTML =""
+            }
+            
+         
+            //Si no hay ningun error enviar el formulario
+            if(!error) emiForm.submit()
+                
+        });
+        
+
+/*
+    document.getElementById("fdescripcion").addEventListener('keydown', ()=>{
+        let fdescripcion = "";
+        let fcontador = 0;
+        if (document.getElementById("fdescripcion").value != null ) {
+            fdescripcion = document.getElementById("fdescripcion").value;
+            fcontador = fdescripcion.length;
+        };
+        console.log ( "desde Down, desc:" + fdescripcion + "cont:" + fcontador   );
+
+
+        if (fcontador == 25) {
+            fdescripcion25 = fdescripcion;
+        }
+        }); 
+
+    document.getElementById("fdescripcion").addEventListener('keyup', ()=>{
+        let fdescripcion = document.getElementById("fdescripcion").value;
+        let fcontador = fdescripcion.length;
+        console.log ( "desde UP, desc:" + fdescripcion + "cont:" + fcontador   );
+        if (fcontador > 25) {
+            
+            document.getElementById("fdescripcionError").innerHTML = "El campo descripcion no puede tener mas de 25 caracteres";
+            document.getElementById("fdescripcion").value = fdescripcion25;
+            document.getElementById("fcontador").innerHTML = "25/25";
+            fdescripcion = fdescripcion25;
+
+        } else {
+    
+            document.getElementById("fcontador").innerHTML = fcontador+"/25";
+        
+        }
+        console.log ( "desde UP, desc:" + fdescripcion + "cont:" + fcontador   );
+        }); 
+
+        */
+
+    });
+
+    </script>
+    </body>
+
+</html>

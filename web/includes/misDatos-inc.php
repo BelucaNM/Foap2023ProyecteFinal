@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     //print_r($_POST);
 
     // recoger datos del formulario
-    $usuario->setEmail($_POST["email"]);
+    $usuario->setEmail($_POST["femail"]);
     $usuario->setApellido($_POST["apellido"]);
     $usuario->setNombre($_POST["nombre"]);
     $usuario->setDni ($_POST["dni"]);

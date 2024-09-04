@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta HTTP-EQUIV="Expires" CONTENT="no-cache">
+		<meta charset="UTF-8">
+		<meta name="description" content="Formulario">
+		<title>Formulario de registro - Mi web</title>
+		<style>
+			label:not(.inline), input:not(.inline), textarea{
+				display: block;
+			}
+			
+            * {font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
+            
+		</style>
+	</head>
+	<body>
+		<form method="GET" action="#" id="miForm" name="miForm">
+			<h2>Formulario de registro</h2>			
+			<label for="lnombre"><strong>Nombre:</strong><input id="lnombre" type="text" name="nombre" maxlength="50" size="50"></label>
+			<span id="lnombreError" style="font-size: small; color: #f00;"></span><br>
+			<label for="lapellido1"><strong>Primer apellido:</strong><input id="lapellido1" type="text" name="apellido1" maxlength="50" size="50"></label>
+			<span id="lapellido1Error" style="font-size: small; color: #f00;"></span><br>
+			<label for="lapellido2"><strong>Segundo apellido</strong><input id="lapellido2" type="text" name="apellido2" maxlength="50" size="50"></label>
+			<span id="lapellido2Error" style="font-size: small; color: #f00;"></span><br>
+			<div id = "laEdad">
+				<label for="ledad"><strong>Edad:</strong>
+				<input id="ledad" type="text" name="edad" maxlength="50" size="50"></label>
+			</div>
+			<span id="ledadError" style="font-size: small; color: #f00;"></span>
+			<label for="ltelefono"><strong>Teléfono:</strong></label>
+			<input id="ltelefono" name="telefono" type="text" size="50"></label>
+			<span id="ltelefonoError" style="font-size: small; color: #f00;"></span><br>
+			<label><strong>Género:</strong></label>
+			<label for="hombre" class="inline">Hombre</label>
+			<input type="radio" id="hombre" name="sexo" class="inline">
+			<label for="mujer" class="inline">Mujer</label>
+			<input type="radio" id="mujer" name="sexo" class="inline">
+			<span id="lsexoError" style="font-size: small; color: #f00;"></span><br>
+
+			<label for="lsel"><strong>Población: </strong></label>
+			<select id="lsel" name="poblacion">
+			<option value="">---------</option>
+			<option value="Alicante" >Alicante</option>
+			<option value="Madrid" >Madrid</option>
+			<option value="Sevilla" >Sevilla</option>
+			<option value="Valencia" >Valencia</option>
+			</select>
+			<br><span id="lselError" style="font-size: small; color: #f00;"></span>
+				
+			<label><strong>Comentarios:</strong></label>
+			<textarea name="comentarios" rows="10" cols="50">Tus comentarios aquí...</textarea>
+				
+			<input id="lpublicidad" type="checkbox" name="publicidad" class="inline"><label for="lpublicidad" class="inline">Deseo recibir información sobre
+novedades y ofertas.</label>
+<br>
+			<input id="laceptar" type="checkbox" name="aceptar" class="inline"><label for="laceptar" class="inline">Declaro haber leido y aceptar las
+condiciones generales del programa y la normativa sobre protección de
+datos. </label>
+			<br><span id="laceptarError" style="font-size: small; color: red;"></span>
+				
+			<input type="submit" name="envio" value="Enviar">
+		</form>
+
+	<script>
+
+	document.addEventListener("DOMContentLoaded", function() {
+		let patternTelefono = /^\d{3}-\d{3}-\d{3}$/;
+		function fesVacio(str){
+			let etiqueta = document.getElementById(str).value.trim(); //quitamos espacios blancos delante y detras
+			strError = str +"Error";
+			console.log(strError);
+			let etiquetaError = document.getElementById(strError)
+            if(etiqueta.length==0){ // obligatorio
+                etiquetaError.innerHTML = "El campo es obligatorio"
+                return true
+            }else{
+                etiquetaError.innerHTML =""
+				return false
+            };
+		};
+
+		const emiForm = document.getElementById("miForm");
+		console.log (emiForm);
+		emiForm.addEventListener('submit', (event)=>{
+            
+			// inicializar variables
+			
+
+            //interrumpe el funcionamiento del evento que lo envoca en este caso es el submit, por lo tanto para el envio del formulario
+            event.preventDefault()
+
+            // nombre
+			let error= false ;
+			error = fesVacio ("lnombre");
+			error = fesVacio ("lapellido1");
+			error = fesVacio ("lapellido2");
+
+			//edad
+			error = fesVacio ("ledad");
+
+			let ledad = document.getElementById("ledad").value
+			const ledadError = document.getElementById('ledadError');
+			
+			if (document.getElementById("unSpan")){ unSpan.remove();};
+
+			if (isNaN(parseInt(ledad))){
+				error = true;
+                ledadError.innerHTML = " La edad debe ser un entero  ";
+			} else {
+				if (ledad<18 || ledad>65){
+					error = true;
+                	ledadError.innerHTML = " La edad debe ser un entero entre 18 y 65 "
+				} 
+					
+				unSpan = document.createElement("span");
+				unSpan.id = "unSpan";
+				unSpan.style='font-size: small; color: blue;';
+            		
+				if ((ledad>=18) && (ledad<=65)){
+						unSpan.innerHTML = "Debes estar trabajando o en paro ";}
+				if (ledad>65) {
+						unSpan.innerHTML = "Deberías estar Jubilado ";	}
+				if (ledad<18) {
+						unSpan.innerHTML = "Que haces en esta página?!! ";	}
+				
+				document.getElementById("laEdad").appendChild(unSpan);
+				 
+			};		
+
+			// Telefono
+			error = fesVacio ("ltelefono");
+			let ltelefono = document.getElementById("ltelefono").value.trim();
+			if (!patternTelefono.test(ltelefono)){
+                    error = true;
+                    ltelefonoError.innerHTML = " Introduzca un telefono en formato 999-999-999"
+            } else {
+					ltelefonoError.innerHTML =""
+            };
+
+			
+			console.log (document.querySelector('input[name="sexo"]:checked'))
+			if (document.querySelector('input[name="sexo"]:checked') == null){
+					error = true;
+                    lsexoError.innerHTML = " Indique sexo"
+            }else {
+					lsexoError.innerHTML =""
+            };
+
+			let lapoblacion = document.getElementById('lsel').selectedOptions[0].innerText;
+            console.log (lapoblacion);
+			if ((lapoblacion === null) || (lapoblacion === "---------")){
+					error = true;
+                    lselError.innerHTML = " Indique poblacion"
+            }else {
+					lselError.innerHTML =""
+            };
+			
+				
+			let laceptar = document.getElementById("laceptar");
+			let laceptarError = document.getElementById("laceptarError")
+            if (!laceptar.checked) { 
+                laceptarError.innerHTML = "Debe aceptar las condiciones de uso"
+                error = true
+			}else {
+				laceptarError.innerHTML =""
+            };
+
+                     
+            //Si no hay ningun error enviar el formulario
+            if(!error) emiForm.submit()
+                
+        });
+	
+	});
+	</script>		
+	</body>
+</html>

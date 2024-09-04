@@ -408,28 +408,28 @@ Public function enviaEmail($issue, $pedido=""){
         //  $mail->addAddress('$this->email', '$this->username'); // comprador
         //  $mail->addCC('beluca.navarrina@gmail.com', 'Beluca'); // vendedor
             $mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
-            $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
+            $mail->Subject = "Mensaje desde Foap2023";
 
         //Replace the plain text body with one created manually
         //Para enviar texto plano     
             
             if ($issue == 'forgotPassword'){
-                $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
+                $mail->Subject = "Recuperar Contraseña Foap2023/Tienda";
                 $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
-                $mail->Body = "Hola,\n\nPara recuperar tu contraseña, haz click en el enlace siguiente. Si no has solicitado este
-                    correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
+                $mail->Body = "Hola,\n\nPara recuperar su contraseña, haga click en el enlace siguiente. Si no ha solicitado este
+                    correo, puede ignorarlo.\n\nSaludos,\n\nFoap2023/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para crear nueva contraseña</a>"); 
                 };
             if ($issue == 'activacion'){
-                $mail->Subject = "Recuperar Contraseña Foap2023-OOP/blog";
+                $mail->Subject = "Verificar Email Foap2023-OOP/Tienda";
                 $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
-                $mail->Body = "Hola,\n\nPara activar tu cuenta, haz click en el enlace siguiente. Si no has solicitado este
-                    correo, puedes ignorarlo.\n\nSaludos,\n\nFoap2023-OOP";
+                $mail->Body = "Hola,\n\nPara activar su cuenta, debe verificar su direccion de email. Por favor, haga click en el enlace siguiente. Si no has solicitado este
+                    correo, puede ignorarlo.\n\nSaludos,\n\nFoap2023/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
                 };
             if ($issue == 'factura'){
-                $mail->Subject = "Su albaran Foap2023-OOP";
-                $mail->Body = "Hola ".$this->username.", Adjunto albaran correspondienta a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
+                $mail->Subject = "Su albaran Foap2023/Tienda";
+                $mail->Body = "Hola ".$this->username.", Adjunto albaran correspondiente a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
                 $mail->addAttachment('../invoicesPDF/'.$pedido.'.pdf');
                 };
            
