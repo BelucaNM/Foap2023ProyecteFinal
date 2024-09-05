@@ -20,7 +20,7 @@
             echo '<div class="alert alert-success" role="alert">Por favor, compruebe su email. Recibirá un correo de activación.</div>';
             };
         if ( $_GET['error'] == 'activAccount') {
-            echo '<div class="alert alert-success" role="alert">Su cuenta ha sido activada.</div>';
+            echo '<div class="alert alert-success" role="alert">Su cuenta ha sido activada. Por favor, complete sus datos en la opción "Mis Datos" para continuar su compra </div>';
             };
         if ( $_GET['error'] == 'emailForgotPassword') {
             echo '<div class="alert alert-success" role="alert">Por favor, compruebe su email. Recibirá un correo para nuevo password.</div>';

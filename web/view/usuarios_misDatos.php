@@ -42,7 +42,7 @@ include "../includes/misDatos-inc.php";
             </div>
             <div class="mb-3">
                 <label for="femail">email:</label>
-                <input type="email" class="form-control" id="femail" placeholder="Introduzca email" name="femail" value ="<?=$usuario->getEmail();?>">
+                <input type="email" class="form-control" id="femail" placeholder="Introduzca nuevo email" name="femail" value ="<?=$usuario->getEmail();?>">
                 <br><span id="femailError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">      
@@ -111,18 +111,18 @@ document.addEventListener("DOMContentLoaded", function() {
         return String(str).replace(/[&<>"'`=\/]/g, function (s) {
         return entityMap[s];
         });
-    };
+        };
 
-function countDigits(str) {
-    var count = 0;
-    let array = str.split('');
-    array.forEach(function(val) {
-     if((val.charCodeAt(0)>47) && (val.charCodeAt(0)<58)) {
-        count += 1;
-        }            
-    });
-    return count;
-    };
+    function countDigits(str) {
+        var count = 0;
+        let array = str.split('');
+        array.forEach(function(val) {
+        if((val.charCodeAt(0)>47) && (val.charCodeAt(0)<58)) {
+            count += 1;
+            }            
+        });
+        return count;
+        };
     
     const emiForm = document.getElementById("datosForm");
     console.log (emiForm);
@@ -222,7 +222,7 @@ function countDigits(str) {
     
  
         //Si no hay ningun error enviar el formulario
-        if(!error) emiForm.submit()
+        if(!error) {emiForm.submit()}
         
 });
 

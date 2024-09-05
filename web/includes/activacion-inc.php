@@ -7,7 +7,7 @@
     require "../model/Usuario.php";
     require "../controler/usuarioContr.php";
 
-    $newUsuario = new usuarioContr("","","","",$token);
+    $newUsuario = new UsuarioContr("","","","",$token);
    
     //ejecutar gestor de errores i crear nuevo password
     $newUsuario->activateAccount();

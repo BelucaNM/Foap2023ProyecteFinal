@@ -1,7 +1,7 @@
 <?php
 require "../model/Connection.php";
 require "../model/Pedido.php";
-require "../controler/PedidoContr.php";
+require "../controler/pedidoContr.php";
 $pedido = new PedidoContr ("","",$_SESSION['userId']); 
 $result = $pedido->traerTodos();
 //var_dump ($result);

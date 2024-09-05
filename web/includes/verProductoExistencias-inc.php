@@ -2,7 +2,7 @@
 
 require "../model/connection.php";
 require "../model/producto.php";
-require_once "../controler/ProductoContr.php";
+require_once "../controler/productoContr.php";
 $producto = new ProductoContr();
 
 if (isset($_GET['id'])){
