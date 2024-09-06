@@ -69,7 +69,11 @@ include "../includes/verCarrito-inc.php";
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lineas as $key => $linea){
+        
+            <?php 
+
+            if(sizeof($lineas) > 0){
+            foreach ($lineas as $key => $linea){
                 echo "<tr id=".$linea['lincar_id'].">";
                 echo "<td>".$linea['lincar_id']."</td>";
                 echo "<td>".$linea['productos_pro_id']."</td>";
@@ -81,9 +85,14 @@ include "../includes/verCarrito-inc.php";
                 echo "<td id='".$linea['lincar_id']."' ><a  href='#' onclick='javascript:borraFila(this);'><i class='bi bi-trash'></i></a></td>";                       
                 echo "</tr>";
                 $total += $linea['subtotal'];
-
                 }
                 $carrito->setTotal($total);
+            
+            }else{
+                echo "<tr>";
+                echo "No hay lineas en este carrito. Consulte al Administrador";
+                echo "</tr>";
+            } ; 
             ?>
         </tbody>
     </table>

@@ -5,7 +5,7 @@ class Carrito extends Connection{
     
 
     private $tablaNombre = "carritos";
-    private $tablaNombreLineas = "carritoLineas";
+    private $tablaNombreLineas = "carritolineas";
     protected $tablaNumReg = 0;
     
     public function getTablaNumReg(){return $this->tablaNumReg;}

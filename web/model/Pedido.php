@@ -3,7 +3,7 @@
 class Pedido extends Connection{
     
     private $tablaNombre = "pedidos";
-    private $tablaNombreLineas = "pedidoLineas";
+    private $tablaNombreLineas = "pedidolineas";
     private $tablaNumReg = 0;
     protected $accesException = 0;
 

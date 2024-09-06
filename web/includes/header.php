@@ -13,13 +13,15 @@
 
     if(session_status() === PHP_SESSION_NONE) {session_start();};
     if(!isset($_SESSION['user'])){
-        echo " La session no ha sido iniciada";
+        
         $tablaNav = $_tablaNav_sinSession;
         $user = "";
+        echo " La session no ha sido iniciada";
     }else{
-        echo " session iniciada";
+        
         $tablaNav = $_tablaNav_conSession;
         $user = $_SESSION['user'];
+        echo " Session iniciada. ¡Bienvenido ".$user."!" ;
     };
     ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">

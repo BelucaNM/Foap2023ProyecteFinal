@@ -35,22 +35,31 @@ include "../includes/verPedido-inc.php"
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lineas as $key => $linea){
-                echo "<tr>";
-                echo "<td scope= 'row'>".$linea['lin_id']."</td>";
-                echo "<td>".$linea['productos_pro_id']."</td>";
-                echo "<td>".$linea['pro_nombre']."</td>";
-                echo "<td>".$linea['lin_cantidad']."</td>";
-                echo "<td>".$linea['lin_importe']."</td>";
-                echo "<td>".$linea['subtotal']."</td>";
-                echo "</tr>";
-                $total += $linea['subtotal'];
+            <?php
+            
+            if(sizeof($lineas) > 0){
 
-                }
+                foreach ($lineas as $key => $linea){
+                        echo "<tr>";
+                        echo "<td scope= 'row'>".$linea['lin_id']."</td>";
+                        echo "<td>".$linea['productos_pro_id']."</td>";
+                        echo "<td>".$linea['pro_nombre']."</td>";
+                        echo "<td>".$linea['lin_cantidad']."</td>";
+                        echo "<td>".$linea['lin_importe']."</td>";
+                        echo "<td>".$linea['subtotal']."</td>";
+                        echo "</tr>";
+                        $total += $linea['subtotal'];
+
+                        }
                 echo "<tr>";
                 echo "<td> Total = ".$total."</td>";
                 echo "</tr>";
-                
+        
+            }else{
+                echo "<tr>";
+                echo "No hay lineas en este pedido. Consulte al Administrador";
+                echo "</tr>";
+            };     
                 
             ?>
         </tbody>
