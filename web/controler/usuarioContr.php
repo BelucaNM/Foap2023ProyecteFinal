@@ -119,11 +119,12 @@ class UsuarioContr extends Usuario{
     }
     private function invalidUsername(){
         $result = false;
-        if(!preg_match("/^[a-zA-Z0-9]*$/",$this->username)){ $result = true;}
+        if(!preg_match('/^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{7,}$/',$this->username)){ $result = true;}
         return $result;
     }
     private function invalidEmail(){
-        $result = filter_var($this->email, FILTER_VALIDATE_EMAIL);
+        $result = filter_var($this->email, FILTER_VALIDATE_EMAIL); 
+        // si no es valido devuelve falso; si es valido devuelve el email
         return $result;
     }
 
@@ -156,10 +157,10 @@ class UsuarioContr extends Usuario{
             exit();
         }
         if($this->invalidUsername() ){
-        header("Location: ../view/usuarios_signup.php?error=invalidUsername");
-        exit();
+            header("Location: ../view/usuarios_signup.php?error=invalidUsername");
+            exit();
         }
-        if($this->invalidEmail()){
+        if(!$this->invalidEmail()){
             header("Location: ../view/usuarios_signup.php?error=invalidEmail");
             exit();
         }

@@ -132,10 +132,9 @@ document.addEventListener("DOMContentLoaded", function() {
          fusername = document.getElementById("uid").value.trim()
         // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intoduzca solo espacios en blanco
         let fusernameError = document.getElementById("fusernameError") //elemento span para mostrar errores en la entrada del campo
-        
         fusernameError.innerHTML =""
-        if(fusername.length==0){ // apellido es obligatorio
-            fusernameError.innerHTML = "El campo username no puede estar vacio"
+        if(fusername.length==0){ // campo obligatorio
+            fusernameError.innerHTML = "El campo USERNAME no puede estar vacio"
             error = true
         }else{ 
             if (!usernameRegex.test(fusername)){
@@ -144,24 +143,61 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
         }
 
-         // validacion password 
-         fpassword = document.getElementById("uid").value.trim()
+        // validacion password 
+        fpwd = document.getElementById("pwd").value.trim()
         // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intoduzca solo espacios en blanco
-        let fusernameError = document.getElementById("fusernameError") //elemento span para mostrar errores en la entrada del campo
+        let fpwdError = document.getElementById("fpwdError") //elemento span para mostrar errores en la entrada del campo
         
-        fusernameError.innerHTML =""
-        if(fusername.length==0){ // apellido es obligatorio
-            fusernameError.innerHTML = "El campo username no puede estar vacio"
+        fpwdError.innerHTML =""
+        if(fpwd.length==0){ // campo obligatorio
+            fpwdError.innerHTML = "El campo PASSWORD no puede estar vacio"
             error = true
         }else{ 
-            if (!usernameRegex.test(fusername)){
+            if (!passwordRegex.test(fpwd)){
                 error = true
-                fusernameError.innerHTML = "El username debe contener al menos 7 caracteres, una mayúscula, una minúscula y un carácter especial"
+                fpwdError.innerHTML = "El username debe contener al menos 7 caracteres, una mayúscula, una minúscula y un carácter especial"
                 }
         }
 
+        // validacion repetición password
+        frepeatPwd = document.getElementById("repeatPwd").value.trim()
+        // con la funcion trim quitamos los espacios en blanco de delante y detras para evitar que el usuario intoduzca solo espacios en blanco
+        let frepeatPwdError = document.getElementById("frepeatPwdError") //elemento span para mostrar errores en la entrada del campo
+        
+        frepeatPwdError.innerHTML =""
+        if(frepeatPwd.length==0){ // campo obligatorio
+            frepeatPwdError.innerHTML = "Debe reintroducir el PASSWORD en este campo"
+            error = true
+        }else{ 
+            if (frepeatPwd !== fpwd) {
+                error = true
+                frepeatPwdError.innerHTML = "Se requiere que introduzca el mismo PASSWORD"
+                }
+        }
+        
+        // validacion email
+        let femail = document.getElementById("email").value.trim()
+        let femailError = document.getElementById("femailError")
+        femailError.innerHTML =""
+        if(femail.length==0){ // obligatorio
+            femailError.innerHTML = "El campo email es obligatorio"
+            error = true
+        }else{
+            if (!patternEmail.test(femail)){
+                error = true
+                femailError.innerHTML = " Formato de email incorrecto"
+            }
+        }
 
-
+        // validacion codpos
+        let fcodpos = document.getElementById("codpos").value.trim()
+        let fcodposError = document.getElementById("fcodposError")
+        fcodposError.innerHTML =""
+        if(fcodpos.length==0){ // obligatorio
+            fcodposError.innerHTML = "El Código Postal es obligatorio"
+            error = true
+            
+        }
 
         //Si no hay ningun error enviar el formulario
         if(!error) {emiForm.submit()}

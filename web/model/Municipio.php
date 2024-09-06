@@ -18,7 +18,8 @@ class Municipio extends Connection{
         $stmt = $this->connect()->prepare("SELECT mun_id FROM $this->tablaNombre WHERE mun_codpos = ? OR mun_nombre = ?");
         if($stmt->execute(array($codpos, $nombre))){
             if($stmt->rowCount() > 0){
-                $existe = $stmt->fetch();
+                $existe = $stmt->fetch(); // es un array
+
                 
             }
         }
