@@ -109,9 +109,9 @@
                         <li>
                         <?php
                             if  (array_key_exists('a_datos',$tablaNav[$soy])){
-                                echo '<a class="dropdown-item" href="usuarios_misdatos.php">Mis datos</a>';
+                                echo '<a class="dropdown-item" href="usuarios_misDatos.php">Mis datos</a>';
                             }else{
-                                echo '<a class="dropdown-item not-active" href="usuarios_misdatos.php">Mis datos</a>';
+                                echo '<a class="dropdown-item not-active" href="usuarios_misDatos.php">Mis datos</a>';
                             };
                         ?>
                         </li>

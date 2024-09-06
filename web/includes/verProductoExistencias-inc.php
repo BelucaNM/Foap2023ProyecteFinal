@@ -1,7 +1,7 @@
 <?php 
 
-require "../model/connection.php";
-require "../model/producto.php";
+require "../model/Connection.php";
+require "../model/Producto.php";
 require_once "../controler/productoContr.php";
 $producto = new ProductoContr();
 

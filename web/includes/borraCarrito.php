@@ -2,7 +2,7 @@
 header("Content-type: application/json; charset=utf-8");
 $_POST=json_decode(file_get_contents('php://input'), true);
 
-echo ($_POST);
+//echo ($_POST);
 
 $id = $_POST['id'];
 require "../model/Connection.php";

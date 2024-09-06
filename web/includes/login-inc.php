@@ -8,8 +8,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $password = $_POST["pwd"];
 
 
-    require "autoload.models.php";
-    require "autoload.controlers.php";
+    // require "autoload.models.php";
+    // require "autoload.controlers.php";
+    require "../model/Connection.php";
+    require "../model/Usuario.php";
+    require "../controler/usuarioContr.php";    
 
     $login = new UsuarioContr($username, $password);
     $userId = $login->loginUser();

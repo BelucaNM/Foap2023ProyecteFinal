@@ -201,7 +201,7 @@ function borraFila(laRef) {
                     });
                     if (response.ok) {
                     console.log(response);
-                    window.location.assign ("../view/verproductos.php");
+                    window.location.assign ("../view/verProductos.php");
                         } 
                     } 
              catch (err) {
