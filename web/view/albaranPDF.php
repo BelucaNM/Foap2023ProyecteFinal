@@ -63,10 +63,10 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && isset($_GET['numcomanda']) ){
 
    // Envia email
    
-    // $err = $usuarioContr->enviaEmail('factura',$numcomanda); 
+    $err = $usuarioContr->enviaEmail('factura',$numcomanda); 
     
     if (!$err) {
-        header("Location: ../view/verPedidos.php?error=MailSent");
+        header("Location: ../view/verPedidos.php?info=MailSent");
         exit();
     }else{
         header("Location: ../view/verPedidos.php?error=MailError");

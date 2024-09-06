@@ -406,9 +406,11 @@ Public function enviaEmail($issue, $pedido=""){
             $mail->SMTPAuth = true;
             $mail->Username = 'foap408@gmail.com';
             $mail->Password = 'dyrv alyq ojiq acyd';
-        //  $mail->addAddress('$this->email', '$this->username'); // comprador
-        //  $mail->addCC('beluca.navarrina@gmail.com', 'Beluca'); // vendedor
-            $mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
+            $mail->addAddress($this->email, $this->username); // comprador
+            
+            //$mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
+            $mail->addCC('isabel.navarrina@gmail.com', 'Ventas'); // vendedor
+
             $mail->Subject = "Mensaje desde Foap2023";
 
         //Replace the plain text body with one created manually
@@ -430,8 +432,8 @@ Public function enviaEmail($issue, $pedido=""){
                 };
             if ($issue == 'factura'){
                 $mail->Subject = "Su albaran Foap2023/Tienda";
-                $mail->Body = "Hola ".$this->username.", Adjunto albaran correspondiente a su pedido ".$pedido.".\n\Atentamente,\n\nFoap2023-OOP";
-                $mail->addAttachment('../invoicesPDF/'.$pedido.'.pdf');
+                $mail->Body = "Buenos días ".$this->username.",\nAdjuntamos el albaran correspondiente al pedido realizado, REF#: ".$pedido.".\n\nAtentamente,\n\n El Equipo de Objetivos-Foap2023";
+                $mail->addAttachment("../invoicesPDF/fac".$pedido.".pdf");
                 };
            
 

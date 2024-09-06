@@ -14,6 +14,13 @@
 <body>
 
 <?php
+if ( isset($_GET['info']) && $_GET['info'] == 'MailSent') {
+    echo '<div class="alert alert-success" role="alert">El albarán ha sido enviado correctamente.</div>';
+
+    };
+if ( isset($_GET['error']) && $_GET['error'] == 'MailError') {
+    echo '<div class="alert alert-success" role="alert">No se ha podido enviar su albarán. Contacte con Ventas.</div>';
+    };
 
 $title="Pedidos";
 $soy = "mispedidos";
@@ -42,7 +49,7 @@ include "../includes/verPedidos-inc.php";
                 echo "<td scope= 'row'>".$uno['ped_id']."</td>";
                 echo "<td>".$uno['ped_fecha']."</td>";
                 echo "<td><a href='verPedido.php?id=".$uno['ped_id']."'>Ver Detalle</a>";
-                echo " / <a href='albaranPDF.php?numcomanda=".$uno['ped_id']."'>Imprimir Albaran</a></td>";
+                echo " / <a href='albaranPDF.php?numcomanda=".$uno['ped_id']."'>@mail del Albaran</a></td>";
                 echo "</tr>";
                 }
             ?>
