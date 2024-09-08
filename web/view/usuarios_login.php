@@ -26,11 +26,14 @@
             echo '<div class="alert alert-success" role="alert">Por favor, compruebe su email. Recibirá un correo para nuevo password.</div>';
             };
         if ( $_GET['error'] == 'NewPassSaved') {
-                echo '<div class="alert alert-success" role="alert">Su password se ha actualizado correctamente.</div>';
-                };
+            echo '<div class="alert alert-success" role="alert">Su password se ha actualizado correctamente.</div>';
+            };
         if ( $_GET['error'] == 'inactiveAccount') {
-                echo '<div class="alert alert-success" role="alert">Cuenta inactiva. Contacte con la tienda.</div>';
-                };
+            echo '<div class="alert alert-success" role="alert">Cuenta inactiva. Contacte con la tienda.</div>';
+            };
+        if ( $_GET['error'] == 'FailedSendEmail') {
+            echo '<div class="alert alert-success" role="alert">No ha sido posible enviar email de activación. Contacte con la tienda.</div>';
+            };
             
     };
     $title="Login";

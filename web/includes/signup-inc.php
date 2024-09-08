@@ -3,7 +3,7 @@
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    print_r($_POST);
+    //print_r($_POST);
 
     // recoger datos del formulario
     $username = $_POST["uid"];

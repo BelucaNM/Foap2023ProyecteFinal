@@ -21,20 +21,18 @@ class Usuario extends Connection{
 
     protected function setUser( $username, $password, $email,
                                 $apellido="", $nombre="", $dni="",
-                                $direccion="", $municipio=""){
+                                $direccion="", $municipio="", $token=null){
         $exito = false;
         $stmt = $this->connect()->prepare("INSERT INTO $this->tablaNombre (
                                         usu_username, usu_password, usu_email,
                                         usu_apellido, usu_nombre, usu_dni,
-                                        usu_direccion, municipios_mun_id
-                                        ) 
-                                        VALUES (?,?,?,?,?,?,?,?)");
+                                        usu_direccion, municipios_mun_id, usu_token, usu_deadLine) 
+                                        VALUES (?,?,?,?,?,?,?,?,?,now())");
 
         $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
-
         $exito= $stmt->execute(array( $username, $hashedPwd, $email,
                                     $apellido, $nombre, $dni,
-                                    $direccion, $municipio));
+                                    $direccion, $municipio, $token));
         $stmt = null;
         return $exito;
 
@@ -56,7 +54,7 @@ class Usuario extends Connection{
         $error = 0;
         $stmt = $this->connect()->prepare("SELECT usu_id, usu_password, usu_cuentaActiva from $this->tablaNombre WHERE usu_username = ?");
         
-        if(!$stmt->execute(array($username))){
+        if(!$stmt->execute([$username])){
             $error = 1; // devuelve 1 si hay fallo en ejecución statement
         } else {
             if($stmt->rowCount()>0){
@@ -71,13 +69,14 @@ class Usuario extends Connection{
                     if($activa==false){
                         $error = 4; // devuelve 4 si la cuenta no esta activa
                     }
-                }
+                };
             }else{
+                $userId = null;
                 $error = 2; // devuelve 2 si no existe registro de username
-            }
+            };
         };
         $stmt = null;
-        $result = array ('error'=>$error,'usu_id'=>$userId);
+        $result = ['error'=>$error,'usu_id'=>$userId];
         return $result;
     }
     protected function activaCuenta($token) {        

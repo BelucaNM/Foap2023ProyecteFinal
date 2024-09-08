@@ -172,16 +172,26 @@ class UsuarioContr extends Usuario{
             header("Location: ../view/usuarios_signup.php?error=userMailTaken");
             exit();
         }
+        $this->generateToken();//  crear un token
         //setUser to DB
         if(!$this->setUser( $this->username, $this->password, $this->email,
                             $this->apellido, $this->nombre, $this->dni,
-                            $this->direccion, $this->municipio )){
+                            $this->direccion, $this->municipio,$this->token )){
             header("Location: ../view/usuarios_signup.php?error=FailedStmt");
             exit();
         }
-     
-        header("Location: ../view/usuarios_login.php?error=RegisterDone"); //Volver a la pagina inicial
-    }
+                
+    
+        // si todo esta bien, envia email
+        $err= $this->enviaEmail('activacion'); 
+        
+        //check for errors  
+        if (!$err) {header("Location: ../view/usuarios_login.php?error=RegisterDone");
+                exit();
+        } else {    header("Location: ../view/usuarios_login.php?error=FailedSendEmail");
+                exit();}                            
+        }
+    
 
     public function loginUser(){
         //validationes
@@ -293,10 +303,10 @@ class UsuarioContr extends Usuario{
                 header("Location: ../includes/activacion_inc.php?error=failedStmt&token=$this->token");
                 exit();
             }
-        header("Location: ../views/usuarios_login.php?error=activAccount");
+        header("Location: ../view/usuarios_login.php?error=activAccount");
 
         }
-        public function leerUser(){
+    public function leerUser(){
             //validationes
             $res = $this->leer($this->id);
             //print_r($res);
@@ -323,7 +333,7 @@ class UsuarioContr extends Usuario{
     
         } 
         
-public function updateUser(){
+    public function updateUser(){
     //validationes
 
     if (!$this->invalidEmail()){
@@ -343,7 +353,7 @@ public function updateUser(){
     } 
 }
     
-Public function forgotPassword(){
+    Public function forgotPassword(){
                 // validaciones
         
     if (!$this->invalidEmail()){
@@ -417,21 +427,23 @@ Public function enviaEmail($issue, $pedido=""){
         //Para enviar texto plano     
             
             if ($issue == 'forgotPassword'){
-                $mail->Subject = "Recuperar Contraseña Foap2023/Tienda";
-                $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
+                $mail->Subject = "Recuperar Contrase\ña Objetivos-Foap2023";
+                $link= 'http://147.83.7.203/objetivos/web/view/newpassword.php?token='.$this->token;
+    //            $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara recuperar su contraseña, haga click en el enlace siguiente. Si no ha solicitado este
                     correo, puede ignorarlo.\n\nSaludos,\n\nFoap2023/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para crear nueva contraseña</a>"); 
                 };
             if ($issue == 'activacion'){
-                $mail->Subject = "Verificar Email Foap2023-OOP/Tienda";
-                $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
+                $mail->Subject = "Verificar Email Objetivos-Foap2023";
+                $link= 'http://147.83.7.203/objetivos/web/includes/activacion-inc.php?token='.$this->token;
+    //          $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
                 $mail->Body = "Hola,\n\nPara activar su cuenta, debe verificar su direccion de email. Por favor, haga click en el enlace siguiente. Si no has solicitado este
-                    correo, puede ignorarlo.\n\nSaludos,\n\nFoap2023/Tienda";
+                    correo, puede ignorarlo.\n\nSaludos,\n\Objetivos/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
                 };
             if ($issue == 'factura'){
-                $mail->Subject = "Su albaran Foap2023/Tienda";
+                $mail->Subject = "Su albaran Objetivos-Foap2023";
                 $mail->Body = "Buenos días ".$this->username.",\nAdjuntamos el albaran correspondiente al pedido realizado, REF#: ".$pedido.".\n\nAtentamente,\n\n El Equipo de Objetivos-Foap2023";
                 $mail->addAttachment("../invoicesPDF/fac".$pedido.".pdf");
                 };

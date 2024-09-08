@@ -50,17 +50,17 @@
         <form action="../includes/newPass-inc.php" method="post">
             <div class="mb-3">
                 <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                <input type="password" class="form-control" id="pwd" placeholder="Introduzca password" name="pwd">
             </div>
             <div class="mb-3">
-                <label for="repeatPwd">Repeat password:</label>
-                <input type="password" class="form-control" id="repeatPwd" placeholder="Enter password" name="repeatPwd">
+                <label for="repeatPwd">Re-introduzca password:</label>
+                <input type="password" class="form-control" id="repeatPwd" placeholder="Re-introduzca password" name="repeatPwd">
             </div>
             <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control" id="token" name="token" value="<?=$token;?>"  hidden readonly  >
 
             </div> 
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Enviar</button>
         </form>
     </div>
 </section>
