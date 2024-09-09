@@ -34,6 +34,15 @@
         if ( $_GET['error'] == 'FailedSendEmail') {
             echo '<div class="alert alert-success" role="alert">No ha sido posible enviar email de activación. Contacte con la tienda.</div>';
             };
+        if ( $_GET['error'] == 'failedStmt') {
+            echo '<div class="alert alert-success" role="alert">Error al activar su cuenta. Contacte con la tienda.</div>';
+            };
+        if ( $_GET['error'] == 'tokenNotExist') {
+            echo '<div class="alert alert-success" role="alert">Error al activar su cuenta. Token no existe. Contacte con la tienda.</div>';
+            };
+        if ( $_GET['error'] == 'tokenExpired') {
+            echo '<div class="alert alert-success" role="alert">Error al activar su cuenta. Token Expired. Contacte con la tienda.</div>';
+            };
             
     };
     $title="Login";

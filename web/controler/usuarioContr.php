@@ -285,24 +285,25 @@ class UsuarioContr extends Usuario{
 
         if ($result == 1) {
                 echo " el stmt es incorrecto";
-                header ("location: ../includes/activacion_inc.php?error=FailedStmt");
+                header ("location: ../view/usuarios_login.php?error=failedStmt");
                 exit();
             }
         if ($result == 2) { 
                 echo " el token  no existe";
-                header ("location: ../includes/activacion_inc.php?error=tokenNotExist"); 
+                header ("location: ../view/usuarios_login.php?error=tokenNotExist"); 
                 exit();
             }
         if ($result == 3) {
                 echo " el token está caducado";
-                header ("location: ../includes/activacion_inc.php?error=tokenExpired"); 
+                header ("location: ../view/usuarios_login.php?error=tokenExpired"); 
                 exit();
             }
     
         if(!$this->activaCuenta($this->token)){
-                header("Location: ../includes/activacion_inc.php?error=failedStmt&token=$this->token");
+                header("Location: ../view/usuarios_login.php?error=failedStmt&token=$this->token");
                 exit();
             }
+        echo " Cuenta Activa";
         header("Location: ../view/usuarios_login.php?error=activAccount");
 
         }

@@ -95,12 +95,13 @@ class Usuario extends Connection{
         $error = 0;
         $stmt = $this->connect()->prepare("SELECT TIMESTAMPDIFF(minute,usu_deadLine,now()) as diff FROM $this->tablaNombre WHERE usu_token = ?");
     
-        if (!$stmt->execute(array($token))){
+        if (!$stmt->execute([$token])){
             $error = 1; // devuelve 1 si hay fallo en ejecución statement
         }else{
             if( $stmt->rowCount() >0) {
-                $tiempo = $stmt->fetch();
-                if($tiempo[0]['diff'] > 30){  // devuelve 3 ai hay  diferencia mayor de 30 minutos que es tiempo de validez del token
+                $tiempo = $stmt->fetchAll();
+                var_dump($tiempo);
+                if($tiempo[0]['diff'] > 30){  // devuelve 3 si hay  diferencia mayor de 30 minutos que es tiempo de validez del token
                     $error = 3; 
                 }
             }else{
@@ -109,6 +110,8 @@ class Usuario extends Connection{
         };
                 
         $stmt = null;
+        $result = ['error'=>$error,'token'=>$token];
+        var_dump ($result);
         return $error;
         }
 
