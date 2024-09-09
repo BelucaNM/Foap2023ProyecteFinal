@@ -23,6 +23,7 @@ desarrollada en ocasión de este proyecto serán sujetos a una  licencia de Crea
 7. Views
 8. Clases
 9. Perfiles de usuario .
+10.Requisitos de instalación/implantación/uso 
 
 
 15. Usabilidad/UX . 50 
@@ -164,7 +165,12 @@ Todos los usuarios son propios. Se considera un usuario propio a aquel que se ha
 el formulario de registro de usuarios en la aplicación. 
   
 
- 
+10 Requisitos de instalación/implantación/uso
+definicion de variables en funcion del entorno que se detecta via PHP y OS.php
+
+
+
+
 15. Usabilidad/UX 
 La aplicación se ha diseñado para ser fácil de usar y comprender.
 

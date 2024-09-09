@@ -405,7 +405,8 @@ Public function enviaEmail($issue, $pedido=""){
             require '../../lib/PHPMailer/src/Exception.php';
             require '../../lib/PHPMailer/src/PHPMailer.php';
             require '../../lib/PHPMailer/src/SMTP.php';
-            
+
+            $linkEmail = 'http://localhost/FOAP2023PROYECTEFINAL';
             $mail = new PHPMailer\PHPMailer\PHPMailer(true);
             $mail->isSMTP();
             $mail->SMTPDebug = PHPMailer\PHPMailer\SMTP::DEBUG_OFF;
@@ -419,7 +420,7 @@ Public function enviaEmail($issue, $pedido=""){
             $mail->addAddress($this->email, $this->username); // comprador
             
             //$mail->addAddress('beluca.navarrina@gmail.com', 'Beluca');
-            $mail->addCC('isabel.navarrina@gmail.com', 'Ventas'); // vendedor
+            $mail->addCC($emailVentas, 'Ventas'); // variable emailVentas definida en fichero de configuracion
 
             $mail->Subject = "Mensaje desde Foap2023";
 
@@ -428,16 +429,16 @@ Public function enviaEmail($issue, $pedido=""){
             
             if ($issue == 'forgotPassword'){
                 $mail->Subject = "Recuperar Contrase\ña Objetivos-Foap2023";
-                $link= 'http://147.83.7.203/objetivos/web/view/newpassword.php?token='.$this->token;
-    //            $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; // aqui hay que enviar el token
+                $link= $linkEmail.'/web/view/newpassword.php?token='.$this->token;// hay que enviar envia token
+    //            $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/view/newpassword.php?token='.$this->token; 
                 $mail->Body = "Hola,\n\nPara recuperar su contraseña, haga click en el enlace siguiente. Si no ha solicitado este
                     correo, puede ignorarlo.\n\nSaludos,\n\nFoap2023/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para crear nueva contraseña</a>"); 
                 };
             if ($issue == 'activacion'){
                 $mail->Subject = "Verificar Email Objetivos-Foap2023";
-                $link= 'http://147.83.7.203/objetivos/web/includes/activacion-inc.php?token='.$this->token;
-    //          $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
+                $link= $linkEmail.'/web/includes/activacion-inc.php?token='.$this->token; // aqui hay que enviar el token
+    //          $link= 'http://localhost/FOAP2023PROYECTEFINAL/web/includes/activacion-inc.php?token='.$this->token; 
                 $mail->Body = "Hola,\n\nPara activar su cuenta, debe verificar su direccion de email. Por favor, haga click en el enlace siguiente. Si no has solicitado este
                     correo, puede ignorarlo.\n\nSaludos,\n\Objetivos/Tienda";
                 $mail->msgHTML("<a href='".$link."'> Link para activar su cuenta </a>"); 
