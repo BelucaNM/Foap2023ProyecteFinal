@@ -37,9 +37,9 @@ class Connection {
     }
     
     protected function connect(){
-    
+        $config = include '../includes/config.php';
         try {
-            $con = new PDO('mysql:host=localhost;dbname=tienda', 'root','');
+            $con = new PDO($config['db_name'], $config['db_user'], $config['db_pass']);
             $con->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $con;
