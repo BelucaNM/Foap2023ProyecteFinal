@@ -24,26 +24,13 @@ desarrollada en ocasión de este proyecto serán sujetos a una  licencia de Crea
 8. Clases
 9. Perfiles de usuario .
 10.Requisitos de instalación/implantación/uso 
-
-
-15. Usabilidad/UX . 50 
-16. Seguridad . 53 
-17. Tests . 55 
-18. Versiones de la aplicación/servicio. 56 
-19. Requisitos de instalación/implantación/uso . 57 
-20. Instrucciones de implantación . 58 
-21. Instrucciones de desarrollo . 59 
-21.1 Aplicación Backend . 59 
-21.2 Aplicación Frontend . 60 
-22. Bugs . 61 
-23. Proyección a futuro . 62 
-24. Presupuesto . 63 
-25. Análisis de mercado. 64 
-26. Marketing y Ventas . 65 
-26.1. Métricas de la aplicación . 66 
-27. Conclusiones. 68 
-Anexo 1. Entregables del proyecto . 70 
-Anexo 2. Libro de estilo . 71 
+11. Usabilidad y accesibilidad.
+12. Seguridad . 
+13. Funcionalidad de la aplicación.
+14. Instrucciones de implantación.
+15. Proyección a futuro .
+16. Entregables del proyecto  
+ 
 
  
 
@@ -51,8 +38,7 @@ Anexo 2. Libro de estilo . 71
 En este proyecto se ha realizado una aplicación  'ObJEtivos', desde la definición de la estructura 
 de datos hasta la aplicación cliente pasando por la aplicación backend. La  aplicación es requisito para la superacion del curso Foap2023
  
-La  realización  de  este  proyecto  también supone  una  oportunidad en mi caso  para  desarrollar  una  aplicación 
-de uso propio para el inventariado y la venta de material de fotografía. 
+La  realización  de  este  proyecto  también supone  una  oportunidad en mi caso  para  desarrollar  una  aplicación de uso propio para el inventariado y la venta de material de fotografía de segunda mano. 
  
 
 2- Descripción 
@@ -67,8 +53,7 @@ Para  codificar  esta  aplicación  se  ha  optado  por  un  modelo Vista-Modelo
 parte  de  la  aplicación  (la  parte vista  presenta  la  información  mientras  que  la  parte 
 servidor  gestiona  la  información  y  la  procesa) .
 
-
- 
+Se han usado las librerias Domppdf para generacion de PDF  y PHPmailer para envío de mensajes en tiempo real
 
    
 3. Objetivos y pasos a seguir.
@@ -81,14 +66,11 @@ deben completarse necesariamente al final del proyecto.
 aplicación backend.   
 • Aplicar en lo posible los conocimientos de diseño de interfaces web adquiridos en este curso. 
 • Integración de la aplicación con servicios de mensajería de terceros para el 
-envió de notificaciones en tiempo real. 
-• API de terceros. Integración de la aplicación con APIs de terceros
+envió de notificaciones en tiempo real. (Integración de la aplicación con APIs de terceros)
 • Aplicación  de  pruebas  unitarias  y  funcionales  para  asegurar  el  funcionamiento 
 deseado de las partes de las aplicaciones. 
     
-El  producto  final  de  esta  aplicación  es  un  conjunto  de  ficheros  HTML, PHP,  CSS  y  JS  que  deben  ser 
-alojados en un servidor Apache.
-
+El  producto  final  de  esta  aplicación  es  un  conjunto  de  ficheros  HTML, PHP,  CSS  y  JS  que  deben  ser alojados en un servidor Apache.
 
 
 4.1 La base de datos
@@ -105,10 +87,10 @@ El resto de las tablas es como sigue:
 - La tabla de lineas de carrito , que almacena el contenido del carrito, y
 - La tabla de axistencias, que almacena los datos de stock  de los productos.
 
-
 Se incluye un diagrama completo de la BD con las tablas y sus tributos y las relaciones entre tablas.
 
 4.2  Aplicación back-end
+
 En  lo  concerniente  al  patrón  de  arquitectura  seguido  para  construir  la  aplicación  backend,  se  ha 
 tomado como referencia el modelo de arquitectura vista-modelo-controlador sobre PHP.
  
@@ -123,18 +105,20 @@ Por cuestiones de disponibilidad de tiempo se ha utilizado en algunas pantallas 
  
 Como se ha comentado en apartados, el despliegue es una parte importante del desarrollo de la 
 aplicación, puesto que se pretende crear una aplicación que sea fácilmente desplegable y escalable, 
-en caso de ser necesario.?? 
+en caso de ser necesario. 
   
 5  Entorno de desarrollo
-Ordenadores personales de aula y propio, en entorno Windows 10 y sobre plataforma XAMP, con servidor Apache local.
+
+La aplicación se ha desarrollado en ordenadores personales de aula y propio, en entorno Windows 10 y sobre plataforma XAMPP, con servidor Apache local.
 Para  la  edición de código se ha utilizado Visual Studio Code.
 Para crear los modelos de DB se ha utilizado PHPMyAdmin y MYSQLWorkbech 8.0. 
-El tiempo de desarrollo a sido de tres semanas.
+El tiempo de desarrollo ha sido de cuatro semanas.
 El codigo se almacena en un repositorio público de GITHUB.
 
 
 6. Diagrama de uso y relación de módulos y sus funciónes.
  
+
 
 7 Views. Recursos. Diseño de pantallas e includes
 
@@ -148,7 +132,8 @@ Uso de iconos
  
 
 8. Clases
-Se usa el modelo de extensión de clases desde el modelo conexión, es decir partiendo de esta como clase padre, definiendo como extensión la clase que incluye todas los procedimientos de acceso a datos en BD y 
+
+Se ha usado  el modelo de extensión de clases desde el modelo conexión, es decir partiendo de esta como clase padre, definiendo como extensión la clase que incluye todas los procedimientos de acceso a datos en BD y 
 finalmente la clase controlador, donde se hacen las verificaciones antes del acceso a datsos y también la entrega de la salida. 
 Por eso no hay una correspondencia exacta en el uso de clases y tablas, quiero decir que por ejemplo el controlador de pedido suministra igualmente la cabecera de pedido y las lineas
 Todos las clases se inicializan via el controlador y se todas los datos se guarda en los atributos de manera que las llamadas entre funciones, en lo posible, no tienen argumento
@@ -158,151 +143,145 @@ y setters en las clases son redundantes  yo los uso
  
  
 9. Perfiles de usuario 
+
 Todos los usuarios que se registran en la aplicación y que pueden 
 realizar las acciones habituales previstas en la aplicación son Usuarios sin privilegios. 
-Los Usuarios Administradores trabajan sobre otra aplicación  ( mantenimiento de datos)
-Todos los usuarios son propios. Se considera un usuario propio a aquel que se ha registrado mediante 
-el formulario de registro de usuarios en la aplicación. 
+Los usuarios administradores trabajan sobre otra aplicación WebAdmin ( para mantenimiento de datos)
+Todos los usuarios de la plicación son propios. Se considera un usuario propio a aquel que se ha registrado mediante el formulario de registro de usuarios en la aplicación. 
   
 
 10 Requisitos de instalación/implantación/uso
-definicion de variables en funcion del entorno que se detecta via PHP y OS.php
+
+Las direcciones de llamadas entre los programas son relativas al directorio raiz de instalacción en ambos entornos, de desarrollo y de implantación.
+Se definen algunas   variables en funcion del entorno que se detecta via PHP y OS.php. El entorno de desarrollo es Windows, y el entorno de 
+producción es Linux. Se verifica la conexión a la base de datos según el entorno detectado asi como 
 
 
+11. Usabilidad y accesibilidad
 
-
-15. Usabilidad/UX 
 La aplicación se ha diseñado para ser fácil de usar y comprender.
 
-La realización de la aplicación frontend no se ha inspirado de los principios del Mobile 
-First.  Para convertir a un diseño donde se prioricen  los dispositivos móviles habría que usar  de patrones de diseño de  interfaces (como el uso de cards Y modales) que se muestre sin problemas y sin que se tengan 
-que realizar grandes cambios en dispositivos.  
- 
-En términos prácticos, la aplicación de este principio significa, por ejemplo, que cuando se codifica 
-el comportamiento de un componente para diferentes medidas de pantalla, primero se codifica el 
-comportamiento en pantallas pequeñas (por defecto) y luego se introducen las modificaciones 
-necesarias a medida que el tamaño aumenta. No al revés.  
- 
-Este principio de diseño supone una evolución del conocido como Responsive Design y, por ello 
-mantiene sus premisas de adaptar el contenido a los diferentes anchos de pantalla de los 
-diferentes dispositivos, desde pantallas anchas hasta las pantallas de los smartphones. 
+Dado el objetivo de la aplicación ( venta de material de fotografía de segunda mano ) la realización de la aplicación frontend no se ha inspirado de los principios del Mobile 
+First, pero  aunque se usan  de patrones de diseño de  interfaces (como el uso de cards y modales) que hacen pensar que no habrá que realizar grandes cambios en dispositivos.  Pero si intenta ser responsive y adaptable a diferentes tamaños de pantalla.
+
  
 En  relación con  la  información mostrada  en  la  página  principal de  la aplicación,  se intenta mantener la interfaz simple y entendible para el usuario.  
  
-
- 
 En relación con los principios de diseño de interfaces aplicados en el diseño de la aplicación, es 
 preciso destacar los siguientes: 
+
+En relación con el diseño de la navegación se ha hecho a traves de 
+con un menú horizontal común a todos los programas que se encuentra en la parte superior de la aplicación. 
+Se trata de un menú simple que ocupa todo el ancho de la pantalla y que contiene  
+enlaces  directos. Los enlaces se activan o desactivan en función del programa que se está ejecutando, y el estado de sesión iniciada ( parte privada de la aplicación )  o no ( parte pública).
+
  
-• Cards. En la página principal de la aplicación, la información de las diferentes productos se 
-agrupa de forma lógica en tarjetas o Cards que se muestran agrupadas en una fila (el número 
-de tarjetas por fila varía en función del ancho de la pantalla) y que permiten acceder al detalle 
-de la mascota y declarar una acción sobre esa mascota. 
+• Cards. En la página principal de la aplicación, la información de las diferentes categorías de productos se 
+agrupa de forma lógica en tarjetas o Cards que se muestran agrupadas en una fila. El número 
+de tarjetas por fila es de 4 y se permite movimiento entre categorías a traves de un carrusel.
+El  uso  del  carrousel para  mostrar  imágenes  permite, entre otras cosas, reducir  la  cantidad  de  imágenes  descargadas.Al seleccionar una tarjeta se muestra en formato table los productos de la categoria.  
+
                                                                                            
 • Modals El uso de modales permite atraer toda la atención del usuario hacia un contenido 
-determinado que se muestra superpuesto al contenido previo. El contenido de las modales 
-debe,  además,  reducido  para  que  se  muestre  correctamente  en  los  smartphones.  En  la 
-aplicación, se usa esta técnica para recoger información a la hora introducir una acción sobre 
-una mascota. 
-• Carrousel.  El  uso  de  carrouseles  para  mostrar  imágenes  es  una  técnica  ampliamente 
-utilizada que permite, entre otras cosas, temporizar la carga de imágenes a medida que el 
-usuario  las  visualiza  para,  de  ese  modo,  reducir  la  cantidad  de  imágenes  descargadas 
-cuando, por ejemplo, el usuario no visualiza más que la primera imagen. 
- 
-En relación con el diseño de la navegación en la aplicación se ha pensado en dos formas distintas 
-de  navegación  en  función  del  ancho  de  la  pantalla  para  maximizar  la  usabilidad  de  la  aplicación 
-tanto en grandes dispositivos como en smartphones. 
- 
-• Horizontal menu. En el caso de las grandes pantallas, la aplicación se muestra 
-con un menú horizontal de navegación que se encuentra en la parte superior de la aplicación. 
-Se trata de un menú simple que ocupa todo el ancho de la pantalla y que contiene  
-enlaces  directos.  
-
+determinado que se muestra superpuesto al contenido previo. Los modales se utilizan para mostrar información como alternativa a los cards y forzar que se haya visto dado que el usuario tiene que cerrar el modal. Tambien para la confirmación/cancelación  de operaciones de borrado. 
  
 Por último, en lo concerniente a los formularios, también se han aplicado varios principios y 
 patrones de diseño de interfaces. 
- 
-• Password  Strength  Meter.  En  la  página  de  registro  se  ha  introducido  un  medidor  de 
-seguridad de la contraseña introducido por el usuario. Este principio tiene por objetivo que 
-el usuario introduzca contraseñas más robustas y seguras frente a un ataque. 
                                                                                         
-• Fill in the Blanks. Este principio hace referencia a la gestión de los inputs cuando estos se 
+• Relleno de campos. Este principio hace referencia a la gestión de los inputs cuando estos se 
 muestran vacíos. En el diseño de la aplicación se ha previsto el uso de valores existentes 
 para  alimentar  los  campos  de  un  formulario  cuando  el  usuario  este  actualizando  o 
 modificando la información, así como el uso de  placeholders en aquellos casos en que se 
 trata de añadir nueva información al sistema. 
 
-                                                                                         
- 
+• Password  y nombre de usuario.  En  la  página  de  registro se imponen unas condiciones para la validación  del nombre de usuario y la palabra de paso, siendo estas un número mínimo de 7 caracteres, con una mayúscula, una minúscula , un número y un carácter especial. Además, se aplica la técnica de confirmación de
+seguridad de la contraseña introducido por el usuario. El objetivo que 
+el usuario introduzca palabras  más robustas y seguras frente a un ataque. 
+Para garantizar que la contraseña introducida por el usuario es correcta el sistema solicita la confirmación de la contraseña. (No está implementado en la primera version pero se prodría introducir facilmente un display de medida de robustez de la  contraseña para información de usuario.) 
 
- 
-16. Seguridad 
-El esquema de seguridad aplicado en la aplicación PetFinder tiene varias capas que se superponen 
-y que persiguen dos objetivos; por un lado, aislar la aplicación y los sistemas con los que interactúa 
-para reducir al máximo el riesgo de intrusión (por ejemplo, el riesgo de intrusión directa en el servidor 
-de base de datos) y, por otro lado, proteger el flujo de datos servidos por la API para prevenir en 
-este punto el robo de información de clientes. 
- 
-Mencionar el uso de sentencias prepare y ?
-Mencionar el uso de "selecion de caracteres en los campos de entrada para evitar comandos"
-Mencionar el uso de password encriptadas
-Mencionar uso de sesiones , el servidor conserva informacion del usuario en la sesiones
-Uso de token para verificaicón de cuenta de email y activacion de cuenta , y para el cambio de la contraseña 
+• Dirección de email.  El sistema pide en registro una dirección de correo. Esta dirección debe ser única en la base de datos. 
 
- 
-17. Tests DE FUNCIONALIDAD Y CALIDAD  ??? revisar 
+Se han tenido en cuenta las indicaciones de  la accesibilidad usando un elemento <nav> en barra de navegacion para identificarla a los usuarios. También se han respetado los etiquetados de categorias de heading.
 
-Getión de Errores, Try and catch
 
-librerias domppdf para generacion de PDF 
-PHPmailer para mensajes en tiempo real
+12. Seguridad 
 
-He realizado pruebas de uso en navegadores
-Google Chrome,  Y Mozilla Firefox Developer Edition.
- 
-Asegura la accesibilidad usando un elemento <nav> en barra de navegacion para identificarla a los usuarios de asistencias
- 
- 
-                                                                                        
- 
+El objetivo de un esquema de seguridad es aislar una aplicación para reducir al máximo el riesgo de intrusión en el servidor de base de datos y proteger la información. 
 
- 
-20. Instrucciones de implantación  ??? rellenar cuando se haga 
-La instalación de la aplicación en un servidor que cumpla con los requisitos es rápida y sencilla. 
+Las medidas tomadas son :
 
-Por último, la calidad es el último de los objetivos secundarios y, a la vez, es el punto del que estoy 
-menos  satisfecho.  Aunque  se  puede  afirmar  que  la  aplicación  funciona  y no  presenta  problemas 
-destacables (al menos hasta la fecha), el hecho de que no se hayan implementado tests para la 
-mayor  parte  del  código  y  las  funcionalidades  que  la  aplicación  ofrece,  hace  que  la  calidad  de  la 
-aplicación, sobre todo de cara futuras evoluciones, no sea muy buena. 
- 
-Me  hubiera gustado concebir  una  aplicación con  las pruebas  implementadas mediante el  uso  de 
-metodologías como TDD (Test Driven Development) en que el proceso de desarrollo es “pilotado” 
-desde  la  clase  de  prueba,  o  DDD  (Domain  Driven  Development)  en  que  se  sitúa  a  los  dominios 
-como el centro integral de la lógica de la aplicación y se generan tests para los casos de uso. 
- 
+El acceso a la parte privada que implica uso de datos se realiza mendiante sesiones y el servidor conserva informacion del usuario durante la sesión .
+
+Todas las entradas se validan dos  veces, una en el lado del cliente en JavaScript  y otra en el lado del servidor.
+
+Todas las entradas son filtradas en los campos de entrada eliminando caracteres HTML.
+
+La password se encripta.
+
+Todos los accesos a base de datos se hacen mediante las sentencias "prepare" y "execute" con el uso de values '?'.
+
+Cuando un usuario se registra, la nueva cuenta se crea desactivada. Asi el usuario recibe en la cuenta de email que indica , un link de activación con un token. Mediante esta operación se verifica  que  la cuenta de email existe. El mismo procedimiento se utiliza para el cambio de la contraseña. 
+
+
+
+13. Pruebas de funcionalidad de la aplicación
+
+Se han realizado pruebas de uso en los navegadores Google Chrome y Mozilla Firefox.
+
+Se ha intentado controlar al máximo la gestión de errores de ejecución de comandos de BD con el uso de las instrucciones "Try" y "catch" para evitar errores fatales que interrumpa la ejecución del programa. 
+
+  
+14. Instrucciones de implantación  
+
+La instalación de la aplicación en el servidor es rápida y sencilla. 
+
+15. Proyección a futuro .
                                                                                      
- 
+La aplicación  puede ser ampliada con varias funcionalidades. 
+La primera será la ampliación de la información asociada a cada producto. También la incorporación de 6 imagenes mínimo a la informaciín de cada producto.
+También será necesaria incorporar acceso a una pasarela de pago. 
 
  
-Anexo 1. Entregables del proyecto 
+16. Entregables del proyecto 
+
 A continuación, se indican los entregables que se presentan junto con esta documentación y que contienen 
 el código de las aplicaciones
- 
-• Foap2023ProyecteFinal. Es una carpeta que contiene el repositorio  con el código de la aplicación 
- 
 
+
+Foap2023ProyecteFinal.zip . Es una fichero zip que contiene el código de la aplicación  y también un archivo de configuración de la base de datos que se subirá al Moodle de Sarti. Incluye documentación del proyecto, el diagrama de la aplicación y el diagrama de la estructura de datos .
+
+Existe una un repositorio  GIT pública de  la  aplicación  
  
 La aplicación producto de este proyecto se encuentra desplegada en la dirección 
 ( poner aqui cuando haya sido subida al servidor)
 
-Anexo 2. Libro de estilo 
-Como  se  ha  explicado  en  apartados  anteriores,  el  diseño  de la aplicacion   se 
-apoya fuertemente en el uso y la personalización delBootstrap 4.  A 
-continuación,  se  incluye  la  hoja  de  estilos  con  las  personalizaciones  de  Bootstrap  para 
-la tienda. (style.scss) 
+
+ 
+ Entregables del proyecto 
+A continuación, se indican los entregables que se presentan junto con esta memoria y que contienen 
+el código de las aplicaciones, así como el mecanismo de despliegue de PetFinder mediante Docker 
+Compose. 
+ 
+• petfinder-back. Es una carpeta que contiene el repositorio GIT con el código de la aplicación 
+backend de PetFinder. Contiene la lógica de la aplicación, la capa de acceso a base de datos 
+y los servicios expuestos en la API. 
+• petfinder-front.  Una  carpeta  que  contiene  el  repositorio  GIT  de  la  aplicación  frontend  de 
+PetFinder creada con Angular. 
+• petfinder-deploy.  Se  trata  de  una  carpeta  con  el  script  de  despliegue  de  la  aplicación 
+(incluidas sus dependencias) mediante el uso de Docker Compose. 
+ 
+La aplicación producto de este proyecto se encuentra desplegada en la dirección 
+https://petfinder.ricardmolinaferret.com/ 
  
  
+ 
+ 
+ 
+ 
+ 
+ 
+  
+
  
  
   

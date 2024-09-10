@@ -424,6 +424,7 @@ Public function enviaEmail($issue, $pedido=""){
             $mail->addCC($config['emailVentas'], 'Ventas'); // variable emailVentas definida en fichero de configuracion
 
             $mail->Subject = "Mensaje desde Foap2023";
+            $mail->CharSet = "UTF-8";
 
         //Replace the plain text body with one created manually
         //Para enviar texto plano     
