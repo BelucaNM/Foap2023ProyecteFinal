@@ -257,21 +257,7 @@ La aplicación producto de este proyecto se encuentra desplegada en la direcció
 
 
  
- Entregables del proyecto 
-A continuación, se indican los entregables que se presentan junto con esta memoria y que contienen 
-el código de las aplicaciones, así como el mecanismo de despliegue de PetFinder mediante Docker 
-Compose. 
- 
-• petfinder-back. Es una carpeta que contiene el repositorio GIT con el código de la aplicación 
-backend de PetFinder. Contiene la lógica de la aplicación, la capa de acceso a base de datos 
-y los servicios expuestos en la API. 
-• petfinder-front.  Una  carpeta  que  contiene  el  repositorio  GIT  de  la  aplicación  frontend  de 
-PetFinder creada con Angular. 
-• petfinder-deploy.  Se  trata  de  una  carpeta  con  el  script  de  despliegue  de  la  aplicación 
-(incluidas sus dependencias) mediante el uso de Docker Compose. 
- 
-La aplicación producto de este proyecto se encuentra desplegada en la dirección 
-https://petfinder.ricardmolinaferret.com/ 
+
  
  
  
