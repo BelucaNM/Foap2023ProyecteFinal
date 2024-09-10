@@ -57,9 +57,11 @@ class CarritoContr extends Carrito{
 
         $res = $this->alCarrito($this->carritoid,$this->cantidad,$this->precioUnitario,$this->productoid);
         if(!$res){
+//          echo "error en al-carrito";
             header("Location: ../view/verProductoExistencias.php?error=FailedStmt");
             exit();
         }else{
+//          echo "linea de carrito generada con exito";
             header("Location: ../view/verProductos.php?info=carro");
             exit();
         };

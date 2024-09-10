@@ -17,7 +17,8 @@ require "../model/Connection.php";
 require "../model/Carrito.php";
 require "../controler/carritoContr.php";
 
-$carrito = new CarritoContr ("","",4); // inicializa un carrito para el usuario
+$userId = $_SESSION["userId"];
+$carrito = new CarritoContr ("","",$userId); // inicializa un carrito para el usuario
 $result = $carrito->recuperaCarrito();
 if (!$result) {
     $carrito->crearCarrito();
