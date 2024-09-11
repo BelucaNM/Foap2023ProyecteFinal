@@ -1,12 +1,19 @@
 
-    *{
+    #logo {
+        width: 50px; /* Ajusta el tamaño del logo */
+        }
+
+    .h1 {
+        font-size: 36px; /* Ajusta el tamaño de la fuente del título */
+        }
+    
+        *{
         font-family:Verdana, Geneva, Tahoma, sans-serif;
         box-sizing: border-box;
         }
     body {
         margin: 0;
-        padding: 0;
-        
+        padding: 0;    
         }
     header {
         background-color: gainsboro;

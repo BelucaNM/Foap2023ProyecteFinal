@@ -1,10 +1,19 @@
 <header>
 <section id="header" class="section">
+<div class="container mt-3 d-flex justify-content-between align-items-center">
+    <span class="d-flex align-items-center">
+        <img id="logo" src="..\img\logo128.png" alt="Logo" >
+        <span class="h1" style="margin-bottom: 0px;">bJEtivos</span>
+    </span>
+    <span class="h1" style="margin-bottom: 0px;"><?= $title; ?></span>
+</div>
+<!--
    <div class = "container mt-3 clearfix">
-        <span class="float-start"><img id="logo" src="..\img\logo.jpg" class = "rounded-circle"></span>
-        <span class="h1 float-start"> obJEtivos </span>
+        <span class="float-start"><img id="logo" src="..\img\logo128.png" ></span>
+        <span class="h1 float-start">bJEtivos </span>
         <span class="h1 float-end"> <?=$title;?> </span>
     </div>
+-->
 </section>
 
 <section id="navegacion" class="section">

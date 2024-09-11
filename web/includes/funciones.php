@@ -82,3 +82,30 @@ function fdmaAfamd($fecha_dma){
     return $fecha_amd;
 }; 
 
+
+function comprobarFortalezaPassword($password) {
+    $longitudMinima = 8;
+    
+    // Inicializar los diferentes criterios
+    $tieneMayuscula = preg_match('@[A-Z]@', $password);
+    $tieneMinuscula = preg_match('@[a-z]@', $password);
+    $tieneNumero = preg_match('@[0-9]@', $password);
+    $tieneCaracterEspecial = preg_match('@[^\w]@', $password); // No alfanuméricos
+
+    // Comprobar que cumpla con los criterios
+    if (strlen($password) < $longitudMinima) {
+        return "Contraseña debil. La contraseña debe tener al menos $longitudMinima caracteres.";
+    } elseif (!$tieneMayuscula) {
+        return "Contraseña debil. La contraseña debe contener al menos una letra mayúscula.";
+    } elseif (!$tieneMinuscula) {
+        return "Contraseña debil. La contraseña debe contener al menos una letra minúscula.";
+    } elseif (!$tieneNumero) {
+        return "Contraseña debil. La contraseña debe contener al menos un número.";
+    } elseif (!$tieneCaracterEspecial) {
+        return "Contraseña debil. La contraseña debe contener al menos un carácter especial.";
+    } else {
+        return "Contraseña fuerte.";
+    }
+}
+
+?>

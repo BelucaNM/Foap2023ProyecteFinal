@@ -94,7 +94,7 @@ Se incluye un diagrama completo de la BD con las tablas y sus tributos y las rel
 En  lo  concerniente  al  patrón  de  arquitectura  seguido  para  construir  la  aplicación  backend,  se  ha 
 tomado como referencia el modelo de arquitectura vista-modelo-controlador sobre PHP.
  
-Se ha seguido este patrón con algunas licencias para dar cabida a algunas necesidades de la aplicación. 
+Se ha seguido este patrón con algunas licencias para dar cabida a otras necesidades de la aplicación. 
 
 4.3 Aplicación front-end
 
@@ -118,7 +118,7 @@ El codigo se almacena en un repositorio público de GITHUB.
 
 6. Diagrama de uso y relación de módulos y sus funciónes.
  
-
+ver Diagrama-proyecto-FOAP2023_ver2-ok.jpg
 
 7 Views. Recursos. Diseño de pantallas e includes
 
@@ -242,18 +242,17 @@ La primera será la ampliación de la información asociada a cada producto. Tam
 También será necesaria incorporar acceso a una pasarela de pago. 
 
  
-16. Entregables del proyecto 
+16. Ficheros del proyecto 
 
-A continuación, se indican los entregables que se presentan junto con esta documentación y que contienen 
-el código de las aplicaciones
+A continuación, se indican los ficheros que se presentan junto con esta documentación y que contienen 
+el código de las aplicaciones:
 
 
 Foap2023ProyecteFinal.zip . Es una fichero zip que contiene el código de la aplicación  y también un archivo de configuración de la base de datos que se subirá al Moodle de Sarti. Incluye documentación del proyecto, el diagrama de la aplicación y el diagrama de la estructura de datos .
 
-Existe una un repositorio  GIT pública de  la  aplicación  
+Existe una un repositorio GIT pública de  la  aplicación  https://github.com/BelucaNM/Foap2023ProyecteFinal.git.
  
-La aplicación producto de este proyecto se encuentra desplegada en la dirección 
-( poner aqui cuando haya sido subida al servidor)
+La aplicación producto de este proyecto se encuentra desplegada en la dirección: http://147.83.7.203/objetivos/web/
 
 
  
