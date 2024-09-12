@@ -52,7 +52,7 @@ include "../includes/verPedido-inc.php"
 
                         }
                 echo "<tr>";
-                echo "<td> Total = ".$total."</td>";
+                echo "<td> € Total = ".number_format($total, 2, '.', '')."</td>";
                 echo "</tr>";
         
             }else{

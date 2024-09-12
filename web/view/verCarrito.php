@@ -62,8 +62,8 @@ include "../includes/verCarrito-inc.php";
                 <th scope="col">ProductoId</th>
                 <th scope="col">ProductoNombre</th>
                 <th scope="col">Cantidad</th>
-                <th scope="col">PrecioUnitario</th>
-                <th scope="col">Subtotal</th>
+                <th scope="col">Precio_€</th>
+                <th scope="col">Subtotal_€</th>
                 <th scope="col">Acciones</th>
                 
             </tr>
@@ -87,7 +87,7 @@ include "../includes/verCarrito-inc.php";
                 $total += $linea['subtotal'];
                 }
                 $carrito->setTotal($total);
-            
+
             }else{
                 echo "<tr>";
                 echo "No hay lineas en este carrito. Consulte al Administrador";

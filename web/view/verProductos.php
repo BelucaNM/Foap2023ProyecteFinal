@@ -47,7 +47,7 @@ include "../includes/verProductos-inc.php";
                 <th scope="col">Descripcion</th>
                 <th scope="col">URLFoto</th>
                 <th scope="col">ALTFoto</th>
-                <th scope="col" align="right" >PrecioUnitario</th>
+                <th scope="col" align="right" >Precio_€</th>
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>

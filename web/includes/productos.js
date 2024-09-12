@@ -61,7 +61,7 @@ function escriureTaula(products) {
     console.log(products);
 //    let theOrdena = "<a href='#' onclick='javascript:ordenaPerNom()'>[Ordena por Nom]</a>&nbsp; <a href='#' onclick='javascript:ordenaPerCategoria()'>[Ordena por Categoria]</a>&nbsp; <a href='#' onclick='javascript:ordenaPerPreu()'>[Ordena por Precio ]</a>&nbsp";
 //    document.getElementById("navOrdena").innerHTML = theOrdena;    
-    let theTable = "<thead><tr><th scope='col'>#Id</th><th scope='col'>Categoria</th><th scope='col'>Nombre</th><th scope='col'>Descripcion</th><th scope='col'>URLFoto</th><th scope='col'>ALTFoto</th><th scope='col' text-align= 'righ'>PrecioUnitario</th><th scope='col'>Acciones</th></tr><thead>";
+    let theTable = "<thead><tr><th scope='col'>#Id</th><th scope='col'>Categoria</th><th scope='col'>Nombre</th><th scope='col'>Descripcion</th><th scope='col'>URLFoto</th><th scope='col'>ALTFoto</th><th scope='col' text-align= 'righ'>Precio_€</th><th scope='col'>Acciones</th></tr><thead>";
     let product = null;
     theTable+="<tbody>";
     products.forEach((product) => {
