@@ -337,14 +337,16 @@ class UsuarioContr extends Usuario{
     public function updateUser(){
     //validationes
 
+    /*
     if (!$this->invalidEmail()){
                 header ("location: ../view/usuarios_misDatos.php?error=InvalidEmail"); 
                 exit();}
+    */
            
     //setUser to DB
     
     $result = $this->actualizar( $this->apellido, $this->nombre, $this->dni,
-                            $this->email, $this->direccion, $this->municipio, $this->id );
+                             $this->direccion, $this->municipio, $this->id );
     if ($result){
         header("Location: ../view/bienvenidaCarousel.php?info=UpdateDone"); //Volver a la pagina inicial
         exit();

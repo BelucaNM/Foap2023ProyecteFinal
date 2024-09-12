@@ -161,15 +161,15 @@ class Usuario extends Connection{
         $stmt = null;
         return $result;
         }
-    protected function actualizar ($apellido,$nombre,$dni,$email,$direccion,$municipio,$id){
+    protected function actualizar ($apellido,$nombre,$dni,$direccion,$municipio,$id){
             
             try {
 
                 $stmt = $this->connect()->prepare("UPDATE $this->tablaNombre SET 
-                                        usu_email =?,usu_apellido=?, usu_nombre=?, usu_dni=?,
+                                        usu_apellido=?, usu_nombre=?, usu_dni=?,
                                         usu_direccion =?, municipios_mun_id =? WHERE usu_id=?");
                 
-                $result = $stmt->execute([$email, $apellido,$nombre,$dni, 
+                $result = $stmt->execute([$apellido,$nombre,$dni, 
                                $direccion,$municipio,$id]);
                 return $result;
                 }

@@ -28,37 +28,39 @@ include "../includes/misDatos-inc.php";
             <div class="mb-3">
                 <label for="apellido">Apellido:</label>
                 <input type="text" class="form-control" id="apellido" placeholder="Introduzca apellido" name="apellido" value ="<?=$usuario->getApellido();?>">
-                <br><span id="fapellidoError" style="font-size: small; color: #f00;"></span>
+                <span id="fapellidoError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">
                 <label for="nombre">Nombre:</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Introduzca nombre" name="nombre" value ="<?=$usuario->getNombre();?>">
-                <br><span id="fnameError" style="font-size: small; color: #f00;"></span>
+                <span id="fnameError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">
                 <label for="dni">DNI:</label>
                 <input type="text" class="form-control" id="dni" placeholder="Introduzca dni" name="dni" value ="<?=$usuario->getDni();?>">
-                <br><span id="fdniError" style="font-size: small; color: #f00;"></span>
+                <span id="fdniError" style="font-size: small; color: #f00;"></span>
             </div>
+<!--
             <div class="mb-3">
                 <label for="femail">email:</label>
                 <input type="email" class="form-control" id="femail" placeholder="Introduzca nuevo email" name="femail" value ="<?=$usuario->getEmail();?>">
-                <br><span id="femailError" style="font-size: small; color: #f00;"></span>
+                <span id="femailError" style="font-size: small; color: #f00;"></span>
             </div>
+-->
             <div class="mb-3">      
                 <label for ="direccion">Dirección:</label>
                 <input type="text" class="form-control" id="direccion" placeholder="Introduzca dirección"   name="direccion" value ="<?=$usuario->getDireccion();?>">
-                <br><span id="fdireccionError" style="font-size: small; color: #f00;"></span>
+                <span id="fdireccionError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">      
                 <label for ="codpos">Codigo Postal</label>
                 <input type="text" class="form-control" id="codpos" placeholder="Introduzca codigo postal"   name="codpos" value ="<?=$mun->getCodpos();?>">
-                <br><span id="fcodposError" style="font-size: small; color: #f00;"></span>
+                <span id="fcodposError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">      
                 <label for ="municipio">Municipio</label>
                 <input type="text" class="form-control" id="municipio" placeholder="Introduzca municipio"   name="municipio" value ="<?=$mun->getNombre();?>">
-                <br><span id="fmunicipioError" style="font-size: small; color: #f00;"></span>
+                <span id="fmunicipioError" style="font-size: small; color: #f00;"></span>
             </div>
             <div class="mb-3">
                 <label for ="acepto">Acepto las condiciones de uso</label>
@@ -192,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         };
 
-
+/*
         // validacion email
         let femail = document.getElementById("femail").value.trim()
         let femailError = document.getElementById("femailError")
@@ -206,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 femailError.innerHTML = " Introduzca un email correcto"
             }
         };
-
+*/
 
 
         // "acepto las condiciones.."marcado
@@ -218,9 +220,6 @@ document.addEventListener("DOMContentLoaded", function() {
             error = true
         }
 
-    
-    
- 
         //Si no hay ningun error enviar el formulario
         if(!error) {emiForm.submit()}
         
