@@ -59,7 +59,7 @@ include "../includes/header.php";
 
 
     <section id="gruposProducto" class="section">
-        <h2>Productos</h2> <!-- carrusel -->
+        <h2>Categorias de Productos</h2> <!-- carrusel -->
         <div class="cards-container">
             
         
