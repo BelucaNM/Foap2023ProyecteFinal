@@ -33,7 +33,7 @@ include "../includes/header.php";
         </div>
         <div class="mb-3">
             <label for="URLFoto">URLFoto:</label>
-            <input type="file" class="form-control" id="URLFoto" placeholder="Seleccione Imagen" name="URLFoto" required>
+            <input type="file" class="form-control" id="URLFoto" placeholder="Seleccione Imagen" name="URLFoto">
         </div>
         <div class="mb-3">      
             <label for ="ALTFoto">ALTFoto</label>
